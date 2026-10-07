@@ -1,1 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 540" fill="none"><g stroke="#b8c3ae" stroke-width=".8"><path d="m30 320 320-185m-290 215 320-185M90 380l320-185M120 400l320-185m-290 215 320-185m-290 215 320-185m-290 215 320-185M90 220l430 248M60 250l430 248m-360-270 430 248M160 200l430 248M190 180l400 231M220 160l370 214"/></g><g stroke="#243b2e" stroke-width="1.7" stroke-linejoin="round"><path d="m111 346 214-124 212 123-213 124Z" fill="#e8e9d9"/><path d="M111 346v20l213 124v-21Zm213 123v21l213-123v-22" fill="#d4dbc8"/><path d="m135 345 190-109 188 109-189 110Z"/><path d="m164 335 84-48 83 48-84 49Z" fill="#dce979"/><path d="M164 335v12l83 48v-11Zm83 49v11l84-48v-12" fill="#b7c657"/><path d="m173 304 67-39 64 37-67 40Z" fill="#f3f2e9"/><path d="M173 304v16l64 37v-15Zm64 38v15l67-39v-16" fill="#d4dbc8"/><path d="m186 298 53-30 49 29-52 30Z"/><path d="m193 290 44 26m-35-31 44 26m-35-31 44 26m-35-31 44 26" stroke-width=".8"/><path d="m371 335 59-34 61 35-59 34Z" fill="#dce979"/><path d="M371 335v11l61 36v-12Zm61 35v12l59-35v-11" fill="#b7c657"/><path d="M393 273v54l22 13v-54Zm22 13 27-16v54l-27 16" fill="#e8e9d9"/><path d="m393 273 27-16 22 13-27 16Z" fill="#f3f2e9"/><path d="M238 288V133l35-21 108 63v137l-25 14V189l-94-54v139Z" fill="#243b2e"/><path d="m238 133 108 62 35-20m-35 20v131" stroke="#e9eedc"/><path d="m249 143 88 51v111" stroke="#dce979"/><path d="m265 153 61 36v84l-61-36Z" fill="#dce979"/><path d="m278 188 10 16 25-15" stroke-width="4"/><path d="m276 220 38 22m-38-15 38 22m-38-15 28 16" stroke-width=".8"/><path d="M267 338c33 9 72 25 97 18s12-54 42-49" stroke-width="5"/><path d="M267 338c33 9 72 25 97 18s12-54 42-49" stroke="#f3f2e9" stroke-width="2"/><path d="m417 292 14-8v21l-14 8Z" fill="#243b2e"/><path d="m420 294 8-5v12l-8 5Z" fill="#dce979"/></g><g stroke="#243b2e" stroke-width="1.5" stroke-linejoin="round"><path d="M187 162c-4 14 3 20 12 23-1 12 6 17 17 19 0 39-23 67-48 65-29-2-53-37-53-76s24-65 53-62c7 1 14 5 19 10Z" fill="#dce979"/><path d="M115 194c0-38 23-65 50-63l-10-7c-29-3-53 24-53 63s24 73 53 76l13 6" fill="#b7c657"/><path d="M175 148c-26-9-47 14-47 47s19 57 40 59c18 2 36-17 37-45"/><path d="m139 201 14 17 32-34" stroke-width="4"/><ellipse cx="150" cy="165" rx="4" ry="6"/><ellipse cx="181" cy="228" rx="3" ry="5"/><path d="m130 210 14 24m-12-34 20 34m-2-3 8 16m4-3 4 7m8-11 4 7m-37-64 5 9m4-36 5 10m8-16 4 8" stroke-width=".8"/></g><g stroke="#728168" stroke-width="1"><path d="M99 161H53v-25m347 75h123v-22M444 388v56h76M240 80v-24h86"/><circle cx="99" cy="161" r="3" fill="#f3f2e9"/><circle cx="400" cy="211" r="3" fill="#f3f2e9"/><circle cx="444" cy="388" r="3" fill="#f3f2e9"/></g><g fill="#52634e" font-family="monospace" font-size="10" letter-spacing="1"><text x="27" y="125">01 / THE CHOICE</text><text x="430" y="180">02 / THE GATE</text><text x="451" y="463">03 / THE SCRIPT</text><text x="244" y="44">CONSENT STUDY / FIG. 01</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="540" viewBox="0 0 620 540" fill="none">
+  <g stroke="#ccd3dd" stroke-width="1">
+    <path d="M46 62h528v424H46z"/>
+    <path d="M30 62h16M574 62h16M30 486h16M574 486h16M46 46v16M574 46v16M46 486v16M574 486v16"/>
+    <path d="M310 54v16M310 478v16M38 274h16M566 274h16"/>
+  </g>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+    <g fill="#59677b" font-size="10" letter-spacing="1.6">
+      <text x="46" y="35">PERMISSION FLOW</text>
+      <text x="574" y="35" text-anchor="end">FIG. 01</text>
+    </g>
+
+    <path d="M92 148v108m0 36v108M110 132h34m-34 142h34m-34 142h34" stroke="#ccd3dd" stroke-width="1.2"/>
+    <g fill="#f5f5f2" stroke="#315fe9" stroke-width="1.2">
+      <circle cx="92" cy="132" r="18"/>
+      <circle cx="92" cy="274" r="18"/>
+      <circle cx="92" cy="416" r="18"/>
+    </g>
+    <g fill="#315fe9" font-size="11" font-weight="600" text-anchor="middle">
+      <text x="92" y="136">01</text>
+      <text x="92" y="278">02</text>
+      <text x="92" y="420">03</text>
+    </g>
+
+    <g fill="#f5f5f2" stroke="#172b46" stroke-width="1.2">
+      <rect x="144" y="84" width="390" height="96" rx="4"/>
+      <rect x="144" y="226" width="390" height="96" rx="4"/>
+      <rect x="144" y="368" width="390" height="96" rx="4"/>
+    </g>
+    <g stroke="#ccd3dd" stroke-width="1">
+      <path d="M144 122h390M144 264h390M144 406h390"/>
+    </g>
+    <g fill="#172b46" font-size="15" font-weight="500">
+      <text x="164" y="109">Your choice</text>
+      <text x="164" y="251">Permission check</text>
+      <text x="164" y="393">Script runs</text>
+    </g>
+    <g fill="#59677b" font-size="10" letter-spacing="1.2" text-anchor="end">
+      <text x="514" y="108">PREFERENCES</text>
+      <text x="514" y="250">CONSENT GATE</text>
+      <text x="514" y="392">APPLICATION</text>
+    </g>
+
+    <text x="164" y="156" fill="#172b46" font-size="14">Analytics</text>
+    <text x="420" y="155" fill="#315fe9" font-size="12" text-anchor="end">Allowed</text>
+    <rect x="444" y="138" width="48" height="26" rx="13" fill="#315fe9"/>
+    <circle cx="479" cy="151" r="9" fill="#f5f5f2"/>
+
+    <text x="164" y="298" fill="#172b46" font-size="14">Analytics permission is granted</text>
+    <rect x="438" y="280" width="76" height="26" rx="3" fill="#e1e9ff"/>
+    <text x="476" y="297" fill="#315fe9" font-size="11" font-weight="600" text-anchor="middle">PASS</text>
+
+    <text x="164" y="440" fill="#172b46" font-size="14">analytics.js</text>
+    <rect x="438" y="422" width="76" height="26" rx="3" fill="#e1e9ff"/>
+    <text x="476" y="439" fill="#315fe9" font-size="11" font-weight="600" text-anchor="middle">LOADED</text>
+
+    <g stroke="#315fe9" stroke-width="1.2">
+      <path d="M339 180v46m0 96v46"/>
+      <circle cx="339" cy="203" r="3" fill="#f5f5f2"/>
+      <circle cx="339" cy="345" r="3" fill="#f5f5f2"/>
+    </g>
+    <text x="310" y="517" fill="#59677b" font-size="11" text-anchor="middle">Only approved scripts continue.</text>
+  </g>
+</svg>

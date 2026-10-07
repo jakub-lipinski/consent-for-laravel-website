@@ -107,24 +107,93 @@ if ('IntersectionObserver' in window) {
 }
 const preview = document.querySelector('[data-preview]');
 if (preview) {
-    preview.querySelector('.position-selector').disabled = false;
-    preview.querySelectorAll('.preview-banner-actions button').forEach(button => { button.disabled = false; });
-    const stage = preview.querySelector('[data-preview-stage]'), banner = preview.querySelector('[data-preview-banner]'), reopen = preview.querySelector('[data-preview-reopen]'), reset = preview.querySelector('[data-preview-reset]'), message = preview.querySelector('[data-preview-status]');
-    const dialog = document.querySelector('[data-preview-dialog]'), form = dialog.querySelector('form');
-    let choices = { analytics: false, marketing: false }, opener;
-    const choose = (next, summary) => { choices = next; banner.hidden = true; reopen.hidden = false; message.textContent = `${summary} Preview only; nothing stored.`; };
-    const open = trigger => {
-        if (typeof dialog.showModal !== 'function') { message.textContent = 'The preferences preview requires a browser with native dialog support.'; return; }
-        opener = trigger; form.elements.analytics.checked = choices.analytics; form.elements.marketing.checked = choices.marketing; dialog.showModal(); dialog.querySelector('h2').focus();
+    const stage = preview.querySelector('[data-preview-stage]');
+    const interfaceRoot = preview.querySelector('.consent-preview-ui');
+    const banner = preview.querySelector('[data-preview-banner]');
+    const reopen = preview.querySelector('[data-preview-reopen]');
+    const reset = preview.querySelector('[data-preview-reset]');
+    const message = preview.querySelector('[data-preview-status]');
+    const dialog = preview.querySelector('[data-preview-dialog]');
+    const form = dialog.querySelector('[data-preview-form]');
+    const optionalFields = [...form.querySelectorAll('.consent-switch:not(:disabled)')];
+    let choices = Object.fromEntries(optionalFields.map(field => [field.name, false]));
+    let decided = false, dismissed = false, opener;
+
+    const reveal = () => {
+        banner.hidden = dialog.open || decided || dismissed;
+        reopen.hidden = dialog.open || !banner.hidden;
     };
+    const returnFocus = () => {
+        restoreFocus(opener?.isConnected && !opener.closest('[hidden]') && !dialog.contains(opener) ? opener : reopen);
+    };
+    const close = () => {
+        if (!dialog.open) return;
+        dialog.close();
+        reveal();
+        returnFocus();
+    };
+    const choose = (next, summary) => {
+        choices = next;
+        decided = true;
+        dismissed = false;
+        message.textContent = `${summary} Preview only; nothing stored.`;
+        if (dialog.open) close();
+        else {
+            reveal();
+            reopen.focus({ preventScroll: true });
+        }
+    };
+    const open = trigger => {
+        if (typeof dialog.showModal !== 'function') {
+            message.textContent = 'The preferences preview requires a browser with native dialog support.';
+            return;
+        }
+        if (document.querySelector('dialog[open]')) return;
+        opener = trigger;
+        optionalFields.forEach(field => { field.checked = choices[field.name]; });
+        dialog.showModal();
+        reveal();
+        dialog.scrollTop = 0;
+        dialog.querySelector('h2').focus({ preventScroll: true });
+    };
+
+    preview.querySelector('.position-selector').disabled = false;
+    banner.querySelectorAll('button').forEach(button => { button.disabled = false; });
     reset.hidden = false;
-    preview.querySelectorAll('[name="preview-position"]').forEach(input => input.addEventListener('change', () => { stage.dataset.position = input.value; message.textContent = `Position changed to ${input.value.replace('bottom-', '')}. Preview only.`; }));
-    preview.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => { const accept = button.dataset.previewChoice === 'all'; choose({ analytics:accept,marketing:accept }, accept ? 'All categories accepted.' : 'Optional categories rejected.'); reopen.focus({preventScroll:true}); }));
+    preview.querySelectorAll('[name="preview-position"]').forEach(input => input.addEventListener('change', () => {
+        stage.dataset.position = input.value;
+        interfaceRoot.dataset.consentPosition = input.value;
+        message.textContent = `Position changed to ${input.value.replace('bottom-', '')}. Preview only.`;
+    }));
+    preview.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => {
+        const accept = button.dataset.previewChoice === 'all';
+        choose(Object.fromEntries(optionalFields.map(field => [field.name, accept])), accept ? 'All categories accepted.' : 'Optional categories rejected.');
+    }));
     preview.querySelector('[data-preview-preferences]').addEventListener('click', event => open(event.currentTarget));
     reopen.addEventListener('click', event => open(event.currentTarget));
-    dialog.querySelector('[data-preview-close]').addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', event => { if (outsideDialog(event, dialog)) dialog.close(); });
-    dialog.addEventListener('close', () => { restoreFocus(opener && !opener.closest('[hidden]') ? opener : reopen); });
-    form.addEventListener('submit', event => { event.preventDefault(); choose({ analytics:form.elements.analytics.checked,marketing:form.elements.marketing.checked }, 'Preferences saved for this preview.'); dialog.close(); });
-    reset.addEventListener('click', () => { choices = {analytics:false,marketing:false}; banner.hidden = false; reopen.hidden = true; message.textContent = 'Preview reset. No cookies or trackers.'; });
+    preview.querySelector('[data-preview-dismiss]').addEventListener('click', () => {
+        dismissed = true;
+        reveal();
+        message.textContent = 'Notice closed without choosing. Preview only; nothing stored.';
+        reopen.focus({ preventScroll: true });
+    });
+    dialog.querySelector('[data-preview-close]').addEventListener('click', close);
+    dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
+    dialog.addEventListener('click', event => { if (outsideDialog(event, dialog)) close(); });
+    dialog.addEventListener('close', () => {
+        const needsFocus = dialog.contains(document.activeElement) || document.activeElement === document.body;
+        reveal();
+        if (needsFocus) returnFocus();
+    });
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        choose(Object.fromEntries(optionalFields.map(field => [field.name, field.checked])), 'Preferences saved for this preview.');
+    });
+    reset.addEventListener('click', () => {
+        choices = Object.fromEntries(optionalFields.map(field => [field.name, false]));
+        decided = false;
+        dismissed = false;
+        reveal();
+        message.textContent = 'Preview reset. No cookies or trackers.';
+    });
 }
