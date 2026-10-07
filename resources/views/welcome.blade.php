@@ -3,7 +3,7 @@
 @section('description', 'Save time implementing cookie consent in Laravel with a ready-made banner, category preferences and script controls. Explore the beta and planned tracker integrations.')
 @section('body')
 <main id="main-content" tabindex="-1">
-    <div id="top" class="section-rail"><span>Independent package / Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
+    <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
     <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
             <div class="release-label"><span class="status-dot" aria-hidden="true"></span> Built for Laravel developers</div>
