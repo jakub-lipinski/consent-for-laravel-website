@@ -10,9 +10,9 @@
     </div>
     <div class="preview-stage" data-preview-stage data-position="bottom-left">
         <div class="preview-site">
-            <div class="preview-site-header"><span class="preview-wordmark">Your good idea<span aria-hidden="true">.</span></span><span class="preview-site-label">A little space to build.</span></div>
-            <div class="preview-site-content"><span class="eyebrow">A thoughtfully built website</span><p>Good things<br>start with <span class="text-accent">trust.</span></p><div class="preview-lines" aria-hidden="true"><span></span><span></span><span></span></div></div>
-            <div class="preview-decoration" aria-hidden="true"><x-icon name="cookie" /><span>One choice.<br>Many possibilities.</span></div>
+            <div class="preview-site-header"><span class="preview-wordmark">Your Laravel app<span aria-hidden="true">.</span></span><span class="preview-site-label">Your next project</span></div>
+            <div class="preview-site-content"><span class="eyebrow">A preview of your application</span><p>Your Laravel app<br><span class="text-accent">with consent</span></p><div class="preview-lines" aria-hidden="true"><span></span><span></span><span></span></div></div>
+            <div class="preview-decoration" aria-hidden="true"><x-icon name="cookie" /><span>Preferences your<br>visitors control</span></div>
         </div>
         <div class="consent-ui consent-preview-ui" data-consent-position="bottom-left" lang="en" dir="ltr">
             <section class="consent-banner" data-preview-banner aria-labelledby="preview-banner-title">

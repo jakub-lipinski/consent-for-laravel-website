@@ -62,7 +62,7 @@ it('presents the current beta honestly and exposes a cookie-free interface previ
     $this->get(route('home'))->assertOk()
         ->assertSee('v1.0.0-beta.3')
         ->assertSee('No cookies or trackers.')
-        ->assertSee('Google Consent Mode v2 and tracker presets are still on the roadmap.')
+        ->assertSeeInOrder(['Planned for 1.0', 'Google Consent Mode v2', 'Meta Pixel'])
         ->assertSee('Skip to content')
         ->assertSee('aria-labelledby="preview-title"', false);
 });
