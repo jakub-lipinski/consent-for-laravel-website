@@ -1,0 +1,50 @@
+## Default to safe reload
+
+Removing a script element does not stop a tracker, its timers, event listeners, queues, or outgoing requests. When an active category is revoked, the runtime saves the new selection, removes declared accessible cookies, and reloads by default. The next document starts with the new permission state.
+
+```js
+await window.Consent.rejectOptional();
+```
+
+You can also replace a selection with `choose()` or return to pending with `forget()`. A saved refusal avoids repeatedly asking on each visit.
+
+## Cooperative cleanup
+
+Only disable reload if every active service in the category has complete stop behavior:
+
+```js
+window.Consent.onRevoke('analytics', async () => {
+    await window.siteInsights.stopCompletely();
+}, { reload: false });
+```
+
+This provider method is a placeholder, not a built-in API. Complete cleanup must stop all processing, pending work, timers, listeners, and queues for that purpose. A cleanup callback that merely removes a DOM node is insufficient.
+
+Every applicable hook must explicitly opt out of reload and succeed. In-flight script activation still requires reload. Cleanup errors and timeouts fall back to reload; the default cleanup timeout is 3000 milliseconds.
+
+## Re-granting after cooperative cleanup
+
+A script block runs once per document. If you stop a provider without reloading, accepting its category again does not execute the same block again. Supply provider-specific resumption through `onChange()` or deliberately reload. Unsubscribe hooks when their owner is genuinely torn down, but do not unregister the only cleanup path while its provider is still active.
+
+## Cookie removal
+
+Declare cookies per service:
+
+```php
+'cookies' => [
+    ['name' => '_insights', 'path' => '/', 'domain' => null],
+    ['prefix' => '_insights_', 'path' => '/', 'domain' => null],
+],
+```
+
+Rules run on denied startup, refusal, expiry, and invalidation as well as active withdrawal. Only matching visible first-party cookies in the configured scope can be removed. Necessary-category cookies are not removed by optional withdrawal.
+
+Preference, configured session, CSRF, and `remember_` cookies are protected. The browser cannot remove HttpOnly or third-party cookies, cookies in inaccessible scopes, vendor storage outside cookies, or remote data. Use the appropriate application or provider APIs for those.
+
+## Save failures
+
+A failed choice remains denied in memory. A temporary denial marker normally allows a safe reload. If neither session storage nor history state can hold that marker, an automatic reload might restore the old grant. In that case the runtime reports that automatic reload is unavailable rather than claiming running code has stopped. See [persistence](/docs/persistence).
+
+## Verify the provider lifecycle
+
+Exercise acceptance, active refusal, re-grant, another tab's change, expiry, storage failure, script failure, and cleanup timeout. Inspect actual network requests and provider state. Generic script gating does not automatically implement Google or Meta consent APIs.

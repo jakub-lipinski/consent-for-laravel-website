@@ -1,58 +1,50 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Consent for Laravel website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The standalone landing page and documentation for [Consent for Laravel](https://github.com/jakub-lipinski/consent-for-laravel). This repository is a Laravel application; the Composer library lives in its own repository.
 
-## About Laravel
+## Current scope
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Documentation covers `v1.0.0-beta.3`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, banner configuration, English/Polish translations, and integration responsibilities. Planned vendor integrations are labeled as planned.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The landing page includes an illustrative interface preview. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website itself is in English; the package interface supports English and Polish.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Local development
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Requirements: PHP 8.3+, Composer, and Node compatible with Vite 8. The local Herd domain is `consent-for-laravel-website.test`.
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+cp .env.example .env
+php artisan key:generate
+npm ci --ignore-scripts
+npm run build
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Herd serves the application. Run `npm run dev` when actively editing frontend assets. Do not commit `.env`, `vendor`, `node_modules`, or built Vite assets.
 
-## Contributing
+## Structure
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- `config/site.php`: current package release, verified repository URLs, chapter metadata, and navigation groups.
+- `app/Documentation.php`: whitelisted chapter loading, safe Markdown rendering, heading anchors, and a text search index.
+- `resources/markdown/docs`: documentation source files.
+- `resources/views`: landing page, shared shell, documentation layout, and accessibility statement.
+- `resources/css/app.css` and `resources/js/app.js`: responsive visual system and progressive enhancement.
+- `public/assets`: original line-art brand assets, illustration, favicon, and social image.
 
-## Code of Conduct
+To add a chapter, create its Markdown file and register it in `config/site.php`. Chapter content is rendered with raw HTML stripped and unsafe links disabled. Search results are created using DOM text nodes. Code examples never execute.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Verification
 
-## Security Vulnerabilities
+```bash
+php artisan test --compact
+vendor/bin/pint --dirty --format agent
+npm run build
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Feature coverage checks published chapters, search data, internal documentation links, unknown paths, safe rendering, unique heading IDs, the landing page, and the accessibility statement. Browser verification covers keyboard modal behavior, focus return, narrow layouts, enlarged text, search, copy controls, and the cookie-free preview. Automated checks do not constitute an accessibility certification.
 
-## License
+## Production
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Set the application's URL and normal Laravel production environment settings. Build Vite assets during deployment, optimize Laravel caches, and point the web server at `public`. The site needs no database-backed product feature, account, consent service, or third-party font request. Use the appropriate production session/cache driver for your hosting environment.
+
+Package installation instructions use a GitHub VCS source until the package is published on Packagist. Update `config/site.php` and all affected guides deliberately for a new release.

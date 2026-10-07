@@ -1,0 +1,67 @@
+## Published configuration
+
+```bash
+php artisan vendor:publish --tag=consent-config
+```
+
+All settings live under `consent` in `config/consent.php`. Configuration must be serializable and compatible with Laravel's configuration cache. Partial cookie, loader, and UI arrays retain defaults for omitted settings. After editing, rebuild configuration and restart long-running workers.
+
+## Policy and retention
+
+| Key | Default | Validation |
+| --- | --- | --- |
+| `policy_version` | `'1'` | Non-empty UTF-8 string, at most 128 bytes |
+| `retention_days` | `180` | Integer from 1 to 365 |
+
+Increment the policy version when purposes or policy change outside the registered metadata. Retention applies equally to acceptance and refusal. The default is a product setting, not a universal legal requirement.
+
+## Cookie settings
+
+| Key | Default | Meaning |
+| --- | --- | --- |
+| `cookie.name` | `'consent_preferences'` | Browser-readable preference cookie name |
+| `cookie.path` | `'/'` | Cookie scope path |
+| `cookie.domain` | `null` | Host-only when null |
+| `cookie.secure` | `null` | Follow request HTTPS, or explicitly true/false |
+| `cookie.same_site` | `'lax'` | `lax` or `strict` |
+
+The cookie name must start with a letter, use only letters, digits, dots, underscores, or hyphens, and be at most 64 characters. Paths must start with `/` and contain no whitespace, semicolon, or control characters. Domains must be valid cookie domains of at most 254 characters, optionally starting with a dot. `secure` accepts only `null` or an actual boolean. Unknown cookie, loader, UI, and color options are rejected. Session/CSRF cookie-name collisions are rejected. The provider excludes only this preference cookie from encryption. `HttpOnly` is always false; it is not a configurable authorization cookie.
+
+For proxies, old scopes, expiry, and storage limitations, read [persistence](/docs/persistence).
+
+## Loader limits
+
+| Key | Default | Validation |
+| --- | --- | --- |
+| `loader.script_timeout_ms` | `15000` | Integer from 1 to 120000 |
+| `loader.cleanup_timeout_ms` | `3000` | Integer from 1 to 120000 |
+
+A script timeout fails its block. A cleanup failure or timeout requires safe reload. These limits do not make arbitrary vendor asynchronous tasks part of the package queue.
+
+## UI settings
+
+| Key | Default | Accepted values |
+| --- | --- | --- |
+| `ui.position` | `'bottom-left'` | `bottom-left`, `bottom-right`, `bottom-center` |
+| `ui.locale` | `null` | App locale fallback; explicit `en` or `pl` |
+| `ui.policy_url` | `null` | Absolute website path or safe HTTP(S) URL |
+| `ui.colors` | `[]` | Known color keys with six-digit hex values |
+
+Color keys are `background`, `text`, `muted`, `accent`, `accent_text`, `border`, `control`, and `focus`. Defaults and contrast rules are listed in [banner and theme](/docs/banner-and-theme).
+
+## Services
+
+`services` defaults to an empty array. Define services keyed by stable IDs. Required fields are `category`, `name`, and `description`. Optional fields are boolean `enabled` and a `cookies` array.
+
+Cookie rules accept exactly one `name` or `prefix`, optional `path` (default `/`), and optional `domain` (default `null`). Cookie names/prefixes start with a letter, digit, or underscore, use letters, digits, dots, underscores, and hyphens, and are at most 128 characters. Wildcards are not supported. Rules must form a list, not an associative map. Their scope follows the preference-cookie path/domain validation. Unknown service options, unknown categories, invalid IDs, and malformed rules are rejected.
+
+See [services and categories](/docs/services-and-categories) for examples and fingerprint behavior.
+
+## Component props
+
+| Component | Props |
+| --- | --- |
+| `x-consent::head` | `nonce`, `src` |
+| `x-consent::banner` | `nonce`, `locale`, `position`, `policyUrl`, `styleSrc`, `scriptSrc` |
+
+Use kebab-case attributes in Blade, such as `policy-url`, `style-src`, and `script-src`. Bind values with `:` when they come from PHP expressions. Published asset destinations are in [CSP and caching](/docs/csp-and-caching).
