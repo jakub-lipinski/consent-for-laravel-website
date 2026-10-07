@@ -13,10 +13,10 @@
     </nav>
     <nav class="footer-links" aria-label="Footer project links">
         <span class="eyebrow">Out in the open</span>
-        <a href="{{ config('site.repository') }}">Source code <span aria-hidden="true">↗</span></a>
-        <a href="{{ config('site.repository') }}/issues">Issues <span aria-hidden="true">↗</span></a>
-        <a href="{{ config('site.repository') }}/tags">Releases <span aria-hidden="true">↗</span></a>
+        <a href="{{ config('site.repository') }}">Source code <x-icon name="arrow-up-right" /></a>
+        <a href="{{ config('site.repository') }}/issues">Issues <x-icon name="arrow-up-right" /></a>
+        <a href="{{ config('site.repository') }}/tags">Releases <x-icon name="arrow-up-right" /></a>
         <a href="{{ route('accessibility') }}">Website accessibility</a>
     </nav>
-    <div class="footer-bottom"><span>© {{ date('Y') }} Consent for Laravel</span><span>Designed around the choice.</span><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
+    <div class="footer-bottom"><span>© {{ date('Y') }} Consent for Laravel</span><span>Designed around the choice.</span><a href="#top">Back to top <x-icon name="chevron-up" /></a></div>
 </footer>

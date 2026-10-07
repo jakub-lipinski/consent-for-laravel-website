@@ -1,25 +1,186 @@
+{{--
+Icon geometry from lucide-static@1.52.0 (https://lucide.dev), rendered without JavaScript.
+
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+---
+
+The following Lucide icons are derived from the Feather project:
+
+airplay, alert-circle, alert-octagon, alert-triangle, aperture, arrow-down-circle, arrow-down-left, arrow-down-right, arrow-down, arrow-left-circle, arrow-left, arrow-right-circle, arrow-right, arrow-up-circle, arrow-up-left, arrow-up-right, arrow-up, at-sign, calendar, cast, check, chevron-down, chevron-left, chevron-right, chevron-up, chevrons-down, chevrons-left, chevrons-right, chevrons-up, circle, clipboard, clock, code, columns, command, compass, corner-down-left, corner-down-right, corner-left-down, corner-left-up, corner-right-down, corner-right-up, corner-up-left, corner-up-right, crosshair, database, divide-circle, divide-square, dollar-sign, download, external-link, feather, frown, hash, headphones, help-circle, info, italic, key, layout, life-buoy, link-2, link, loader, lock, log-in, log-out, maximize, meh, minimize, minimize-2, minus-circle, minus-square, minus, monitor, moon, more-horizontal, more-vertical, move, music, navigation-2, navigation, octagon, pause-circle, percent, plus-circle, plus-square, plus, power, radio, rss, search, server, share, shopping-bag, sidebar, smartphone, smile, square, table-2, tablet, target, terminal, trash-2, trash, triangle, tv, type, upload, x-circle, x-octagon, x-square, x, zoom-in, zoom-out
+
+The MIT License (MIT) (for the icons listed above)
+
+Copyright (c) 2013-present Cole Bemis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+--}}
 @props(['name'])
-<svg {{ $attributes->merge(['class' => 'icon']) }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+<svg {{ $attributes->merge(['class' => 'icon lucide']) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
 @switch($name)
     @case('arrow-right')
-    @case('arrow')<path d="M4 12h15m-6-6 6 6-6 6"/>@break
-    @case('arrow-up')<path d="M6 18 18 6M6 6h12v12"/>@break
-    @case('close')<path d="m6 6 12 12M18 6 6 18"/>@break
-    @case('search')<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>@break
-    @case('github')<path d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-2.7c3.3-.4 6.8-1.6 6.8-7.3A5.7 5.7 0 0 0 19.3 4a5.3 5.3 0 0 0-.1-4S18 0 15 1.6a14 14 0 0 0-6 0C6 0 4.8 0 4.8 0a5.3 5.3 0 0 0-.1 4A5.7 5.7 0 0 0 3.2 8c0 5.7 3.5 6.9 6.8 7.3A3.5 3.5 0 0 0 9 18v4" transform="translate(0 1) scale(.95)"/>@break
-    @case('check')<path d="m5 12 4 4L19 6"/>@break
-    @case('code')<path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/>@break
-    @case('sliders')<path d="M4 6h16M4 12h16M4 18h16"/><path d="M8 3v6m8 0v6m-5 0v6"/>@break
+    @case('arrow')
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+        @break
+    @case('arrow-left')
+        <path d="m12 19-7-7 7-7" />
+        <path d="M19 12H5" />
+        @break
+    @case('arrow-up-right')
+    @case('arrow-up')
+        <path d="M7 7h10v10" />
+        <path d="M7 17 17 7" />
+        @break
+    @case('arrow-down-left')
+        <path d="M17 7 7 17" />
+        <path d="M17 17H7V7" />
+        @break
+    @case('arrow-down-right')
+        <path d="m7 7 10 10" />
+        <path d="M17 7v10H7" />
+        @break
+    @case('chevron-up')
+        <path d="m18 15-6-6-6 6" />
+        @break
+    @case('x')
+    @case('close')
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+        @break
+    @case('search')
+        <path d="m21 21-4.34-4.34" />
+        <circle cx="11" cy="11" r="8" />
+        @break
+    @case('git-fork')
+    @case('github')
+        <circle cx="12" cy="18" r="3" />
+        <circle cx="6" cy="6" r="3" />
+        <circle cx="18" cy="6" r="3" />
+        <path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9" />
+        <path d="M12 12v3" />
+        @break
+    @case('check')
+        <path d="M20 6 9 17l-5-5" />
+        @break
+    @case('code-xml')
+    @case('code')
+        <path d="m18 16 4-4-4-4" />
+        <path d="m6 8-4 4 4 4" />
+        <path d="m14.5 4-5 16" />
+        @break
+    @case('sliders-horizontal')
+    @case('sliders')
+        <path d="M10 5H3" />
+        <path d="M12 19H3" />
+        <path d="M14 3v4" />
+        <path d="M16 17v4" />
+        <path d="M21 12h-9" />
+        <path d="M21 19h-5" />
+        <path d="M21 5h-7" />
+        <path d="M8 10v4" />
+        <path d="M8 12H3" />
+        @break
+    @case('cookie')
     @case('choice')
-    @case('cookie')<path d="M12 3a9 9 0 1 0 9 9 3.3 3.3 0 0 1-3.3-3.3 3.3 3.3 0 0 1-3.3-3.3A3.3 3.3 0 0 1 12 3Z"/><circle cx="8" cy="10" r=".7"/><circle cx="12" cy="16" r=".7"/><circle cx="7" cy="15" r=".5"/>@break
-    @case('keyboard')<rect x="2" y="5" width="20" height="14" rx="1"/><path d="M6 9h1m3 0h1m3 0h1m3 0h1M6 13h1m3 0h1m3 0h1m3 0h1M8 16h8"/>@break
-    @case('layers')<path d="m12 3 10 5-10 5L2 8l10-5ZM2 12l10 5 10-5M2 16l10 5 10-5"/>@break
-    @case('clock')<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>@break
-    @case('copy')<rect x="8" y="8" width="12" height="13" rx="1"/><path d="M15 8V3H3v13h5"/>@break
-    @case('refresh')<path d="M20 7v5h-5M4 17v-5h5M5 7a8 8 0 0 1 13-2l2 3M4 16l2 3a8 8 0 0 0 13-2"/>@break
-    @case('globe')<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>@break
-    @case('align-left')<rect x="3" y="4" width="18" height="16"/><path d="M6 14h5v3H6z"/>@break
-    @case('align-center')<rect x="3" y="4" width="18" height="16"/><path d="M6 14h12v3H6z"/>@break
-    @case('align-right')<rect x="3" y="4" width="18" height="16"/><path d="M13 14h5v3h-5z"/>@break
+        <path d="M11 17h.01" />
+        <path d="M11.496 2c.324-.016.558.292.529.615a4 4 0 004.235 4.368.713.713 0 01.758.757 4 4 0 004.366 4.237c.323-.03.63.204.614.527a10 10 0 01-2.915 6.566A1 1 0 114.93 4.918 10 10 0 0111.496 2" />
+        <path d="M12 12h.01" />
+        <path d="M16 16h.01" />
+        <path d="M16 3h.01" />
+        <path d="M21 4h.01" />
+        <path d="M21 8h.01" />
+        <path d="M7 14h.01" />
+        <path d="M9 8h.01" />
+        @break
+    @case('keyboard')
+        <path d="M10 8h.01" />
+        <path d="M12 12h.01" />
+        <path d="M14 8h.01" />
+        <path d="M16 12h.01" />
+        <path d="M18 8h.01" />
+        <path d="M6 8h.01" />
+        <path d="M7 16h10" />
+        <path d="M8 12h.01" />
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        @break
+    @case('layers')
+        <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
+        <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+        <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" />
+        @break
+    @case('clock')
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+        @break
+    @case('copy')
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+        @break
+    @case('rotate-ccw')
+    @case('refresh')
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+        <path d="M3 3v5h5" />
+        @break
+    @case('globe')
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+        @break
+    @case('align-horizontal-justify-start')
+    @case('align-left')
+        <rect width="6" height="14" x="6" y="5" rx="2" />
+        <rect width="6" height="10" x="16" y="7" rx="2" />
+        <path d="M2 2v20" />
+        @break
+    @case('align-horizontal-justify-center')
+    @case('align-center')
+        <rect width="6" height="14" x="2" y="5" rx="2" />
+        <rect width="6" height="10" x="16" y="7" rx="2" />
+        <path d="M12 2v20" />
+        @break
+    @case('align-horizontal-justify-end')
+    @case('align-right')
+        <rect width="6" height="14" x="2" y="5" rx="2" />
+        <rect width="6" height="10" x="12" y="7" rx="2" />
+        <path d="M22 2v20" />
+        @break
+    @case('plus')
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+        @break
+    @case('minus')
+        <path d="M5 12h14" />
+        @break
 @endswitch
 </svg>

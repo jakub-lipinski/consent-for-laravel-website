@@ -10,6 +10,6 @@
     </nav>
     <div class="header-actions">
         <button class="search-trigger" type="button" data-search-open hidden aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" title="Search documentation (Command or Control + K)" aria-haspopup="dialog" aria-controls="documentation-search"><x-icon name="search" /><span class="search-trigger-label">Search</span></button>
-        <a class="github-link" aria-label="GitHub" href="{{ config('site.repository') }}"><x-icon name="github" /><span>GitHub</span></a>
+        <a class="github-link" aria-label="GitHub" href="{{ config('site.repository') }}"><x-icon name="git-fork" /><span>GitHub</span></a>
     </div>
 </header>
