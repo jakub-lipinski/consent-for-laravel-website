@@ -292,7 +292,15 @@ h1 {
 }
 .spec-strip b {
     font-weight:500;
-    margin-right:8px;
+}
+.spec-separator {
+    display:inline-block;
+    width:4px;
+    height:4px;
+    margin-inline:10px;
+    border-radius:50%;
+    background:var(--accent);
+    vertical-align:middle;
 }
 .numbered-section {
     scroll-margin-top:24px;
@@ -519,12 +527,8 @@ h2 {
     text-decoration:underline;
 }
 .developer-section {
-    color:var(--paper);
-    background:var(--ink);
-}
-.developer-section .section-rail {
-    color:#b9c9dd;
-    border-color:#425671;
+    color:var(--ink);
+    background:var(--paper);
 }
 .developer-grid {
     padding:72px 40px;
@@ -534,21 +538,19 @@ h2 {
     align-items:center;
 }
 .developer-grid .eyebrow {
-    color:#b9c9dd;
+    color:var(--muted);
     margin-bottom:24px;
-}
-.developer-grid h2 .text-accent {
-    color:var(--accent-soft);
 }
 .developer-grid>div:first-child>p {
     font-size:16px;
     line-height:1.8;
-    color:#b9c9dd;
+    color:var(--muted);
     max-width:390px;
     margin:26px 0;
 }
 .code-example {
-    border:1px solid #627691;
+    background:#e9edf5;
+    border:1px solid var(--line);
     min-width:0;
 }
 .code-title {
@@ -556,9 +558,9 @@ h2 {
     justify-content:space-between;
     gap:15px;
     padding:14px 20px;
-    border-bottom:1px solid #627691;
+    border-bottom:1px solid var(--line);
     font:11px/1.6 var(--font-mono);
-    color:#cbd6e5;
+    color:var(--muted);
     overflow-wrap:anywhere;
 }
 pre {
@@ -570,14 +572,14 @@ pre {
 }
 .code-example pre {
     padding:24px;
-    color:#f0f4fa;
+    color:var(--ink);
 }
 .code-example>p {
     padding:14px 20px;
     font:11px/1.6 var(--font-mono);
-    background:#203953;
-    border-top:1px solid #627691;
-    color:#e1e9ff;
+    background:var(--accent-soft);
+    border-top:1px solid var(--line);
+    color:var(--ink);
 }
 .code-example .status-dot {
     margin-right:7px;
@@ -642,6 +644,16 @@ pre {
 .release-planned>div>span {
     font:11px/1.6 var(--font-mono);
     color:var(--muted);
+}
+.guide-section {
+    --muted:#b9c9dd;
+    --line:#425671;
+    --accent:var(--accent-soft);
+    color:var(--paper);
+    background:var(--ink);
+}
+.guide-section :focus-visible {
+    outline-color:var(--accent-soft);
 }
 .guide-heading {
     display:flex;
@@ -1534,6 +1546,9 @@ dialog::backdrop {
     }
     h1 {
         font-size:46px;
+    }
+    .hero h1 {
+        font-size:clamp(38px,10.9vw,46px);
     }
     .release-label {
         font-size:10px;
