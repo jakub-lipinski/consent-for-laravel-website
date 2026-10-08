@@ -1,5 +1,6 @@
 {{--
 Icon geometry from lucide-static@1.52.0 (https://lucide.dev), rendered without JavaScript.
+Banner position icons use custom project geometry.
 
 ISC License
 
@@ -174,6 +175,21 @@ SOFTWARE.
         <rect width="6" height="14" x="2" y="5" rx="2" />
         <rect width="6" height="10" x="12" y="7" rx="2" />
         <path d="M22 2v20" />
+        @break
+    @case('banner-left')
+        <rect width="20" height="18" x="2" y="3" rx="2" stroke-opacity=".4" />
+        <path d="M2 8h20" stroke-opacity=".4" />
+        <rect width="7" height="6" x="5" y="12" rx="1" fill="currentColor" fill-opacity=".2" />
+        @break
+    @case('banner-center')
+        <rect width="20" height="18" x="2" y="3" rx="2" stroke-opacity=".4" />
+        <path d="M2 8h20" stroke-opacity=".4" />
+        <rect width="14" height="6" x="5" y="12" rx="1" fill="currentColor" fill-opacity=".2" />
+        @break
+    @case('banner-right')
+        <rect width="20" height="18" x="2" y="3" rx="2" stroke-opacity=".4" />
+        <path d="M2 8h20" stroke-opacity=".4" />
+        <rect width="7" height="6" x="12" y="12" rx="1" fill="currentColor" fill-opacity=".2" />
         @break
     @case('plus')
         <path d="M5 12h14" />

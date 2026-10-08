@@ -1,13 +1,4 @@
 <div class="preview-workbench" data-preview>
-    <div class="preview-toolbar">
-        <fieldset class="position-selector" disabled>
-            <legend>Banner position</legend>
-            <label><input type="radio" name="preview-position" value="bottom-left" checked><span><x-icon name="align-left" /> Left</span></label>
-            <label><input type="radio" name="preview-position" value="bottom-center"><span><x-icon name="align-center" /> Center</span></label>
-            <label><input type="radio" name="preview-position" value="bottom-right"><span><x-icon name="align-right" /> Right</span></label>
-        </fieldset>
-        <button class="text-button" type="button" data-preview-reset hidden>Reset preview <x-icon name="refresh" /></button>
-    </div>
     <div class="preview-stage" data-preview-stage data-position="bottom-left">
         <div class="preview-site">
             <div class="preview-site-header"><span class="preview-wordmark">Your Laravel app<span aria-hidden="true">.</span></span><span class="preview-site-label">Your next project</span></div>
@@ -74,6 +65,15 @@
             </dialog>
             <button type="button" class="consent-launcher" data-preview-reopen hidden aria-label="Change cookie preferences" title="Change cookie preferences" aria-controls="preview-preferences" aria-haspopup="dialog"><x-icon name="cookie" /></button>
         </div>
+    </div>
+    <div class="preview-toolbar">
+        <fieldset class="position-selector" disabled>
+            <legend>Banner position</legend>
+            <label><input type="radio" name="preview-position" value="bottom-left" checked><span><x-icon name="banner-left" /> Left</span></label>
+            <label><input type="radio" name="preview-position" value="bottom-center"><span><x-icon name="banner-center" /> Center</span></label>
+            <label><input type="radio" name="preview-position" value="bottom-right"><span><x-icon name="banner-right" /> Right</span></label>
+        </fieldset>
+        <button class="text-button" type="button" data-preview-reset hidden>Reset preview <x-icon name="refresh" /></button>
     </div>
     <noscript><p class="preview-noscript">The interactive preview requires JavaScript. The documentation and this static illustration remain available.</p></noscript>
     <div class="preview-caption"><p data-preview-status role="status" aria-live="polite">Preview only. No cookies or trackers.</p><a href="{{ route('docs.show', 'banner-and-theme') }}">Explore the options <x-icon name="arrow-right" /></a></div>
