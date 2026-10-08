@@ -199,7 +199,6 @@ if (preview) {
     preview.querySelectorAll('[name="preview-position"]').forEach(input => input.addEventListener('change', () => {
         stage.dataset.position = input.value;
         interfaceRoot.dataset.consentPosition = input.value;
-        message.textContent = `Position changed to ${input.value.replace('bottom-', '')}. Preview only.`;
     }));
     preview.querySelectorAll('[name="preview-variant"]').forEach(input => input.addEventListener('change', () => {
         interfaceRoot.dataset.consentVariant = input.value;
