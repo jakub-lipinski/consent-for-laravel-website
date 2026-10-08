@@ -16,8 +16,8 @@
                 </div>
                 @endforeach
             </nav>
+            <a class="sidebar-source" href="{{ config('site.repository') }}">Read the source <x-icon name="arrow-up-right" /></a>
         </details>
-        <a class="sidebar-source" href="{{ config('site.repository') }}">Read the source <x-icon name="arrow-up-right" /></a>
     </aside>
     <main id="main-content" tabindex="-1" class="docs-article">
         <div class="docs-title"><span class="eyebrow">{{ $page['section'] }}</span><h1>{{ $page['title'] }}</h1><p>{{ $page['description'] }}</p></div>
