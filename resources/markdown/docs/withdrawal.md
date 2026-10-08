@@ -47,4 +47,4 @@ A failed choice remains denied in memory. A temporary denial marker normally all
 
 ## Verify the provider lifecycle
 
-Exercise acceptance, active refusal, re-grant, another tab's change, expiry, storage failure, script failure, and cleanup timeout. Inspect actual network requests and provider state. Generic script gating does not automatically implement Google or Meta consent APIs.
+Exercise acceptance, active refusal, re-grant, another tab's change, expiry, storage failure, script failure, and cleanup timeout. Inspect actual network requests and provider state. The built-in Google presets update Consent Mode signals before cleanup and always reload after active withdrawal. Custom cleanup cannot disable this preset reload. Generic blocks do not automatically implement other provider consent APIs. See [Google Consent Mode](/docs/google-consent-mode).

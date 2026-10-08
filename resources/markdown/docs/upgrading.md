@@ -3,7 +3,7 @@
 The package is in beta. Releases use `v1.0.0-beta.N` until the version 1.0 release is ready. Breaking changes or fixes may require additional betas. Pin the tagged beta for reproducible application testing.
 
 ```bash
-composer require webcrafts-studio/consent-for-laravel:1.0.0-beta.3
+composer require webcrafts-studio/consent-for-laravel:1.0.0-beta.4
 ```
 
 This assumes the VCS repository from [installation](/docs/installation) is configured. Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) before upgrading.
@@ -20,6 +20,14 @@ Beta.3 adds the built-in banner, preferences dialog, reopening button, validated
 
 UI-only changes do not invalidate decisions. Check custom views and CSS for compatibility, and keep only one owner for the preference interface.
 
+## Beta.3 to beta.4
+
+Merge the new `google` and `presets` settings. Presets are disabled by default, so upgrading alone makes no Google requests. Enable the presets you need and supply IDs; remove old gtag bootstraps and duplicate manual services. The reserved preset IDs are `google-ga4` and `google-ads`. Read [Google presets](/docs/google-presets).
+
+Basic is the default. Advanced is explicit and permits cookieless pings before permission; the built-in interface discloses that behavior. Update published banner views and translations to preserve the disclosure. Active preset withdrawal always reloads, including when custom cleanup requests `reload: false`.
+
+Enabling or changing Google targets, IDs, mode, page-view settings, or cleanup metadata invalidates old decisions. With the bridge and presets inactive, beta.3 decisions remain compatible. The cookie schema stays unchanged. External module loading now also waits for top-level await after the original SRI-checked load.
+
 ## Deployment checklist
 
 1. Review release notes and any changed configuration options.
@@ -33,4 +41,4 @@ The library repository does not commit a dependency lock file. Your consuming ap
 
 ## Future integrations
 
-No Google or Meta presets need migration in beta.3 because they have not shipped. Future betas will document their own setup and vendor-specific verification. Do not assume that upgrading alone will configure a tracker or establish legal compliance.
+GTM, Meta Pixel, and Clarity remain planned. Their future betas will document their own setup and vendor-specific verification. Do not assume that upgrading alone configures a tracker or establishes legal compliance.

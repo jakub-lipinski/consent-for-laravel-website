@@ -1,14 +1,12 @@
-## Available now: beta.3
+## Available now: beta.4
 
-The current release includes the PHP consent foundation, service registry, strict versioned preferences, inert Blade blocks, framework-free ordered browser loading, withdrawal, three banner positions, native preferences dialog, validated colors, and English/Polish UI.
+The current release includes the PHP consent foundation, service registry, strict versioned preferences, inert Blade blocks, framework-free ordered browser loading, withdrawal, three banner positions, native preferences dialog, validated colors, English/Polish UI, Google Consent Mode v2, GA4, and Google Ads presets.
 
 The website documents these implemented APIs. It does not describe a planned preset as usable today.
 
 ## Beta.4: Google consent foundation
 
-Planned scope: Google Consent Mode v2, GA4, and Google Ads. Vendor consent signals, safe initialization ordering, and explicit configuration need implementation and verification against current Google primary documentation before shipping.
-
-Beta.3's generic script gate does not implement Google's Consent Mode signals.
+Implemented: Google Consent Mode v2, denied defaults and ordered updates, Basic/explicit Advanced modes, shared gtag.js loading, GA4 and Google Ads configuration, guarded event destinations, cleanup rules, and mandatory reload after active preset withdrawal. See [Consent Mode](/docs/google-consent-mode) and [presets](/docs/google-presets). Vendor behavior was checked against current primary documentation; local browser verification uses mock tags, not live property measurements.
 
 ## Beta.5: Google Tag Manager
 

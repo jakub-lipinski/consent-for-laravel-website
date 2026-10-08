@@ -57,6 +57,22 @@ Cookie rules accept exactly one `name` or `prefix`, optional `path` (default `/`
 
 See [services and categories](/docs/services-and-categories) for examples and fingerprint behavior.
 
+## Google bridge and presets
+
+| Key | Default | Validation |
+| --- | --- | --- |
+| `google.enabled` | `null` | Auto with enabled presets; `true` for a manual bridge; `false` disables it |
+| `google.mode` | `'basic'` | `basic` or explicit `advanced` |
+| `presets.ga4.enabled` | `false` | Boolean |
+| `presets.ga4.measurement_id` | `env('CONSENT_GA4_ID')` | `G-` plus 4-32 uppercase letters/digits; required if enabled |
+| `presets.ga4.send_page_view` | `true` | Boolean |
+| `presets.google_ads.enabled` | `false` | Boolean |
+| `presets.google_ads.conversion_id` | `env('CONSENT_GOOGLE_ADS_ID')` | `AW-` plus 1-20 digits, first 1-9; required if enabled |
+
+Both presets also accept optional `name`, `description`, `cookie_path` (default `/`), and `cookie_domain` (default `null`). Names/descriptions follow service validation; cookie scopes follow existing cookie-rule validation. Unknown Google/preset keys, malformed disabled definitions, enabled presets alongside `google.enabled: false`, and manual service collisions with enabled preset IDs are rejected.
+
+Cleanup scope declarations do not configure the vendor's cookie scope. Match actual cookies, including parent domains chosen by Google. Google mode/target/init changes are part of the consent fingerprint. See [Consent Mode](/docs/google-consent-mode) and [Google presets](/docs/google-presets) for the signal mapping and complete behavior.
+
 ## Component props
 
 | Component | Props |

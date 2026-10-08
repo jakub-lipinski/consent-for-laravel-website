@@ -42,3 +42,7 @@ A missing translation falls back to the service's canonical name and description
 Changing display translations does not invalidate a decision. A material change of processing purpose must update canonical service metadata or your application-owned `policy_version`, even if the displayed wording is also translated.
 
 If you share-cache HTML in multiple languages, vary the cache by locale. Inert script blocks are preference-independent, but translated interface text still depends on the language of the response.
+
+## Google preset wording
+
+Default GA4/Ads purposes and the Advanced-mode disclosure are available in English and Polish. Canonical preset name/description changes keep their custom wording rather than being replaced by bundled defaults. You can explicitly translate the `google-ga4` / `google-ads` display fields in `consent::services`. Published `messages.php` files should merge beta.4's `presets` and `google_advanced` keys.

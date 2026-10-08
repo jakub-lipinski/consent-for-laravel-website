@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.0.0-beta.3',
+    'release' => 'v1.0.0-beta.4',
     'package' => 'webcrafts-studio/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
@@ -23,6 +23,10 @@ return [
             ['slug' => 'browser-api', 'title' => 'Browser API', 'description' => 'Choose, inspect, refresh, and react to browser preferences.'],
             ['slug' => 'php-api', 'title' => 'PHP API', 'description' => 'Read and persist consent from Laravel controllers and services.'],
             ['slug' => 'configuration', 'title' => 'Configuration reference', 'description' => 'Every implemented option, default, and validation rule.'],
+        ],
+        'Google integrations' => [
+            ['slug' => 'google-consent-mode', 'title' => 'Google Consent Mode v2', 'description' => 'Basic and Advanced modes, denied defaults, signal mapping, and withdrawal.'],
+            ['slug' => 'google-presets', 'title' => 'GA4 and Google Ads', 'description' => 'Enable presets by ID, send guarded events, and configure cookie cleanup.'],
         ],
         'In production' => [
             ['slug' => 'persistence', 'title' => 'Persistence and expiry', 'description' => 'The cookie contract, versions, retention, and invalidation.'],

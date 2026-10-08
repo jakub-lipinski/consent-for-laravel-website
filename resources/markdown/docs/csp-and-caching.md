@@ -46,3 +46,9 @@ Responses passed through `persist()` or `forget()` are marked `private, no-store
 Rebuild `config:cache`, clear compiled views where appropriate, restart long-running workers, and update assets. Service/policy changes can invalidate decisions; UI language, position, and color changes do not.
 
 Test the real CSP in the browser, including dynamically activated modules, inline initialization, custom colors, and provider hosts. A successful Blade render cannot establish that a browser CSP permits execution.
+
+## Google destinations
+
+The preset's dynamic gtag.js loader inherits the head nonce. Outbound measurement still requires appropriate `connect-src`, `img-src`, and any provider-specific frame policy. Inspect the real destinations for your configured Google products and use the current [Google CSP guidance](https://developers.google.com/tag-platform/security/guides/csp). No broad wildcard policy is supplied. Blocked tag loading reports a `google` error and leaves destinations unconfigured; blocked measurement may occur after commands were successfully queued.
+
+External modules retain their original SRI/credential checks and use a second nonce-bearing import marker to wait for asynchronous module evaluation before continuing the block. The cached module is not executed twice.

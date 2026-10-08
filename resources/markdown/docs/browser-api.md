@@ -83,3 +83,16 @@ document.addEventListener('consent:error', event => {
 ```
 
 Mount listeners before the head component if you need the one-time ready event. Otherwise read `state()` and use subscriptions after initialization. Do not mutate snapshots or replace the global API.
+
+## Google events
+
+```javascript
+const signals = Consent.google.state();
+const queued = await Consent.google.event('G-XXXXXXXXXX', 'page_view', {
+    page_path: '/account',
+});
+```
+
+`state()` returns a frozen mapped signal snapshot and does not load a tracker. `event(destination, name, parameters = {})` requires an enabled preset's destination and current category permission, waits for initialization, and checks permission again before queueing. It returns `true` for a queued command or `false` when denied/unavailable. It does not replay denied events or confirm delivery. Invalid destinations/labels/events and `send_to` or `event_callback` overrides reject with `TypeError`.
+
+Ads requires `AW-.../CONVERSION_LABEL` and event `conversion`. Use the [Google presets guide](/docs/google-presets) for complete examples. These methods exist even when the bridge is disabled; no registered destination means event routing rejects.

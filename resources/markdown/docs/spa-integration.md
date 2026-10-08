@@ -39,3 +39,7 @@ Subscriptions return teardown functions. Do not remove cleanup hooks while their
 ## Native modal integration
 
 The banner uses a native dialog. Check your framework's DOM morphing and navigation behavior around an open modal, focused controls, and persistent layout. Do not replace or duplicate the mounted preferences dialog mid-interaction. Preserve focus return and ensure other application dialogs do not compete with it.
+
+## GA4 page views
+
+Set `presets.ga4.send_page_view` to `false` if your router owns page-view reporting. Send the intended view after each navigation through `Consent.google.event('G-XXXXXXXXXX', 'page_view', { page_path: '/current-path' })`. Denied events return `false` and are not replayed when consent is later granted. Avoid duplicate router handlers and duplicate vendor installation. See [Google presets](/docs/google-presets).

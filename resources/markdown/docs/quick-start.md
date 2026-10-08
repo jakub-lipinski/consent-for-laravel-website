@@ -66,4 +66,20 @@ Opening and closing preferences does not make a decision. Checkbox changes remai
 
 Test an undecided visit, explicit rejection, acceptance, returning with each decision, and withdrawal after scripts have started. Confirm no relevant tracking requests occur before permission. Check keyboard focus, mobile reflow, your policy link, and overlays in the actual host application.
 
-Withdrawing an active category reloads by default. Read [withdrawal](/docs/withdrawal) before supplying custom cleanup. Google and Meta presets are [still planned](/docs/roadmap); this example is a generic gate, not a Consent Mode integration.
+Withdrawing an active category reloads by default. Read [withdrawal](/docs/withdrawal) before supplying custom cleanup. For GA4 or Google Ads, use the [built-in presets](/docs/google-presets) instead of wrapping a duplicate vendor bootstrap. They register purposes and apply [Consent Mode v2](/docs/google-consent-mode). GTM, Meta Pixel, and Clarity remain planned.
+
+## Alternative: GA4 by ID
+
+Keep the same head/banner components, omit the example custom service and script, and enable the preset:
+
+```php
+'presets' => [
+    'ga4' => [
+        'enabled' => true,
+        'measurement_id' => env('CONSENT_GA4_ID'),
+        'send_page_view' => true,
+    ],
+],
+```
+
+Set `CONSENT_GA4_ID` to your measurement ID. Basic is the default: no Google requests before analytics consent. See [Google presets](/docs/google-presets) for Ads conversions, real cookie scopes, SPA page views, and verification.

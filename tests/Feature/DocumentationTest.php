@@ -17,7 +17,7 @@ it('renders every published documentation chapter and its title', function (stri
     'introduction', 'installation', 'quick-start', 'services-and-categories',
     'banner-and-theme', 'translations', 'accessibility', 'blade-directives',
     'browser-api', 'php-api', 'configuration', 'persistence', 'withdrawal',
-    'csp-and-caching', 'spa-integration', 'troubleshooting', 'upgrading', 'roadmap', 'security',
+    'google-consent-mode', 'google-presets', 'csp-and-caching', 'spa-integration', 'troubleshooting', 'upgrading', 'roadmap', 'security',
 ]);
 
 it('rejects unknown or path-like chapter names', function (string $path) {
@@ -25,7 +25,7 @@ it('rejects unknown or path-like chapter names', function (string $path) {
 })->with(['/docs/not-a-chapter', '/docs/README.md', '/docs/%2E%2E%2F.env']);
 
 it('provides searchable text with working named chapter links', function () {
-    $response = $this->getJson(route('docs.search'))->assertOk()->assertJsonCount(19);
+    $response = $this->getJson(route('docs.search'))->assertOk()->assertJsonCount(21);
     $chapters = $response->json();
     $installation = collect($chapters)->firstWhere('slug', 'installation');
     $blade = collect($chapters)->firstWhere('slug', 'blade-directives');
@@ -60,9 +60,9 @@ it('keeps documentation links within published chapters or real website routes',
 
 it('presents the current beta honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
-        ->assertSee('v1.0.0-beta.3')
+        ->assertSee('v1.0.0-beta.4')
         ->assertSee('No cookies or trackers.')
-        ->assertSeeInOrder(['Planned for 1.0', 'Google Consent Mode v2', 'Meta Pixel'])
+        ->assertSeeInOrder(['Available in beta.4', 'Google Consent Mode v2', 'Planned for 1.0', 'Meta Pixel'])
         ->assertSee('Skip to content')
         ->assertSee('aria-labelledby="preview-title"', false);
 });

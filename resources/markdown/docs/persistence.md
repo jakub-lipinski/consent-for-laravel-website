@@ -57,3 +57,7 @@ If neither marker can persist, automatic reload could restore an old accepted co
 ## Cross-tab updates
 
 The runtime rechecks about once per second and on focus, pageshow, and visibility changes. Another tab's refusal, policy mismatch, or expiry can trigger withdrawal in a running document. Permission is also checked again before each script activation.
+
+## Google configuration changes
+
+Enabled Google IDs, Basic/Advanced mode, automatic page-view configuration, canonical preset purposes, and cleanup rules contribute to the active-service fingerprint. Changing them makes old decisions pending. Disabled presets and an inactive bridge preserve beta.3 fingerprints. The preference cookie remains schema version 1.

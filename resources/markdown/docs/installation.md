@@ -12,7 +12,7 @@ The package is not published on Packagist at this stage. Add the verified GitHub
 
 ```bash
 composer config repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel
-composer require webcrafts-studio/consent-for-laravel:1.0.0-beta.3
+composer require webcrafts-studio/consent-for-laravel:1.0.0-beta.4
 php artisan vendor:publish --tag=consent-config
 ```
 
@@ -63,6 +63,6 @@ Keep configuration serializable. Use arrays and scalar values rather than closur
 
 ## Compatibility notes
 
-The package's CI is configured for PHP 8.3/8.4 across Laravel 12/13, including lowest and highest dependency selections. Local beta.3 verification covered highest Laravel 12/13 on PHP 8.3 and lowest Laravel 12/13 on PHP 8.4. Those checks are distinct from an exhaustive claim across every future dependency version.
+The package's CI is configured for PHP 8.3/8.4 across Laravel 12/13, including lowest and highest dependency selections. Local beta.4 verification covered highest Laravel 12/13 on PHP 8.3 and lowest Laravel 12/13 on PHP 8.4. Those checks are distinct from an exhaustive claim across every future dependency version.
 
 Continue with [the quick start](/docs/quick-start).

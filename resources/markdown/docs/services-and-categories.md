@@ -58,3 +58,7 @@ $services->version();
 ## Purpose changes invalidate choices
 
 Adding, removing, enabling, disabling, or materially changing an active service invalidates previous decisions. UI translations can be provided separately without changing the fingerprint. Read [translations](/docs/translations) and [persistence](/docs/persistence).
+
+## Services supplied by presets
+
+Enabled GA4 registers `google-ga4` in analytics; enabled Ads registers `google-ads` in marketing. They include default English/Polish purpose descriptions and cookie cleanup rules. Only categories actually used by enabled presets/custom services appear. Do not duplicate these IDs manually. Canonical preset name/description overrides remain visible; explicit service display translations can override them. See [Google presets](/docs/google-presets).

@@ -49,3 +49,9 @@ Compare application-owned published files with the new package version, merge ch
 ## Where to report a problem
 
 Use [package issues](https://github.com/jakub-lipinski/consent-for-laravel/issues) for package behavior and [website issues](https://github.com/jakub-lipinski/consent-for-laravel-website/issues) for documentation/site problems. Include versions, minimal reproduction, expected behavior, and console/network details without secrets or personal data.
+
+## Google does not start
+
+Confirm the preset is enabled, its ID is valid, and the correct category is granted in Basic. Render the head before Google code and remove old gtag bootstraps, populated dataLayer initialization, and duplicate installs. A detected conflict reports `configuration` and leaves optional templates inert. A loader/CSP/network failure reports `google`; fix it and retry on a new document.
+
+`Consent.google.event()` returning `false` means a command was not queued. A `true` result does not prove provider delivery. For Ads, use an enabled destination plus the actual conversion label and event `conversion`. See [Google presets](/docs/google-presets).
