@@ -24,8 +24,24 @@
         <div class="hero-art"><img class="permission-study" src="{{ asset('assets/consent-architecture.svg') }}" width="760" height="660" alt="Isometric Laravel app with cookie preferences connected to Consent. Analytics is enabled and running; marketing is disabled and paused."><div class="art-caption"><span>Consent-aware tracking.</span></div></div>
     </section>
     <div class="spec-strip" aria-label="Package essentials"><span><b>PHP</b><span class="spec-separator" aria-hidden="true"></span> 8.3+</span><span><b>Laravel</b><span class="spec-separator" aria-hidden="true"></span> 12-13</span><span><b>Browser</b><span class="spec-separator" aria-hidden="true"></span> No frontend framework</span><a href="{{ config('site.repository') }}/blob/main/LICENSE.md"><b>License</b><span class="spec-separator" aria-hidden="true"></span> MIT <x-icon name="arrow-up" /></a></div>
+    <section id="principles" class="numbered-section" aria-labelledby="principles-title">
+        <div class="section-rail"><span>01 / The approach</span><span>Less work on every project</span></div>
+        <div class="section-intro"><h2 id="principles-title">A banner is only<br><span class="text-accent">the beginning</span></h2><p>Saving a choice, blocking scripts, and handling withdrawal all need code. Use one ready-made consent flow and spend that time on your application's features.</p></div>
+        <div class="principle-grid">
+            @foreach([
+                ['choice', 'Skip the UI build', 'Start with a complete banner and preferences screen. Choose Standard or Compact, then adjust the colors, position, and wording to match your app.'],
+                ['code', 'Your scripts, too', 'Register a custom service and wrap its script in the consent Blade directive. Reuse the same consent checks instead of writing another loader.'],
+                ['layers', 'One cached page', 'Serve the same cached HTML to everyone. Consent is checked in the browser, so you do not need a page variant for each consent choice.'],
+                ['refresh', 'No second settings flow', 'Visitors can reopen preferences and withdraw consent. The package remembers their choices and applies changes, including a reload when active trackers require it.'],
+                ['keyboard', 'Focus handled for you', 'Native controls, keyboard navigation, and focus management are already built. Keep your frontend work focused on the rest of your app.'],
+                ['globe', 'Translations ready', 'English and Polish interface copy and preset descriptions are included. Adapt the wording to your site without translating everything from scratch.'],
+            ] as $index => [$icon, $title, $description])
+            <div class="principle"><div class="principle-top"><x-icon :name="$icon" /><span>0{{ $index + 1 }}</span></div><h3>{{ $title }}</h3><p>{{ $description }}</p></div>
+            @endforeach
+        </div>
+    </section>
     <section id="setup" class="developer-section" aria-labelledby="developer-title">
-        <div class="section-rail"><span>01 / The setup</span><span>Two components. Your tracking ID.</span></div>
+        <div class="section-rail"><span>02 / The setup</span><span>Two components. Your tracking ID.</span></div>
         <div class="developer-grid">
             <div>
                 <span class="eyebrow">Google Analytics, without the wiring</span>
@@ -35,7 +51,7 @@
                 <a class="button button-accent" href="{{ route('docs.show', 'google-presets') }}">Set up GA4 <x-icon name="arrow-right" /></a>
             </div>
             <div class="code-example">
-                <div class="code-title"><span>.env</span><span>GA4 preset enabled</span></div>
+                <div class="code-title"><code>.env</code><span>GA4 preset enabled</span></div>
                 <pre><code class="language-dotenv">CONSENT_GA4_ID=G-XXXXXXXXXX</code></pre>
                 <p><span class="status-dot" aria-hidden="true"></span> In the default Basic mode, GA4 waits for analytics consent.</p>
                 <div class="code-title"><span>Your Blade layout</span><span>Blade</span></div>
@@ -49,7 +65,7 @@
         </div>
     </section>
     <section id="integrations" class="numbered-section" aria-labelledby="integrations-title">
-        <div class="section-rail"><span>02 / The integrations</span><span>Add IDs. Skip the custom consent logic.</span></div>
+        <div class="section-rail"><span>03 / The integrations</span><span>Add IDs. Skip the custom consent logic.</span></div>
         <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its ID; the package takes care of that consent logic.</p></div>
         <div class="release-grid">
             <div class="release-current">
@@ -69,22 +85,6 @@
                 <div><strong>Withdrawal is already handled</strong><span>The presets apply denied signals, clear declared cookies, and reload when an active tracker needs to stop.</span></div>
                 <a href="{{ route('docs.show', 'google-consent-mode') }}">Understand Basic and Advanced <x-icon name="arrow-up" /></a>
             </div>
-        </div>
-    </section>
-    <section id="principles" class="numbered-section" aria-labelledby="principles-title">
-        <div class="section-rail"><span>03 / The approach</span><span>Less work on every project</span></div>
-        <div class="section-intro"><h2 id="principles-title">A banner is only<br><span class="text-accent">the beginning</span></h2><p>Saving a choice, blocking scripts, and handling withdrawal all need code. Use one ready-made consent flow and spend that time on your application's features.</p></div>
-        <div class="principle-grid">
-            @foreach([
-                ['choice', 'Skip the UI build', 'Start with a complete banner and preferences screen. Choose Standard or Compact, then adjust the colors, position, and wording to match your app.'],
-                ['code', 'Your scripts, too', 'Register a custom service and wrap its script in the consent Blade directive. Reuse the same consent checks instead of writing another loader.'],
-                ['layers', 'One cached page', 'Serve the same cached HTML to everyone. Consent is checked in the browser, so you do not need a page variant for each consent choice.'],
-                ['refresh', 'No second settings flow', 'Visitors can reopen preferences and withdraw consent. The package remembers their choices and applies changes, including a reload when active trackers require it.'],
-                ['keyboard', 'Focus handled for you', 'Native controls, keyboard navigation, and focus management are already built. Keep your frontend work focused on the rest of your app.'],
-                ['globe', 'Translations ready', 'English and Polish interface copy and preset descriptions are included. Adapt the wording to your site without translating everything from scratch.'],
-            ] as $index => [$icon, $title, $description])
-            <div class="principle"><div class="principle-top"><x-icon :name="$icon" /><span>0{{ $index + 1 }}</span></div><h3>{{ $title }}</h3><p>{{ $description }}</p></div>
-            @endforeach
         </div>
     </section>
     <section id="preview" class="numbered-section" aria-labelledby="preview-title">

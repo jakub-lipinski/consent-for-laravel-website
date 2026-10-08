@@ -1,4 +1,5 @@
 <div class="preview-workbench" data-preview>
+    <div class="preview-site-header" aria-hidden="true"><span class="preview-window-dots"><span></span><span></span><span></span></span><span class="preview-wordmark">Your Laravel app<span>.</span></span><span class="preview-site-label">Live preview</span></div>
     <div class="preview-toolbar">
         <fieldset class="position-selector variant-selector" disabled>
             <legend>Interface variant</legend>
@@ -14,10 +15,23 @@
         <button class="text-button" type="button" data-preview-reset hidden>Reset preview <x-icon name="refresh" /></button>
     </div>
     <div class="preview-stage" data-preview-stage data-position="bottom-left">
-        <div class="preview-site">
-            <div class="preview-site-header"><span class="preview-wordmark">Your Laravel app<span aria-hidden="true">.</span></span><span class="preview-site-label">Your next project</span></div>
-            <div class="preview-site-content"><span class="eyebrow">A preview of your application</span><p>Your Laravel app<br><span class="text-accent">with consent</span></p><div class="preview-lines" aria-hidden="true"><span></span><span></span><span></span></div></div>
-            <div class="preview-decoration" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3.25a8.75 8.75 0 1 0 8.75 8.75 3.2 3.2 0 0 1-3.2-3.2 3.2 3.2 0 0 1-3.2-3.2A3.2 3.2 0 0 1 12 3.25Z"/><circle cx="8.25" cy="10" r=".8"/><circle cx="11.25" cy="15.25" r=".8"/><circle cx="7" cy="15" r=".6"/></svg><span>Preferences your<br>visitors control</span></div>
+        <div class="preview-site" aria-hidden="true">
+            <div class="preview-site-content">
+                <div class="preview-page-header">
+                    <div class="preview-page-brand"><span></span><span></span></div>
+                    <div class="preview-page-nav"><span></span><span></span><span></span></div>
+                </div>
+                <div class="preview-card-grid">
+                    <div class="preview-card preview-card--featured">
+                        <div class="preview-card-copy"><span class="preview-skeleton-line preview-skeleton-line--heading"></span><span class="preview-skeleton-line preview-skeleton-line--heading preview-skeleton-line--short"></span><span class="preview-skeleton-line"></span><span class="preview-skeleton-line preview-skeleton-line--short"></span><span class="preview-card-action"></span></div>
+                        <div class="preview-card-media"></div>
+                    </div>
+                    <div class="preview-card"><div class="preview-card-media"></div><span class="preview-skeleton-line preview-skeleton-line--title"></span><span class="preview-skeleton-line"></span><span class="preview-skeleton-line preview-skeleton-line--short"></span></div>
+                    <div class="preview-card"><div class="preview-card-media"></div><span class="preview-skeleton-line preview-skeleton-line--title"></span><span class="preview-skeleton-line"></span><span class="preview-skeleton-line preview-skeleton-line--short"></span></div>
+                    <div class="preview-card"><div class="preview-card-media"></div><span class="preview-skeleton-line preview-skeleton-line--title"></span><span class="preview-skeleton-line"></span><span class="preview-skeleton-line preview-skeleton-line--short"></span></div>
+                    <div class="preview-card"><div class="preview-card-media"></div><span class="preview-skeleton-line preview-skeleton-line--title"></span><span class="preview-skeleton-line"></span><span class="preview-skeleton-line preview-skeleton-line--short"></span></div>
+                </div>
+            </div>
         </div>
         <div class="preview-interface" data-preview-interface>
             <template shadowrootmode="open">
