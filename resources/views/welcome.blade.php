@@ -6,7 +6,7 @@
     <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}" target="_blank" rel="noopener noreferrer">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
     <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-            <div class="release-label"><span class="status-dot" aria-hidden="true"></span> Built for Laravel developers</div>
+            <div class="release-label"><span class="status-dot" aria-hidden="true"></span><span>Made for Laravel</span></div>
             <h1 id="hero-title">Less cookie setup.<br><span class="text-accent">More building.</span></h1>
             <p class="hero-description">Add two Blade components, enable a tracking preset, and enter your GA4 or Meta Pixel ID. Consent for Laravel handles the banner, preferences, and consent-aware script loading.</p>
             <div class="button-row"><a class="button button-primary" href="{{ route('docs.show', 'installation') }}">Install the package <x-icon name="arrow-right" /></a><a class="button button-outline" href="{{ route('docs.show', 'quick-start') }}">Quick start</a></div>
