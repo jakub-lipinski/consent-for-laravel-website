@@ -192,10 +192,6 @@ if (preview) {
     }));
     preview.querySelectorAll('[name="preview-variant"]').forEach(input => input.addEventListener('change', () => {
         interfaceRoot.dataset.consentVariant = input.value;
-        interfaceRoot.querySelectorAll('[data-preview-services]').forEach(details => {
-            details.open = input.value === 'standard';
-            details.querySelector('summary').hidden = input.value === 'standard';
-        });
         message.textContent = `${input.value === 'compact' ? 'Compact' : 'Standard'} banner and preferences selected. Preview only.`;
     }));
     preview.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => {

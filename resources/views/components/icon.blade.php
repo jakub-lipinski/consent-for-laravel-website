@@ -71,6 +71,9 @@ SOFTWARE.
         <path d="m7 7 10 10" />
         <path d="M17 7v10H7" />
         @break
+    @case('chevron-down')
+        <path d="m6 9 6 6 6-6" />
+        @break
     @case('chevron-up')
         <path d="m18 15-6-6-6 6" />
         @break

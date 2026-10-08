@@ -12,11 +12,11 @@ Install the stable GitHub release through Composer. Register the official VCS so
 
 ```bash
 composer config repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel.git
-composer require jakub-lipinski/consent-for-laravel:^1.1
+composer require jakub-lipinski/consent-for-laravel:^1.1.1
 php artisan vendor:publish --tag=consent-config
 ```
 
-Packagist does not currently index this package. The VCS source lets Composer resolve the stable `v1.1.0` GitHub tag. Your application's `composer.lock` records the installed version; no reduced minimum stability or development branch is needed.
+Packagist does not currently index this package. The VCS source lets Composer resolve the stable `v1.1.1` GitHub tag. Your application's `composer.lock` records the installed version; no reduced minimum stability or development branch is needed.
 
 The Composer publisher and GitHub owner are both `jakub-lipinski`. The provider is discovered automatically through Spatie Laravel Package Tools. Configure your purposes and enabled presets before adding the [head and banner components](/docs/quick-start).
 

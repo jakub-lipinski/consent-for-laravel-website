@@ -43,8 +43,8 @@
                                 <input id="preview-category-analytics" class="consent-switch" type="checkbox" role="switch" name="analytics" aria-describedby="preview-description-analytics">
                             </div>
                             <p id="preview-description-analytics">Help understand visits and how people use this website.</p>
-                            <details class="consent-service-details" data-preview-services open>
-                                <summary hidden>Services in this category</summary>
+                            <details class="consent-service-details" data-preview-services>
+                                <summary><span>Services in this category</span><x-icon name="chevron-down" class="consent-service-chevron" /></summary>
                                 <ul class="consent-services" aria-label="Services in this category"><li><strong>Site analytics</strong><span>Measure visits and navigation to improve the website.</span></li></ul>
                             </details>
                         </div>
@@ -54,8 +54,8 @@
                                 <input id="preview-category-marketing" class="consent-switch" type="checkbox" role="switch" name="marketing" aria-describedby="preview-description-marketing">
                             </div>
                             <p id="preview-description-marketing">Support advertising and measure campaign results.</p>
-                            <details class="consent-service-details" data-preview-services open>
-                                <summary hidden>Services in this category</summary>
+                            <details class="consent-service-details" data-preview-services>
+                                <summary><span>Services in this category</span><x-icon name="chevron-down" class="consent-service-chevron" /></summary>
                                 <ul class="consent-services" aria-label="Services in this category"><li><strong>Campaign measurement</strong><span>Measure conversions from advertising campaigns.</span></li></ul>
                             </details>
                         </div>

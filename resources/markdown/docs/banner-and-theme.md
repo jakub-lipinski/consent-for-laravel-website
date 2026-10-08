@@ -13,10 +13,10 @@ After a choice, a small button reopens preferences. If no optional service is re
 
 Set `consent.ui.variant` to `standard` (default) or `compact`. The setting selects both the banner and its preferences dialog; it is independent of position, colors, and language. Existing published configurations without the setting keep Standard. Invalid values are rejected.
 
-- **Standard** preserves the original spacious cards/dialog, filled acceptance/refusal buttons, and expanded service lists.
-- **Compact** uses smaller cards/dialogs, less spacing, simpler corners, outlined acceptance/refusal buttons, and side-by-side choices on wider cards. Category purposes remain visible; complete service lists use native disclosures that open with Enter or Space.
+- **Standard** preserves the original spacious cards/dialog, filled acceptance/refusal buttons.
+- **Compact** uses smaller cards/dialogs, less spacing, simpler corners, outlined acceptance/refusal buttons, and side-by-side choices on wider cards. Category purposes remain visible in both variants.
 
-Both keep the same wording, consent actions, purposes, policy links, switches, and draft/save/withdrawal behavior. Opening service information makes no decision. Changing appearance does not invalidate or extend a saved choice. Both variants stack actions and scroll long content on small screens. At the default font size, choice controls are at least 48 CSS pixels high in Standard and 44 in Compact.
+Both keep the same wording, consent actions, purposes, policy links, switches, and draft/save/withdrawal behavior. In both variants, complete service lists start collapsed inside native disclosures. A chevron beside the label points down when closed and up when open; click, Enter, or Space toggles each category independently. Opening service information makes no decision and does not change category switches. Changing appearance does not invalidate or extend a saved choice. Both variants stack actions and scroll long content on small screens. At the default font size, choice controls are at least 48 CSS pixels high in Standard and 44 in Compact.
 
 The interactive website preview switches both surfaces together, keeps its choices in memory only, and runs no package scripts or trackers.
 
@@ -95,4 +95,4 @@ php artisan vendor:publish --tag=consent-views
 
 Published files are application-owned. Preserve the package's control bindings, labels, native dialog behavior, and focus protections. Recheck contrast, geometry, reflow, text resizing, and keyboard interaction after changes. Variant, theme, position, and UI language changes do not invalidate or extend a decision.
 
-When upgrading published views, merge the `variant` prop and `data-consent-variant` root attribute along with the Compact service disclosures. Update and cache-bust published styles/scripts together with the views. See [upgrading](/docs/upgrading).
+When upgrading published views, merge the `variant` prop and `data-consent-variant` root attribute along with the service disclosures and summary chevrons. Update and cache-bust published styles/scripts together with the views. See [upgrading](/docs/upgrading).

@@ -47,4 +47,4 @@ If you share-cache HTML in multiple languages, vary the cache by locale. Inert s
 
 Default GA4/Ads, Meta, and Clarity purposes and the Advanced-mode disclosure are available in English and Polish. Canonical preset name/description changes keep their custom wording rather than being replaced by bundled defaults. You can explicitly translate the `google-ga4` / `google-ads` display fields in `consent::services`. Published `messages.php` files should retain `google_advanced` and all used preset purposes under `presets`, including `meta-pixel`, `microsoft-clarity`, and `microsoft-clarity-ads`. The same `consent::services` display overrides work for these IDs. Canonical description changes still affect the fingerprint.
 
-Standard and Compact share the same interface dictionaries and service-purpose translations. No extra translation keys are needed for version 1.1; Compact service disclosures use the existing `services_label` message.
+Standard and Compact share the same interface dictionaries and service-purpose translations. No extra translation keys are needed for version 1.1; both variants' service disclosures use the existing `services_label` message.
