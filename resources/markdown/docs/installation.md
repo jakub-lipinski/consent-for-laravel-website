@@ -15,7 +15,7 @@ composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
-Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. This documentation covers **v1.1.1**; [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
+Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. This documentation covers **v1.1.3**; [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
 
 The provider is discovered automatically. If your application disables discovery or installs with `--no-scripts`, see [provider troubleshooting](/docs/troubleshooting#configuration-cannot-be-published).
 
@@ -62,6 +62,6 @@ Restart long-running application workers after deployment. Keep configuration se
 
 ## Compatibility
 
-The version 1.1 CI matrix passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. Local package verification used PHP 8.4 / Laravel 13, including a clean installation from the exported archive. These checks describe the tested combinations, not every possible dependency version.
+The v1.1.3 CI matrix passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. The full local package checks ran on PHP 8.4 / Laravel 13. Focused theme, banner, and configuration checks also passed in four cached PHP 8.3/8.4 and Laravel 12/13 dependency sets; these local sets were not newly resolved global minima/maxima. See [the v1.1.3 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.1.3/docs/releases/v1.1.3.md#verification) for scope and limitations. These checks do not cover every possible dependency version.
 
 Continue with [the quick start](/docs/quick-start).

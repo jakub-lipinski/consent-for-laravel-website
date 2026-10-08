@@ -1,4 +1,4 @@
-## Included in version 1.1
+## Included in v1.1.3
 
 Consent for Laravel supplies an in-application consent interface and runtime. Installation adds no separate dashboard, website, application route, database table, or frontend framework.
 
@@ -6,8 +6,8 @@ Consent for Laravel supplies an in-application consent interface and runtime. In
 
 - Five categories: necessary, analytics, marketing, performance, and other.
 - Only used optional categories appear in preferences.
-- Matching Standard and Compact banners/preferences dialogs, with bottom-left, bottom-right, and wide bottom-center placement. Category purposes stay visible; Compact uses native service-list disclosures.
-- Validated theme colors, configurable policy link, and editable copy.
+- Matching Standard and Compact banners/preferences dialogs, with bottom-left, bottom-right, and wide bottom-center placement. Category purposes stay visible; both variants use initially collapsed native service-list disclosures with a state-indicating chevron.
+- Safe six-digit hex theme colors with per-color defaults for invalid formats, configurable policy link, and editable copy.
 - A native preferences dialog and a small icon for reopening a saved choice.
 - English and Polish interface messages and preset purposes.
 - Native controls, keyboard interaction, managed focus, responsive reflow, and optional contrast diagnostics.

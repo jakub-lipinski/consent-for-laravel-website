@@ -2,7 +2,7 @@
 
 Consent for Laravel is a Composer library for explicit, service-based cookie preferences. It gives your Laravel application a configurable banner, a native preferences dialog, versioned decisions, and a browser runtime that gates declared scripts.
 
-The current release is **v1.1.1**, available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
+The current release is **v1.1.3**, available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
 
 ```bash
 composer require jakub-lipinski/consent-for-laravel
@@ -18,7 +18,7 @@ Run these in your existing Laravel app. Follow [the quick start](/docs/quick-sta
 - Strict, versioned preference persistence shared by the PHP and browser APIs.
 - Inert `@consent` script blocks with ordering, duplicate prevention, and checks before activation.
 - Safe default reload when consent is withdrawn from running code.
-- Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, validated colors, and English/Polish translations.
+- Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, safe color-format fallbacks, optional non-blocking contrast diagnostics, and English/Polish translations.
 - Keyboard interaction, native modal semantics, responsive layouts, and protection against covering focused host controls.
 - Google Consent Mode v2 with Basic and explicit Advanced modes.
 - ID-based GA4 and Google Ads presets with permission-checked event routing.

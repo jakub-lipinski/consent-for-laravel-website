@@ -58,7 +58,7 @@ Increment the policy version when purposes or policy change outside the register
 | `cookie.secure` | `null` | Follow request HTTPS, or explicitly true/false |
 | `cookie.same_site` | `'lax'` | `lax` or `strict` |
 
-The cookie name must start with a letter, use only letters, digits, dots, underscores, or hyphens, and be at most 64 characters. Paths must start with `/` and contain no whitespace, semicolon, or control characters. Domains must be valid cookie domains of at most 254 characters, optionally starting with a dot. `secure` accepts only `null` or an actual boolean. Unknown cookie, loader, UI, and color options are rejected. Session/CSRF cookie-name collisions and names starting with `remember_` are rejected. The provider excludes only this preference cookie from encryption. `HttpOnly` is always false; it is not a configurable authorization cookie.
+The cookie name must start with a letter, use only letters, digits, dots, underscores, or hyphens, and be at most 64 characters. Paths must start with `/` and contain no whitespace, semicolon, or control characters. Domains must be valid cookie domains of at most 254 characters, optionally starting with a dot. `secure` accepts only `null` or an actual boolean. Unknown cookie, loader, and UI options are rejected. Session/CSRF cookie-name collisions and names starting with `remember_` are rejected. The provider excludes only this preference cookie from encryption. `HttpOnly` is always false; it is not a configurable authorization cookie.
 
 For proxies, old scopes, expiry, and storage limitations, read [persistence](/docs/persistence).
 
@@ -82,7 +82,7 @@ A script timeout fails its block. A cleanup failure or timeout requires safe rel
 | `ui.validate_contrast` | `false` | Boolean; `true` logs contrast warnings and preserves selected colors |
 | `ui.colors` | `[]` | Known six-digit hex colors; malformed values fall back without interrupting rendering |
 
-Color keys are `background`, `text`, `muted`, `accent`, `accent_text`, `border`, `control`, and `focus`. Defaults and contrast rules are listed in [banner and theme](/docs/banner-and-theme).
+Color keys are `background`, `text`, `muted`, `accent`, `accent_text`, `border`, `control`, and `focus`. Invalid color formats use the corresponding defaults, unknown color keys are ignored, and a malformed colors array uses the default palette. These format issues log warnings independently of contrast diagnostics. A non-boolean `ui.validate_contrast` disables contrast diagnostics and logs a warning. Theme diagnostics cannot interrupt rendering, including when logging fails. Defaults and contrast thresholds are listed in [banner and theme](/docs/banner-and-theme).
 
 ## Services
 

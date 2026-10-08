@@ -30,6 +30,7 @@ The interactive website preview switches both surfaces together, keeps its choic
     'position' => 'bottom-left',
     'locale' => null,
     'policy_url' => '/cookies',
+    'validate_contrast' => false,
     'colors' => [],
 ],
 ```

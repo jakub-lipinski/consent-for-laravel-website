@@ -9,7 +9,7 @@ This is an implementation target supported by automated and native browser check
 - The banner does not steal focus when it arrives.
 - Opening preferences moves focus to the modal heading.
 - Tab and Shift+Tab remain within the native modal; its background is inert.
-- Space toggles switches; Enter activates buttons. In Compact, native service disclosures open with Enter or Space without changing consent.
+- Space toggles switches; Enter activates buttons. In both variants, native service disclosures open with Enter or Space without changing consent.
 - Escape closes without saving a draft.
 - Closing returns focus to the opener, or the preferences launcher when the opener is unavailable.
 - Overlays yield when they fully cover a focused host-page control. The launcher can also hide if it fully covers focus. Large page containers and partially visible controls do not dismiss the pending notice.
@@ -32,6 +32,12 @@ Without JavaScript or the core runtime, optional script templates stay inert. Wi
 
 Test the actual host page, not only a standalone component: header and footer controls, other modals, sticky elements, scrolling, focus, validation messages, language, and vendor UI all affect the result. Automated axe/jsdom checks do not establish native dialog modality, visual geometry, screen-reader behavior, or every WCAG criterion.
 
-Version 1.1.1 package checks passed 246 PHP tests / 475 assertions and 122 JavaScript tests on local PHP 8.4 / Laravel 13. Native WebKit checks covered both variants, all three positions, English/Polish, inline/published assets under nonce CSP, module ordering, geometry, full axe checks, keyboard modality, service disclosures, saved choices, and withdrawal. The 1.1.1 recheck verified initially collapsed, independently expandable service lists with decorative chevrons that change direction in both variants, Enter/Space/Tab interaction, and unchanged consent until an explicit choice. Both variants/languages had no horizontal overflow at 320 CSS pixels with 200% text size and increased spacing, including every service list expanded in both variants; the final Save control scrolled fully into view. Policy links aligned with text and actions despite generic host-page spacing. Axe reported no violations in tested banner/modal states; incomplete closed-dialog references, close-glyph name checks, and overlapping backgrounds were reviewed manually. CI separately covers eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest combinations. These checks do not certify other engines, screen readers, OS high-contrast modes, or whole-site accessibility.
+For **v1.1.3**, `composer check` passed Composer validation, Pint, PHPStan level 8, **259 PHP tests / 575 assertions**, JavaScript syntax checks, and **132 JavaScript tests** on local PHP 8.4 / Laravel 13. Focused theme, banner, and configuration tests passed 112 cases / 288 assertions in four cached PHP 8.3/8.4 and Laravel 12/13 dependency sets. CI separately passed all eight configured lowest/highest combinations. See [the v1.1.3 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.1.3/docs/releases/v1.1.3.md#verification).
+
+The v1.1.3 native-browser recheck covered both variants, contrast diagnostics on/off, nonce CSP, preferences, draft versus saved choices, gated script activation, withdrawal/reload, invalid-color fallback, and an unavailable logger. Custom low-contrast colors are intentionally preserved and are not certified by these checks.
+
+Broader [v1.1.2 interface verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.1.2/docs/releases/v1.1.2.md#verification) covered both variants, all three positions, English/Polish, and inline/published assets under nonce CSP. All 24 native axe checks reported no violations. Twelve reflow checks at 320 CSS pixels with 200% text size and increased spacing had no horizontal overflow, with all service lists expanded and the final Save control fully visible. Keyboard interaction, modal focus, disclosures, saved choices, script ordering, and withdrawal were verified. Incomplete axe results were reviewed manually and are not counted as automatic passes.
+
+These results do not certify other browser engines, screen readers, OS high-contrast modes, arbitrary custom themes, or whole-site accessibility.
 
 For this documentation website's own controls and reporting, read [website accessibility](/accessibility). The normative criteria are available in [WCAG 2.2 from W3C](https://www.w3.org/TR/WCAG22/).

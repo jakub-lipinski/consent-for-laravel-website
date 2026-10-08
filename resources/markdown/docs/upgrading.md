@@ -21,9 +21,9 @@ Run this in your consuming Laravel application. If you used another repository k
 
 ## Moving from 1.1.2 to 1.1.3
 
-Theme contrast no longer interrupts host-page rendering. `ui.validate_contrast` defaults to `false`, including when the key is absent from existing published configuration. Set it to `true` to log contrast warnings while preserving selected colors; an unavailable logger cannot break the page. Invalid color formats fall back to their defaults, unknown keys are ignored, and malformed color arrays use the default palette. Unsafe values never enter CSS.
+Theme contrast no longer interrupts host-page rendering. `ui.validate_contrast` defaults to `false`, including when the key is absent from existing published configuration. Set it to `true` to log contrast warnings while preserving selected colors; an unavailable logger cannot break the page. Invalid color formats fall back to their defaults, unknown color keys are ignored, and malformed color arrays use the default palette. Unsafe values never enter CSS.
 
-Update the package, commit your Composer files, rebuild configuration/view caches, and restart persistent workers. No browser assets, views, translations, cookie schema, service fingerprints, or saved decisions need migration. Custom colors still need an accessibility review. See [the 1.1.3 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.1.3).
+Update the package, commit your Composer files, rebuild configuration/view caches, and restart persistent workers. No browser assets, views, translations, cookie schema, service fingerprints, or saved decisions need migration. If upgrading directly from 1.1.1 or earlier, also apply the corresponding earlier upgrade steps below, including the 1.1.2 JavaScript asset changes. Custom colors still need an accessibility review. See [the 1.1.3 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.1.3).
 
 ## Moving from 1.1.1 to 1.1.2
 

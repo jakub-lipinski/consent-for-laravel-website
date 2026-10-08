@@ -59,6 +59,7 @@ Each component renders once per response. JavaScript and CSS are embedded by def
     'position' => 'bottom-left',
     'locale' => null,
     'policy_url' => '/cookies',
+    'validate_contrast' => false,
     'colors' => [],
 ],
 ```
