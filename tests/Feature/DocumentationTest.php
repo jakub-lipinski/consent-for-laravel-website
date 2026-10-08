@@ -85,3 +85,17 @@ it('serves a separate accessibility statement with an issue reporting path', fun
         ->assertSee('Website accessibility - Consent for Laravel')
         ->assertSee('Report a website accessibility issue on GitHub');
 });
+
+it('isolates the preview with the unmodified released package stylesheet', function () {
+    $this->get(route('home'))->assertOk()
+        ->assertSee('shadowrootmode="open"', false)
+        ->assertSee('data-preview-package-styles', false)
+        ->assertSee('data-preview-position-selector', false)
+        ->assertSeeInOrder(['name="preview-variant"', 'name="preview-position"', 'data-preview-stage'], false)
+        ->assertSee('Google Analytics 4')
+        ->assertSee('Microsoft Clarity')
+        ->assertSee('Google Ads')
+        ->assertSee('Meta Pixel');
+
+    expect(hash_file('sha256', resource_path('css/consent-preview.css')))->toBe('0440a1a5c538d32e44a1fcf98606b5c48b003cfadbd4fa57e567e295365782d3');
+});

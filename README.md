@@ -6,7 +6,7 @@ The standalone landing page and documentation for [Consent for Laravel](https://
 
 Documentation covers `v1.1.1`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, matching Standard/Compact banner and preferences variants, configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities.
 
-The landing page includes an illustrative interface preview. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website itself is in English; the package interface supports English and Polish.
+The landing page includes an interactive preview of the package interface. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website itself is in English; the package interface supports English and Polish.
 
 ## Local development
 
@@ -29,6 +29,8 @@ Herd serves the application. Run `npm run dev` when actively editing frontend as
 - `resources/markdown/docs`: documentation source files.
 - `resources/views`: landing page, shared shell, documentation layout, and accessibility statement.
 - `resources/css/app.css` and `resources/js/app.js`: responsive visual system and progressive enhancement.
+- `resources/css/consent-preview.css`: unmodified package CSS from `v1.1.1`, rendered inside a Shadow DOM so Tailwind and website typography cannot override it.
+- `resources/css/preview-frame.css`: isolates inherited website styles and contains banner placement in the illustrated app. The native preferences dialog retains the package geometry, colors, typography, hover, and focus styles.
 - `public/assets`: original line-art brand assets, illustration, favicon, and social image.
 
 To add a chapter, create its Markdown file and register it in `config/site.php`. Chapter content is rendered with raw HTML stripped and unsafe links disabled. Search results are created using DOM text nodes. Code examples never execute.
@@ -50,3 +52,7 @@ Set the application's URL and normal Laravel production environment settings. Bu
 Package installation instructions use the standard Composer package name and stable GitHub tags through the official VCS source; no reduced minimum stability is needed. Update `config/site.php` and all affected guides deliberately for a new release.
 
 The interface preview switches Standard and Compact together with all three positions. Both variants keep category purposes visible and expose full service lists through initially collapsed native disclosures with a state-indicating chevron. Switching variants preserves the preview's disclosure state. Preview choices remain in memory; changing the variant never saves a real consent decision.
+
+Preview controls sit above the illustrated app. Standard/Compact remains available at every width; the position selector is hidden at the package's mobile breakpoint (35rem), where the banner fills the available width. The preview uses the package's default colors, close/launcher SVG geometry, English copy, and four built-in service descriptions.
+
+When updating the package release, copy `resources/css/consent.css` from that tagged source verbatim into `resources/css/consent-preview.css` and update the release fingerprint test. Keep containment rules in `preview-frame.css`; do not modify the package stylesheet to match the website. Recheck both variants, native preferences, hover/focus, and mobile layouts against a disposable app rendering the released package.

@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import './consent-preview.css';
 @source '../views/**/*.blade.php';
 @source '../js/**/*.js';
 @theme {
@@ -1852,4 +1851,11 @@ body {
 .hero-install-copy svg {
     width: 16px;
     height: 16px;
+}
+
+/* Preview controls belong to the website; the interface has its own styles. */
+.preview-toolbar { flex-wrap: wrap; border-top: 0; border-bottom: 1px solid var(--line); }
+.preview-interface { display: block; width: 100%; min-width: 0; }
+@media (max-width: 35rem) {
+    [data-preview-position-selector] { display: none; }
 }

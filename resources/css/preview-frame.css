@@ -1,0 +1,18 @@
+:host { all: initial; display: block; width: 100%; min-width: 0; color-scheme: light; }
+.consent-preview-ui { display: flex; justify-content: flex-start; width: 100%; position: relative; }
+.consent-preview-ui .consent-banner { position: relative; z-index: 1; inset: auto; transform: none; width: min(26.25rem, 100%); }
+.consent-preview-ui[data-consent-position="bottom-right"] { justify-content: flex-end; }
+.consent-preview-ui[data-consent-position="bottom-right"] .consent-banner,
+.consent-preview-ui[data-consent-position="bottom-right"] .consent-launcher { inset: auto; }
+.consent-preview-ui[data-consent-position="bottom-center"] { justify-content: center; }
+.consent-preview-ui[data-consent-position="bottom-center"] .consent-banner { inset: auto; transform: none; width: min(72rem, 100%); }
+.consent-preview-ui .consent-launcher { position: relative; z-index: 1; inset: auto; flex: 0 0 3.25rem; }
+.consent-preview-ui[data-consent-position="bottom-center"] .consent-launcher { inset: auto; transform: none; }
+.consent-preview-ui[data-consent-variant="compact"] .consent-banner { width: min(24rem, 100%); }
+.consent-preview-ui[data-consent-variant="compact"][data-consent-position="bottom-center"] .consent-banner { width: min(60rem, 100%); }
+@media (max-width: 35rem) {
+    .consent-preview-ui .consent-banner,
+    .consent-preview-ui[data-consent-variant="compact"] .consent-banner,
+    .consent-preview-ui[data-consent-position="bottom-center"] .consent-banner,
+    .consent-preview-ui[data-consent-variant="compact"][data-consent-position="bottom-center"] .consent-banner { width: 100%; }
+}

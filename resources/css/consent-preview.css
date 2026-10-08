@@ -1,13 +1,12 @@
-/* Package interface styles with its supported blue color configuration. */
 .consent-ui {
     --consent-background: #ffffff;
-    --consent-text: #172b46;
-    --consent-muted: #586477;
-    --consent-accent: #315fe9;
+    --consent-text: #182722;
+    --consent-muted: #52625b;
+    --consent-accent: #245c49;
     --consent-accent-text: #ffffff;
-    --consent-border: #e2e7ef;
-    --consent-control: #68768d;
-    --consent-focus: #315fe9;
+    --consent-border: #e1e7e3;
+    --consent-control: #67776e;
+    --consent-focus: #245c49;
     color: var(--consent-text);
     font: normal 1rem/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     text-align: start;
@@ -37,7 +36,7 @@
     border: 1px solid var(--consent-border);
     border-radius: 1rem;
     background: var(--consent-background);
-    box-shadow: 0 8px 35px rgb(23 43 70 / .1), 0 1px 4px rgb(23 43 70 / .04);
+    box-shadow: 0 8px 35px rgb(24 39 34 / .1), 0 1px 4px rgb(24 39 34 / .04);
 }
 .consent-banner__content { display: grid; gap: .65rem; min-width: 0; }
 .consent-banner__content > p, .consent-description { color: var(--consent-muted); }
@@ -96,7 +95,7 @@
     border-radius: 50%;
     background: var(--consent-background);
     color: var(--consent-accent);
-    box-shadow: 0 4px 18px rgb(23 43 70 / .1);
+    box-shadow: 0 4px 18px rgb(24 39 34 / .1);
 }
 .consent-launcher svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
 .consent-launcher circle { fill: currentColor; stroke: none; }
@@ -121,7 +120,7 @@
     scroll-padding: 1rem;
     box-shadow: 0 20px 70px rgb(0 0 0 / .18);
 }
-.consent-dialog::backdrop { background: rgb(16 28 49 / .4); }
+.consent-dialog::backdrop { background: rgb(14 27 21 / .4); }
 .consent-dialog .consent-description { margin-block: .8rem 1.4rem; }
 .consent-categories { min-width: 0; margin: 0; padding: 0; border: 0; }
 .consent-category { padding-block: 1.15rem; border-block-start: 1px solid var(--consent-border); }
@@ -208,78 +207,4 @@
     .consent-switch::before, .consent-switch::after { display: none; }
     .consent-ui .consent-button, .consent-ui .consent-launcher, .consent-ui .consent-icon-button { border-color: ButtonText; }
     .consent-ui :focus-visible { outline-color: Highlight; }
-}
-
-/* Contain banner placement in the preview; preferences retain the package's native dialog. */
-.consent-preview-ui {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    flex: 0 0 auto;
-    position: relative;
-}
-.consent-preview-ui .consent-banner {
-    position: relative;
-    z-index: 1;
-    inset: auto;
-    transform: none;
-    width: min(26.25rem, 100%);
-    max-height: none;
-    overflow: visible;
-}
-.consent-preview-ui[data-consent-position="bottom-right"] {
-    justify-content: flex-end;
-}
-.consent-preview-ui[data-consent-position="bottom-right"] .consent-banner,
-.consent-preview-ui[data-consent-position="bottom-right"] .consent-launcher {
-    inset: auto;
-}
-.consent-preview-ui[data-consent-position="bottom-center"] {
-    justify-content: center;
-}
-.consent-preview-ui[data-consent-position="bottom-center"] .consent-banner {
-    inset: auto;
-    transform: none;
-    width: min(72rem, 100%);
-}
-.consent-preview-ui .consent-launcher {
-    position: relative;
-    z-index: 1;
-    inset: auto;
-    flex: 0 0 3.25rem;
-}
-.consent-preview-ui[data-consent-position="bottom-center"] .consent-launcher {
-    inset: auto;
-    transform: none;
-}
-.consent-ui .consent-icon-button .icon {
-    width: 1.6rem;
-    height: 1.6rem;
-}
-.consent-services {
-    list-style: disc;
-}
-.preview-decoration > .icon {
-    width: 125px;
-    height: 125px;
-    color: var(--ink);
-    stroke-width: 1;
-}
-@media (max-width: 35rem) {
-    .consent-preview-ui .consent-banner {
-        width: 100%;
-    }
-    .preview-decoration > .icon {
-        width: 72px;
-        height: 72px;
-    }
-}
-
-/* Variant selection changes both preview surfaces while preserving their choices. */
-.preview-toolbar { flex-wrap: wrap; }
-.consent-preview-ui[data-consent-variant="compact"] .consent-banner { width: min(24rem, 100%); }
-.consent-preview-ui[data-consent-variant="compact"][data-consent-position="bottom-center"] .consent-banner { width: min(60rem, 100%); }
-@media (max-width: 35rem) {
-    .consent-preview-ui[data-consent-variant="compact"] .consent-banner,
-    .consent-preview-ui[data-consent-variant="compact"][data-consent-position="bottom-center"] .consent-banner { width: 100%; }
 }

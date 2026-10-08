@@ -8,21 +8,24 @@ if (siteHeader) {
 }
 
 // Native dialogs provide modality; keep tab navigation inside their controls.
-document.querySelectorAll('dialog').forEach(dialog => {
+const containDialogFocus = dialog => {
     dialog.addEventListener('keydown', event => {
         if (event.key !== 'Tab') return;
         const controls = [...dialog.querySelectorAll('a[href], button, input, select, textarea, summary, [tabindex]')]
             .filter(element => !element.disabled && element.tabIndex >= 0 && element.getClientRects().length);
         const first = controls[0], last = controls.at(-1);
         if (!first) return;
-        const active = document.activeElement;
+        const active = dialog.getRootNode().activeElement;
         if (event.shiftKey && (active === first || !controls.includes(active))) {
             event.preventDefault(); last.focus();
         } else if (!event.shiftKey && (active === last || !dialog.contains(active))) {
             event.preventDefault(); first.focus();
         }
     });
-});
+};
+document.querySelectorAll('dialog').forEach(containDialogFocus);
+const activeDialog = () => document.querySelector('dialog[open]')
+    || document.querySelector('[data-preview-interface]')?.shadowRoot?.querySelector('dialog[open]');
 const status = document.querySelector('[data-site-status]');
 const announce = (message) => { if (status) status.textContent = message; };
 document.querySelectorAll('[data-install-command]').forEach(container => {
@@ -81,7 +84,7 @@ if (search && typeof search.showModal === 'function') {
         } finally { loading = false; }
     };
     const open = (trigger) => {
-        if (document.querySelector('dialog[open]')) return;
+        if (activeDialog()) return;
         opener = trigger || document.activeElement; search.showModal(); input.focus(); load();
     };
     document.querySelectorAll('[data-search-open]').forEach(button => { button.hidden = false; button.addEventListener('click', () => open(button)); });
@@ -91,7 +94,7 @@ if (search && typeof search.showModal === 'function') {
     input.addEventListener('input', render);
     document.addEventListener('keydown', event => {
         if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && !event.altKey && !event.shiftKey) {
-            if (!document.querySelector('dialog[open]')) { event.preventDefault(); open(); }
+            if (!activeDialog()) { event.preventDefault(); open(); }
         }
     });
 }
@@ -133,12 +136,20 @@ if ('IntersectionObserver' in window) {
 const preview = document.querySelector('[data-preview]');
 if (preview) {
     const stage = preview.querySelector('[data-preview-stage]');
-    const interfaceRoot = preview.querySelector('.consent-preview-ui');
-    const banner = preview.querySelector('[data-preview-banner]');
-    const reopen = preview.querySelector('[data-preview-reopen]');
+    const host = preview.querySelector('[data-preview-interface]');
+    if (!host.shadowRoot) {
+        const template = host.querySelector('template');
+        host.attachShadow({ mode: 'open' }).append(template.content);
+        template.remove();
+    }
+    const surface = host.shadowRoot;
+    const interfaceRoot = surface.querySelector('.consent-preview-ui');
+    const banner = surface.querySelector('[data-preview-banner]');
+    const reopen = surface.querySelector('[data-preview-reopen]');
     const reset = preview.querySelector('[data-preview-reset]');
     const message = preview.querySelector('[data-preview-status]');
-    const dialog = preview.querySelector('[data-preview-dialog]');
+    const dialog = surface.querySelector('[data-preview-dialog]');
+    containDialogFocus(dialog);
     const form = dialog.querySelector('[data-preview-form]');
     const optionalFields = [...form.querySelectorAll('.consent-switch:not(:disabled)')];
     let choices = Object.fromEntries(optionalFields.map(field => [field.name, false]));
@@ -173,7 +184,7 @@ if (preview) {
             message.textContent = 'The preferences preview requires a browser with native dialog support.';
             return;
         }
-        if (document.querySelector('dialog[open]')) return;
+        if (activeDialog()) return;
         opener = trigger;
         optionalFields.forEach(field => { field.checked = choices[field.name]; });
         dialog.showModal();
@@ -194,13 +205,13 @@ if (preview) {
         interfaceRoot.dataset.consentVariant = input.value;
         message.textContent = `${input.value === 'compact' ? 'Compact' : 'Standard'} banner and preferences selected. Preview only.`;
     }));
-    preview.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => {
+    surface.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => {
         const accept = button.dataset.previewChoice === 'all';
         choose(Object.fromEntries(optionalFields.map(field => [field.name, accept])), accept ? 'All categories accepted.' : 'Optional categories rejected.');
     }));
-    preview.querySelector('[data-preview-preferences]').addEventListener('click', event => open(event.currentTarget));
+    surface.querySelector('[data-preview-preferences]').addEventListener('click', event => open(event.currentTarget));
     reopen.addEventListener('click', event => open(event.currentTarget));
-    preview.querySelector('[data-preview-dismiss]').addEventListener('click', () => {
+    surface.querySelector('[data-preview-dismiss]').addEventListener('click', () => {
         dismissed = true;
         reveal();
         message.textContent = 'Notice closed without choosing. Preview only; nothing stored.';
@@ -210,7 +221,7 @@ if (preview) {
     dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
     dialog.addEventListener('click', event => { if (outsideDialog(event, dialog)) close(); });
     dialog.addEventListener('close', () => {
-        const needsFocus = dialog.contains(document.activeElement) || document.activeElement === document.body;
+        const needsFocus = dialog.contains(surface.activeElement) || document.activeElement === document.body;
         reveal();
         if (needsFocus) returnFocus();
     });
