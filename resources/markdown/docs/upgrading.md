@@ -3,7 +3,7 @@
 The package is in beta. Releases use `v1.0.0-beta.N` until the version 1.0 release is ready. Breaking changes or fixes may require additional betas. Pin the tagged beta for reproducible application testing.
 
 ```bash
-composer require webcrafts-studio/consent-for-laravel:1.0.0-beta.4
+composer require webcrafts-studio/consent-for-laravel:1.0.0-beta.5
 ```
 
 This assumes the VCS repository from [installation](/docs/installation) is configured. Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) before upgrading.
@@ -28,6 +28,14 @@ Basic is the default. Advanced is explicit and permits cookieless pings before p
 
 Enabling or changing Google targets, IDs, mode, page-view settings, or cleanup metadata invalidates old decisions. With the bridge and presets inactive, beta.3 decisions remain compatible. The cookie schema stays unchanged. External module loading now also waits for top-level await after the original SRI-checked load.
 
+## Beta.4 to beta.5
+
+Merge `presets.meta_pixel` and `presets.clarity` from the new configuration. Both are disabled by default. Supply IDs and enable only needed tools; remove old snippets, noscript pixels, tag-manager installs, and colliding manual services. Reserved IDs are `meta-pixel`, `microsoft-clarity`, and optionally `microsoft-clarity-ads`.
+
+Meta needs marketing. Clarity needs analytics; ad storage is off by default and additionally requires explicitly enabled advertising plus marketing permission. Enable Require cookie consent and configure masking in your Clarity project. Both presets use strict gates regardless of Google Advanced. Active withdrawal always reloads, including Clarity advertising withdrawal.
+
+Merge the three new `messages.presets` entries into published English/Polish translations. No new dependency or migration is required. The schema is unchanged; with the new presets disabled, beta.4 fingerprints remain compatible, including Google-only setups. Enabled IDs/options/purposes/scopes participate in the service fingerprint and invalidate old decisions. See [Meta Pixel](/docs/meta-pixel) and [Microsoft Clarity](/docs/microsoft-clarity).
+
 ## Deployment checklist
 
 1. Review release notes and any changed configuration options.
@@ -41,4 +49,4 @@ The library repository does not commit a dependency lock file. Your consuming ap
 
 ## Future integrations
 
-GTM, Meta Pixel, and Clarity remain planned. Their future betas will document their own setup and vendor-specific verification. Do not assume that upgrading alone configures a tracker or establishes legal compliance.
+GTM is deferred with no assigned beta. The next planned milestone is beta.6 release preparation and integrated verification. Do not assume that upgrading alone configures a tracker or establishes legal compliance.

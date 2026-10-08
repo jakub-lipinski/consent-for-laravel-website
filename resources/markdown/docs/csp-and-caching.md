@@ -52,3 +52,7 @@ Test the real CSP in the browser, including dynamically activated modules, inlin
 The preset's dynamic gtag.js loader inherits the head nonce. Outbound measurement still requires appropriate `connect-src`, `img-src`, and any provider-specific frame policy. Inspect the real destinations for your configured Google products and use the current [Google CSP guidance](https://developers.google.com/tag-platform/security/guides/csp). No broad wildcard policy is supplied. Blocked tag loading reports a `google` error and leaves destinations unconfigured; blocked measurement may occur after commands were successfully queued.
 
 External modules retain their original SRI/credential checks and use a second nonce-bearing import marker to wait for asynchronous module evaluation before continuing the block. The cached module is not executed twice.
+
+## Meta and Clarity origins
+
+Both bootstrap scripts inherit the head nonce. Meta starts from `connect.facebook.net/en_US/fbevents.js`; Clarity from `www.clarity.ms/tag/PROJECT_ID`. Review actual vendor script, image, and connection requirements separately. Microsoft documents `*.clarity.ms` and `c.bing.com`; apply appropriate directives rather than broad unsafe-inline allowances. Nonce inheritance alone does not permit outgoing fetches/images. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity) for verification.

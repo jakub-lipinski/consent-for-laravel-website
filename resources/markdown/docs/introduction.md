@@ -2,7 +2,7 @@
 
 Consent for Laravel is a Composer library for explicit, service-based cookie preferences. It gives your Laravel application a configurable banner, a native preferences dialog, versioned decisions, and a browser runtime that gates declared scripts.
 
-The current release is **v1.0.0-beta.4**. The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
+The current release is **v1.0.0-beta.5**. The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
 
 ## What ships today
 
@@ -15,6 +15,7 @@ The current release is **v1.0.0-beta.4**. The package targets PHP 8.3+ and Larav
 - Keyboard interaction, native modal semantics, responsive layouts, and protection against covering focused host controls.
 - Google Consent Mode v2 with Basic and explicit Advanced modes.
 - ID-based GA4 and Google Ads presets with permission-checked event routing.
+- Meta Pixel and Microsoft Clarity presets with strict loading gates, guarded events, and opt-in Clarity advertising.
 
 ## The lifecycle
 
@@ -29,7 +30,7 @@ A saved refusal is a valid decision. A missing, expired, malformed, or outdated 
 
 ## What is still planned
 
-Google Tag Manager, Meta Pixel, and Microsoft Clarity remain planned. GA4 and Google Ads are available now; follow [Google presets](/docs/google-presets). Custom service registration describes purposes; enabled presets additionally handle their own initialization. Follow [the roadmap](/docs/roadmap).
+Google Tag Manager is deferred with no assigned beta. GA4, Google Ads, [Meta Pixel](/docs/meta-pixel), and [Microsoft Clarity](/docs/microsoft-clarity) are available now. Custom services describe purposes; enabled presets also initialize their SDKs. Follow [the roadmap](/docs/roadmap).
 
 ## Before using it in production
 

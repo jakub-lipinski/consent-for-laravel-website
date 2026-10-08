@@ -48,3 +48,9 @@ A failed choice remains denied in memory. A temporary denial marker normally all
 ## Verify the provider lifecycle
 
 Exercise acceptance, active refusal, re-grant, another tab's change, expiry, storage failure, script failure, and cleanup timeout. Inspect actual network requests and provider state. The built-in Google presets update Consent Mode signals before cleanup and always reload after active withdrawal. Custom cleanup cannot disable this preset reload. Generic blocks do not automatically implement other provider consent APIs. See [Google Consent Mode](/docs/google-consent-mode).
+
+## Built-in Meta and Clarity withdrawal
+
+Meta sends revoked consent before listeners/reload; Clarity sends both updated `consentv2` fields. Active preset withdrawal always reloads, including Clarity advertising withdrawal with analytics still granted or its SDK in flight. Custom `reload: false` cannot suppress it. Clarity's storage-denied SDK mode can still collect limited cookieless activity, so the package gates loading and uses a fresh document to stop active processing.
+
+Meta cleanup covers declared `_fbp`/`_fbc` scopes; Clarity covers `_clck`/`_clsk`. Scope declarations do not configure vendor cookies or remove third-party/remote data. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).

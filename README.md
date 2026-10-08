@@ -4,7 +4,7 @@ The standalone landing page and documentation for [Consent for Laravel](https://
 
 ## Current scope
 
-Documentation covers `v1.0.0-beta.3`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, banner configuration, English/Polish translations, and integration responsibilities. Planned vendor integrations are labeled as planned.
+Documentation covers `v1.0.0-beta.5`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, banner configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities. GTM is explicitly deferred.
 
 The landing page includes an illustrative interface preview. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website itself is in English; the package interface supports English and Polish.
 

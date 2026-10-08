@@ -61,7 +61,7 @@ See [services and categories](/docs/services-and-categories) for examples and fi
 
 | Key | Default | Validation |
 | --- | --- | --- |
-| `google.enabled` | `null` | Auto with enabled presets; `true` for a manual bridge; `false` disables it |
+| `google.enabled` | `null` | Auto with enabled Google presets; `true` for a manual bridge; `false` disables it |
 | `google.mode` | `'basic'` | `basic` or explicit `advanced` |
 | `presets.ga4.enabled` | `false` | Boolean |
 | `presets.ga4.measurement_id` | `env('CONSENT_GA4_ID')` | `G-` plus 4-32 uppercase letters/digits; required if enabled |
@@ -72,6 +72,21 @@ See [services and categories](/docs/services-and-categories) for examples and fi
 Both presets also accept optional `name`, `description`, `cookie_path` (default `/`), and `cookie_domain` (default `null`). Names/descriptions follow service validation; cookie scopes follow existing cookie-rule validation. Unknown Google/preset keys, malformed disabled definitions, enabled presets alongside `google.enabled: false`, and manual service collisions with enabled preset IDs are rejected.
 
 Cleanup scope declarations do not configure the vendor's cookie scope. Match actual cookies, including parent domains chosen by Google. Google mode/target/init changes are part of the consent fingerprint. See [Consent Mode](/docs/google-consent-mode) and [Google presets](/docs/google-presets) for the signal mapping and complete behavior.
+
+## Meta Pixel and Clarity presets
+
+| Key | Default | Validation |
+| --- | --- | --- |
+| `presets.meta_pixel.enabled` | `false` | Boolean |
+| `presets.meta_pixel.pixel_id` | `env('CONSENT_META_PIXEL_ID')` | String of 1-20 digits, first 1-9; required when enabled |
+| `presets.meta_pixel.send_page_view` | `true` | Boolean |
+| `presets.clarity.enabled` | `false` | Boolean |
+| `presets.clarity.project_id` | `env('CONSENT_CLARITY_ID')` | String of 1-32 lowercase letters/digits; required when enabled |
+| `presets.clarity.advertising` | `false` | Boolean; ad storage additionally needs analytics and marketing permission |
+
+Both accept canonical `name`/`description` and cleanup `cookie_path`/`cookie_domain` with the same validation as services. Clarity also accepts `advertising_name`/`advertising_description` for its separate marketing purpose. Disabled definitions are validated; unknown keys, malformed IDs/options, and collisions with enabled preset service IDs are rejected.
+
+Reserved IDs: `meta-pixel`, `microsoft-clarity`, and, with advertising enabled, `microsoft-clarity-ads`. Meta declares `_fbp`/`_fbc`; Clarity declares `_clck`/`_clsk`. Match actual scopes; declarations do not set vendor cookie domains or remove third-party data. ID/options/purposes/scopes enter the consent fingerprint. Google Advanced never relaxes these gates. See [Meta Pixel](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).
 
 ## Component props
 

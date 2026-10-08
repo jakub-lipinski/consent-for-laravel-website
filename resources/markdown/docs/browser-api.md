@@ -96,3 +96,16 @@ const queued = await Consent.google.event('G-XXXXXXXXXX', 'page_view', {
 `state()` returns a frozen mapped signal snapshot and does not load a tracker. `event(destination, name, parameters = {})` requires an enabled preset's destination and current category permission, waits for initialization, and checks permission again before queueing. It returns `true` for a queued command or `false` when denied/unavailable. It does not replay denied events or confirm delivery. Invalid destinations/labels/events and `send_to` or `event_callback` overrides reject with `TypeError`.
 
 Ads requires `AW-.../CONVERSION_LABEL` and event `conversion`. Use the [Google presets guide](/docs/google-presets) for complete examples. These methods exist even when the bridge is disabled; no registered destination means event routing rejects.
+
+## Meta and Clarity events
+
+```javascript
+await Consent.meta.track('Purchase', { value: 49.90, currency: 'PLN' }, { eventID: 'order-123' });
+await Consent.meta.trackCustom('NewsletterSignup');
+await Consent.clarity.event('checkout-completed');
+const signals = Consent.clarity.state();
+```
+
+Event helpers require their enabled preset, current permission at invocation and dispatch, and an initialized SDK. They return `true` for a submitted command and `false` for denied/unavailable processing; they do not confirm delivery or replay denied events. Invalid inputs and disabled presets reject. Names start with a letter, contain letters/digits/underscores/dots/hyphens, and have at most 128 characters. Meta parameters are a JSON-serializable object; options accept only a non-empty `eventID` string up to 128 characters. Payloads are captured at invocation.
+
+Clarity state is a frozen `analytics_Storage`/`ad_Storage` snapshot and loads nothing. Clarity advertising requires explicit configuration plus analytics and marketing permission. Active preset withdrawal always reloads. Full examples: [Meta Pixel](/docs/meta-pixel) and [Microsoft Clarity](/docs/microsoft-clarity).

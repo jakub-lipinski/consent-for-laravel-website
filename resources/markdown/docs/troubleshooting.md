@@ -55,3 +55,9 @@ Use [package issues](https://github.com/jakub-lipinski/consent-for-laravel/issue
 Confirm the preset is enabled, its ID is valid, and the correct category is granted in Basic. Render the head before Google code and remove old gtag bootstraps, populated dataLayer initialization, and duplicate installs. A detected conflict reports `configuration` and leaves optional templates inert. A loader/CSP/network failure reports `google`; fix it and retry on a new document.
 
 `Consent.google.event()` returning `false` means a command was not queued. A `true` result does not prove provider delivery. For Ads, use an enabled destination plus the actual conversion label and event `conversion`. See [Google presets](/docs/google-presets).
+
+## Meta or Clarity does not start
+
+Check the enabled preset and its string ID, required category, saved decision, config cache, CSP, blockers, and timeout. A pre-existing `fbq`/`_fbq`/`clarity` or matching bootstrap causes `configuration` failure. Remove all duplicate snippets and container installs. Failed initialization reports `meta` or `clarity` and never retries in the same document.
+
+For Clarity, enable Require cookie consent and use the case-sensitive Consent API v2 fields. Advertising is off unless explicitly configured and both required categories are granted. For Meta, disable automatic PageView if your router owns it. Helpers returning true only confirm a local SDK command, not server delivery. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).

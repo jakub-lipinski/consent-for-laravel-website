@@ -43,3 +43,7 @@ The banner uses a native dialog. Check your framework's DOM morphing and navigat
 ## GA4 page views
 
 Set `presets.ga4.send_page_view` to `false` if your router owns page-view reporting. Send the intended view after each navigation through `Consent.google.event('G-XXXXXXXXXX', 'page_view', { page_path: '/current-path' })`. Denied events return `false` and are not replayed when consent is later granted. Avoid duplicate router handlers and duplicate vendor installation. See [Google presets](/docs/google-presets).
+
+## Meta and Clarity presets
+
+Keep one SDK owner per document. Set Meta `send_page_view` to false when the router owns page views, then call `Consent.meta.track('PageView')` once per committed navigation. Clarity's SDK handles recording/navigation; do not reinitialize it on fragments. `Consent.clarity.event()` can annotate permitted interactions. Events invoked without permission are discarded rather than replayed on another page. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).

@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.0.0-beta.4',
+    'release' => 'v1.0.0-beta.5',
     'package' => 'webcrafts-studio/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
@@ -27,6 +27,10 @@ return [
         'Google integrations' => [
             ['slug' => 'google-consent-mode', 'title' => 'Google Consent Mode v2', 'description' => 'Basic and Advanced modes, denied defaults, signal mapping, and withdrawal.'],
             ['slug' => 'google-presets', 'title' => 'GA4 and Google Ads', 'description' => 'Enable presets by ID, send guarded events, and configure cookie cleanup.'],
+        ],
+        'Other integrations' => [
+            ['slug' => 'meta-pixel', 'title' => 'Meta Pixel', 'description' => 'Marketing consent, ID-based setup, guarded events, and PageView control.'],
+            ['slug' => 'microsoft-clarity', 'title' => 'Microsoft Clarity', 'description' => 'Analytics gating, Consent API v2, optional advertising, and masking.'],
         ],
         'In production' => [
             ['slug' => 'persistence', 'title' => 'Persistence and expiry', 'description' => 'The cookie contract, versions, retention, and invalidation.'],
