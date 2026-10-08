@@ -1,13 +1,23 @@
 ## Updating within version 1
 
-Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases), update the application dependency, and commit the resulting application lock file:
+Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer config repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel.git
-composer require jakub-lipinski/consent-for-laravel:^1.1.1
+composer require "jakub-lipinski/consent-for-laravel:^1.1.1"
 ```
 
-The public PHP, Blade, browser, and configuration APIs documented here belong to the stable version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The public PHP, Blade, browser, and configuration APIs documented here belong to the stable version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Switching from a VCS installation
+
+Earlier instructions added a `repositories.consent` VCS entry. The official package is now published on Packagist. If you followed those instructions, remove that entry and resolve the same package through Packagist:
+
+```bash
+composer config --unset repositories.consent
+composer update jakub-lipinski/consent-for-laravel
+```
+
+Run this in your consuming Laravel application. If you used another repository key, remove that specific entry instead; keep repositories for intentional forks or local package development. Keep the package requirement in `require`. No minimum-stability change, uninstall, or cookie migration is needed. Your published configuration and customized files remain in place. Commit the Composer file changes.
 
 ## Moving from 1.1.0 to 1.1.1
 
@@ -17,7 +27,7 @@ Merge the updated banner view into published customizations: Standard also needs
 
 ## Moving from 1.0 to 1.1
 
-Version 1.1 adds matching Standard and Compact banner/preferences variants. Existing published configuration without `ui.variant` keeps `standard`; set it to `compact` or use `<x-consent::banner variant="compact" />` to opt in. Both retain complete category purposes and service information; Since 1.1.1, both variants use native, keyboard-accessible service disclosures with a state-indicating chevron.
+Version 1.1 adds matching Standard and Compact banner/preferences variants. Existing published configuration without `ui.variant` keeps `standard`; set it to `compact` or use `<x-consent::banner variant="compact" />` to opt in. Both retain complete category purposes and service information; since 1.1.1, both variants use native, keyboard-accessible service disclosures with a state-indicating chevron.
 
 No new translation keys or cookie migration are required. Variant changes do not invalidate or extend saved decisions. Presets, purpose fingerprints, cookie schema, retention, and browser APIs remain compatible. The release also isolates policy-link and button spacing from generic host styles.
 

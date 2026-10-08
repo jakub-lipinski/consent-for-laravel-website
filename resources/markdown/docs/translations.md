@@ -14,6 +14,8 @@
 
 ## Publish interface messages
 
+English and Polish work from the installed package without publishing files. Publish translations only when changing the bundled wording:
+
 ```bash
 php artisan vendor:publish --tag=consent-translations
 ```

@@ -11,6 +11,8 @@ Your host generates the nonce and matching HTTP CSP header. The package does not
 
 ## Publish separate files
 
+This step is optional. Publishing copies the files; point the components at them using the props below. Omit nonce props if your app does not use a nonce-based CSP; `$cspNonce` is supplied by the host application.
+
 ```bash
 php artisan vendor:publish --tag=consent-assets
 ```

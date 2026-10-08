@@ -2,7 +2,14 @@
 
 Consent for Laravel is a Composer library for explicit, service-based cookie preferences. It gives your Laravel application a configurable banner, a native preferences dialog, versioned decisions, and a browser runtime that gates declared scripts.
 
-The current release is **v1.1.1**. The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
+The current release is **v1.1.1**, available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
+
+```bash
+composer require jakub-lipinski/consent-for-laravel
+php artisan vendor:publish --tag=consent-config
+```
+
+Run these in your existing Laravel app. Follow [the quick start](/docs/quick-start) to enable a preset or register your own scripts, add the two Blade components, and verify the result. The [package repository](https://github.com/jakub-lipinski/consent-for-laravel) contains the source and release notes.
 
 ## What ships today
 

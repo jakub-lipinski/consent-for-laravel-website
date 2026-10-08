@@ -1,5 +1,7 @@
 ## Mount the interface
 
+After [installing and configuring the package](/docs/quick-start), place the head component in your shared layout's head and the banner in its body:
+
 ```blade
 <x-consent::head />
 <x-consent::banner />
@@ -49,7 +51,7 @@ All three stack on small screens. The launcher follows the selected position. Th
 />
 ```
 
-Use the app locale by leaving `locale` as `null`. Explicit overrides accept only `en` or `pl`. A policy URL may be an absolute website path or an HTTP(S) URL without credentials. Whitespace, backslashes, unsafe schemes, and relative paths are rejected. `null` omits the link.
+Use the app locale by leaving `locale` as `null`. Explicit overrides accept only `en` or `pl`. A policy URL may be an absolute website path or an HTTP(S) URL without credentials. Create the example `/cookies` page in your app or use your existing policy URL; the package does not register that route. Whitespace, backslashes, unsafe schemes, and relative paths are rejected. `null` omits the link. Refresh [cached configuration](/docs/configuration#apply-configuration-changes) after editing UI settings in `config/consent.php`.
 
 ## Theme colors
 
@@ -88,6 +90,8 @@ const opened = window.Consent.openPreferences();
 The browser method returns `true` if the mounted UI handles the request and `false` otherwise. Opening, closing, Escape, backdrop dismissal, and draft checkbox changes do not grant permission or write a cookie. Dismissing a pending banner applies only to the current document; a later visit can show it again.
 
 ## Customize published views
+
+Variant, position, colors, language, and policy links can be configured without publishing views. Publish only when you need to change the component markup:
 
 ```bash
 php artisan vendor:publish --tag=consent-views

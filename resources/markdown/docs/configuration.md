@@ -4,7 +4,40 @@
 php artisan vendor:publish --tag=consent-config
 ```
 
-All settings live under `consent` in `config/consent.php`. Configuration must be serializable and compatible with Laravel's configuration cache. Partial cookie, loader, and UI arrays retain defaults for omitted settings. After editing, rebuild configuration and restart long-running workers.
+Install the package from [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel) first; see [installation](/docs/installation). The command above copies its default configuration into `config/consent.php`. All settings live under Laravel's `consent` configuration key.
+
+Edit the existing entries in that file. The examples in these guides are excerpts, so keep unrelated settings and other presets rather than replacing the entire returned array. Configuration must be serializable: use arrays and scalar values, with `env()` calls only inside configuration files. Partial cookie, loader, and UI arrays retain defaults for omitted settings.
+
+## Choose an integration
+
+All presets start with `enabled` set to `false`, and `services` starts empty. For each built-in integration you use, set its existing `enabled` entry to the boolean `true` and provide the corresponding ID in `.env` or your production environment:
+
+| Integration | Set to `true` in `config/consent.php` | Environment ID | Required category in Basic mode |
+| --- | --- | --- | --- |
+| [GA4](/docs/google-presets) | `presets.ga4.enabled` | `CONSENT_GA4_ID=G-XXXXXXXXXX` | `analytics` |
+| [Google Ads](/docs/google-presets) | `presets.google_ads.enabled` | `CONSENT_GOOGLE_ADS_ID=AW-123456789` | `marketing` |
+| [Meta Pixel](/docs/meta-pixel) | `presets.meta_pixel.enabled` | `CONSENT_META_PIXEL_ID=123456789012345` | `marketing` |
+| [Microsoft Clarity](/docs/microsoft-clarity) | `presets.clarity.enabled` | `CONSENT_CLARITY_ID=abc123def4` | `analytics` |
+
+Replace example IDs with your own. Setting an environment ID alone does not enable a preset. Presets register their purposes and load their SDKs automatically using the shared head/banner components; they need no custom service entry or `@consent` wrapper. Leave unused presets disabled. Google Advanced is an explicit alternative to Basic; Meta and Clarity remain strictly gated in either mode.
+
+For your own scripts, add their purpose to `services` and gate the script with `@consent`; registration alone does not load code. With no optional purpose configured, the interface shows only the preferences launcher. Follow [the quick start](/docs/quick-start) for either path.
+
+## Apply configuration changes
+
+During local development, clear any existing cache after editing this file or environment IDs:
+
+```bash
+php artisan config:clear
+```
+
+In production, rebuild the cache after the environment values and configuration are ready, then restart long-running workers:
+
+```bash
+php artisan config:cache
+```
+
+Reload the browser page to receive the new configuration. Do not force-publish `consent-config` over your existing settings when updating the package; merge new options as described in [upgrading](/docs/upgrading).
 
 ## Policy and retention
 

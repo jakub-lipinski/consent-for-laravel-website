@@ -16,6 +16,7 @@
                 </div>
                 @endforeach
             </nav>
+            <a class="sidebar-source" href="{{ config('site.packagist') }}" target="_blank" rel="noopener noreferrer">Package on Packagist <x-icon name="arrow-up-right" /></a>
             <a class="sidebar-source" href="{{ config('site.repository') }}" target="_blank" rel="noopener noreferrer">Read the source <x-icon name="arrow-up-right" /></a>
         </details>
     </aside>

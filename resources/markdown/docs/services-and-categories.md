@@ -1,6 +1,6 @@
 ## Services describe purposes
 
-Configure a stable ID for each service. The registry is global to the website, not just the current route. Service definitions must contain a category, a non-empty UTF-8 name, and a meaningful description.
+For a custom integration, add a stable ID under `services` in the published `config/consent.php`; see [installation](/docs/installation). The registry is global to the website, not just the current route. Service definitions must contain a category, a non-empty UTF-8 name, and a meaningful description.
 
 ```php
 'services' => [
@@ -18,6 +18,8 @@ Configure a stable ID for each service. The registry is global to the website, n
 ```
 
 `enabled` defaults to `true` and must be an actual boolean. Disabled definitions are still validated but are excluded from the active registry. Unknown options are rejected. IDs start with a letter, contain only letters, digits, dots, underscores, or hyphens, and are at most 128 characters long.
+
+Adding a service describes its purpose but does not load its scripts. Gate the actual bootstrap with [the Blade directive](/docs/blade-directives) as shown in [the quick start](/docs/quick-start#alternative-your-own-script), then refresh [cached configuration](/docs/configuration#apply-configuration-changes). Built-in presets register their own services and load their SDKs; enable those under `presets` instead.
 
 ## The five categories
 
@@ -61,4 +63,4 @@ Adding, removing, enabling, disabling, or materially changing an active service 
 
 ## Services supplied by presets
 
-Enabled GA4 registers `google-ga4` in analytics; enabled Ads registers `google-ads` in marketing. They include default English/Polish purpose descriptions and cookie cleanup rules. Only categories actually used by enabled presets/custom services appear. Do not duplicate these IDs manually. Canonical preset name/description overrides remain visible; explicit service display translations can override them. See [Google presets](/docs/google-presets).
+Enabled GA4 registers `google-ga4` in analytics; enabled Ads registers `google-ads` in marketing. [Meta Pixel](/docs/meta-pixel) registers `meta-pixel` in marketing, and [Clarity](/docs/microsoft-clarity) registers `microsoft-clarity` in analytics, plus `microsoft-clarity-ads` in marketing if advertising is enabled. They include default English/Polish purpose descriptions and cookie cleanup rules. Only categories actually used by enabled presets/custom services appear. Do not duplicate these IDs manually. Canonical preset name/description overrides remain visible; explicit service display translations can override them. See [Google presets](/docs/google-presets).

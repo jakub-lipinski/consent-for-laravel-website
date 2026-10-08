@@ -32,7 +32,9 @@ it('provides searchable text with working named chapter links', function () {
     }
     $installation = collect($chapters)->firstWhere('slug', 'installation');
     $blade = collect($chapters)->firstWhere('slug', 'blade-directives');
-    expect($installation['content'])->toContain('composer require jakub-lipinski/consent-for-laravel')->toContain('repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel.git', 'consent-for-laravel:^1.1.1')->not->toContain('@dev')->not->toContain('<pre>');
+    expect($installation['content'])
+        ->toContain('composer require jakub-lipinski/consent-for-laravel', 'Packagist', 'consent-config')
+        ->not->toContain('composer config repositories', 'not currently index', '@dev', '<pre>');
     expect($blade['content'])->toContain('@consent')->toContain('not a PHP condition');
     expect($blade['url'])->toBe(route('docs.show', 'blade-directives'));
 });
@@ -56,7 +58,12 @@ it('keeps documentation links within published chapters or real website routes',
     foreach ($docs->pages() as $page) {
         preg_match_all('/\]\((\/[^)]+)\)/', $docs->markdown($page['slug']), $matches);
         foreach (array_unique($matches[1]) as $path) {
-            $this->get($path)->assertOk();
+            $response = $this->get((string) parse_url($path, PHP_URL_PATH))->assertOk();
+            $fragment = parse_url($path, PHP_URL_FRAGMENT);
+
+            if ($fragment !== null) {
+                $response->assertSee('id="'.$fragment.'"', false);
+            }
         }
     }
 });
@@ -65,6 +72,7 @@ it('presents the stable release honestly and exposes a cookie-free interface pre
     $this->get(route('home'))->assertOk()
         ->assertSee('v1.1.1')
         ->assertSee('composer require jakub-lipinski/consent-for-laravel')
+        ->assertSee('https://packagist.org/packages/jakub-lipinski/consent-for-laravel')
         ->assertDontSee('beta')
         ->assertDontSee('GTM')
         ->assertDontSee('Google Tag Manager')

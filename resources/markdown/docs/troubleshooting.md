@@ -1,6 +1,41 @@
+## Composer cannot install the package
+
+Use the exact published name from [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel), in your Laravel application's root:
+
+```bash
+composer require jakub-lipinski/consent-for-laravel
+```
+
+Check PHP 8.3+, Laravel 12 or 13, and Composer 2. Read Composer's dependency conflict message before changing constraints. For package lookup or network failures, run `composer diagnose` and `composer show --all jakub-lipinski/consent-for-laravel`; check whether a custom Composer mirror or configuration disables Packagist. If Composer still uses metadata from before publication, run `composer clear-cache` and retry. A VCS entry or reduced minimum stability is unnecessary for the stable package.
+
+If you previously added `repositories.consent`, follow [switching to Packagist](/docs/upgrading#switching-from-a-vcs-installation).
+
+## Configuration cannot be published
+
+If `vendor:publish --tag=consent-config` reports no publishable resources, confirm installation with `composer show jakub-lipinski/consent-for-laravel`. If the app was installed with Composer scripts disabled, rebuild discovery:
+
+```bash
+composer dump-autoload
+php artisan package:discover
+```
+
+Check your application's `composer.json` for `extra.laravel.dont-discover`: either the package name or `*` can disable auto-discovery. If you intentionally keep discovery disabled, add this provider to the existing array in `bootstrap/providers.php`:
+
+```php
+ConsentForLaravel\ConsentForLaravel\ConsentForLaravelServiceProvider::class,
+```
+
+Then publish `consent-config` again. Normal installations need no manual provider entry.
+
+## Configuration changes are ignored
+
+IDs in `.env` supply preset values but do not enable tracking. Set the corresponding `presets.*.enabled` entry to the boolean `true` in `config/consent.php`. Edit existing entries, retaining the other options and presets; do not paste excerpts over the whole file.
+
+Run `php artisan config:clear` locally after configuration or environment changes. In production, rebuild with `php artisan config:cache` after setting environment values and restart long-running workers. Reload the browser page to receive updated settings. See [configuration](/docs/configuration#choose-an-integration).
+
 ## The banner does not appear
 
-Check that both `<x-consent::head />` and `<x-consent::banner />` are in the layout. A valid saved acceptance or refusal shows the launcher instead of the initial banner. With no enabled optional service, only the launcher is shown. Rebuild a stale configuration cache.
+Check that both `<x-consent::head />` and `<x-consent::banner />` are in the layout. A valid saved acceptance or refusal shows the launcher instead of the initial banner. With no enabled optional service, only the launcher is shown; this is the fresh installation's default because all presets are disabled and `services` is empty. Enable your preset with its ID or register your custom service, then refresh cached configuration. Use a fresh private session to test an undecided visitor.
 
 Opening preferences should still work through `data-consent-open` or `window.Consent.openPreferences()`. If the method returns false, the interface is not available. Verify JavaScript/CSP errors and native dialog support.
 

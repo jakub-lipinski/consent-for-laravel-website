@@ -1,6 +1,6 @@
 ## Meta Pixel
 
-Enable the optional marketing preset in `config/consent.php`:
+First [install the package from Packagist and publish its configuration](/docs/installation). Edit the existing `meta_pixel` entry in `config/consent.php` to enable the optional marketing preset:
 
 ```php
 'presets' => [
@@ -17,7 +17,7 @@ Enable the optional marketing preset in `config/consent.php`:
 CONSENT_META_PIXEL_ID=123456789012345
 ```
 
-Replace the example with your own Pixel ID. It must be a string of 1-20 digits starting with 1-9, not an access token. The preset is disabled by default.
+Set this value in your application's `.env` or production environment. Replace the example with your own Pixel ID: a string of 1-20 digits starting with 1-9, not an access token. The preset is disabled by default; setting the ID alone does not enable it. Set `enabled` to the boolean `true`, keep other preset entries, and refresh [cached configuration](/docs/configuration#apply-configuration-changes).
 
 Use the existing `<x-consent::head />` before vendor code and `<x-consent::banner />` in your application layout. No extra Blade block or manual service is required. Remove duplicate snippets and tag-manager installs. These presets are strictly gated even if Google Advanced is configured. See [quick start](/docs/quick-start) and [configuration](/docs/configuration).
 

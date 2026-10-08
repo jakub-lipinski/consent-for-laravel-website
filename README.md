@@ -1,6 +1,21 @@
 # Consent for Laravel website
 
-The standalone landing page and documentation for [Consent for Laravel](https://github.com/jakub-lipinski/consent-for-laravel). This repository is a Laravel application; the Composer library lives in its own repository.
+The standalone landing page and documentation for [Consent for Laravel](https://github.com/jakub-lipinski/consent-for-laravel), available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). This repository is a Laravel application; the Composer library lives in its own repository.
+
+## Install the package in your Laravel app
+
+Run these commands in the root of the Laravel application where you want to use consent:
+
+```bash
+composer require jakub-lipinski/consent-for-laravel
+php artisan vendor:publish --tag=consent-config
+```
+
+The stable package installs directly from Packagist with Laravel provider auto-discovery. No custom Composer repository or minimum-stability change is needed. Requirements are PHP 8.3+ and Laravel 12 or 13; the package requires no npm build, database, or migrations.
+
+Next, edit `config/consent.php`, enable the presets you use and supply their IDs, then add `<x-consent::head />` in your layout's head and `<x-consent::banner />` in its body. All presets start disabled; setting an ID in `.env` alone does not enable one. For your own scripts, register a service and gate its script with `@consent` instead. Follow the [quick start](resources/markdown/docs/quick-start.md) for complete examples, a policy link, and verification.
+
+Use `php artisan config:clear` while developing after changes to cached configuration; rebuild with `php artisan config:cache` during production deployment. If you followed the previous VCS instructions, see [switching to Packagist](resources/markdown/docs/upgrading.md#switching-from-a-vcs-installation).
 
 ## Current scope
 
@@ -24,7 +39,7 @@ Herd serves the application. Run `npm run dev` when actively editing frontend as
 
 ## Structure
 
-- `config/site.php`: current package release, verified repository URLs, chapter metadata, and navigation groups.
+- `config/site.php`: current package release, Packagist and repository URLs, chapter metadata, and navigation groups.
 - `app/Documentation.php`: whitelisted chapter loading, safe Markdown rendering, heading anchors, and a text search index.
 - `resources/markdown/docs`: documentation source files.
 - `resources/views`: landing page, shared shell, documentation layout, and accessibility statement.
@@ -49,7 +64,7 @@ Feature coverage checks published chapters, search data, internal documentation 
 
 Set the application's URL and normal Laravel production environment settings. Build Vite assets during deployment, optimize Laravel caches, and point the web server at `public`. The site needs no database-backed product feature, account, consent service, or third-party font request. Use the appropriate production session/cache driver for your hosting environment.
 
-Package installation instructions use the standard Composer package name and stable GitHub tags through the official VCS source; no reduced minimum stability is needed. Update `config/site.php` and all affected guides deliberately for a new release.
+Package installation instructions use the stable release published on Packagist and the same Composer command throughout the site. Update `config/site.php` and all affected guides deliberately for a new release, and check the published package metadata and tagged source before documenting new options.
 
 The interface preview switches Standard and Compact together with all three positions. Both variants keep category purposes visible and expose full service lists through initially collapsed native disclosures with a state-indicating chevron. Switching variants preserves the preview's disclosure state. Preview choices remain in memory; changing the variant never saves a real consent decision.
 

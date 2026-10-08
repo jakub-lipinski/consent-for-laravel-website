@@ -1,6 +1,6 @@
 ## Microsoft Clarity
 
-Enable the optional analytics preset in `config/consent.php`:
+First [install the package from Packagist and publish its configuration](/docs/installation). Edit the existing `clarity` entry in `config/consent.php` to enable the optional analytics preset:
 
 ```php
 'presets' => [
@@ -17,7 +17,7 @@ Enable the optional analytics preset in `config/consent.php`:
 CONSENT_CLARITY_ID=abc123def4
 ```
 
-Replace the example with your own project ID: a string of 1-32 lowercase letters/digits. The preset is disabled by default. Analytics alone never grants advertising storage.
+Set this value in your application's `.env` or production environment. Replace the example with your own project ID: a string of 1-32 lowercase letters/digits. The preset is disabled by default; setting the ID alone does not enable it. Set `enabled` to the boolean `true`, keep other preset entries, and refresh [cached configuration](/docs/configuration#apply-configuration-changes). Analytics alone never grants advertising storage.
 
 Use the existing `<x-consent::head />` before vendor code and `<x-consent::banner />` in your application layout. No extra Blade block or manual service is required. Remove duplicate snippets and tag-manager installs. These presets are strictly gated even if Google Advanced is configured. See [quick start](/docs/quick-start) and [configuration](/docs/configuration).
 

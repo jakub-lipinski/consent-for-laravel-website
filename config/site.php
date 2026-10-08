@@ -4,13 +4,14 @@ return [
     'name' => 'Consent for Laravel',
     'release' => 'v1.1.1',
     'package' => 'jakub-lipinski/consent-for-laravel',
+    'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
             ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.1.'],
-            ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install the package with Composer and Laravel auto-discovery.'],
-            ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Register a purpose, add the interface, and gate your first script.'],
+            ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install from Packagist, publish the configuration, and check Laravel auto-discovery.'],
+            ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Install with Composer, enable a preset or your own script, and add the interface.'],
         ],
         'The interface' => [
             ['slug' => 'services-and-categories', 'title' => 'Services and categories', 'description' => 'Describe your processing purposes and expose only used categories.'],

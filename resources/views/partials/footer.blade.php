@@ -12,7 +12,8 @@
         <a href="{{ route('docs.show', 'integrations') }}">Included features</a>
     </nav>
     <nav class="footer-links" aria-label="Footer project links">
-        <span class="eyebrow">Project on GitHub</span>
+        <span class="eyebrow">Project resources</span>
+        <a href="{{ config('site.packagist') }}" target="_blank" rel="noopener noreferrer">Package on Packagist <x-icon name="arrow-up-right" /></a>
         <a href="{{ config('site.repository') }}" target="_blank" rel="noopener noreferrer">Source code <x-icon name="arrow-up-right" /></a>
         <a href="{{ config('site.repository') }}/issues" target="_blank" rel="noopener noreferrer">Issues <x-icon name="arrow-up-right" /></a>
         <a href="{{ config('site.repository') }}/releases" target="_blank" rel="noopener noreferrer">Releases <x-icon name="arrow-up-right" /></a>
