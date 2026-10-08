@@ -75,7 +75,9 @@ Colors must be six-digit hex values. Supply only the keys you wish to change:
 | `control` | `#67776e` | Outlined controls and unchecked switches |
 | `focus` | `#245c49` | Keyboard focus outline |
 
-The renderer rejects invalid colors and combinations below 4.5:1 for text, muted text, accent links, and accent button text. Controls and focus need at least 3:1 against the interface background. Decorative borders are not checked as controls.
+Contrast diagnostics default to `false`, including when `ui.validate_contrast` is missing from published configuration. Set `ui.validate_contrast` to `true` to log warnings below 4.5:1 for text, muted text, accent links, and accent button text, or below 3:1 for controls and focus against the background. Warnings preserve the selected colors and never interrupt rendering, even if logging fails. Decorative borders are not checked as controls.
+
+Invalid color formats use the corresponding default, unknown keys are ignored, and a malformed colors array uses the default palette. These format problems log a warning independently of the contrast flag. Unsafe values never enter CSS. The default palette meets the contrast thresholds; custom themes and CSS still need their own accessibility review.
 
 ## Preferences and custom openers
 

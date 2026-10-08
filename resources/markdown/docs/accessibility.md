@@ -1,6 +1,6 @@
 ## Both built-in variants
 
-The built-in banner targets the applicable **WCAG 2.2 A and AA** requirements. It uses semantic headings, native controls, a native modal dialog, validated contrast, and layouts that adapt to narrow screens and enlarged text.
+The built-in banner targets the applicable **WCAG 2.2 A and AA** requirements. It uses semantic headings, native controls, a native modal dialog, a default palette with tested contrast, and layouts that adapt to narrow screens and enlarged text.
 
 This is an implementation target supported by automated and native browser checks, not a certification of the complete host website. Custom views, surrounding content, third-party widgets, and actual assistive technology use require verification in your application.
 
@@ -18,7 +18,7 @@ Keep accessible button names and native dialog semantics when adapting the views
 
 ## Contrast and visual adaptation
 
-Built-in theme validation checks 4.5:1 for ordinary text and 3:1 for focus/control boundaries against the background. Six-digit color values are checked as a combination, not in isolation. Published CSS or view changes bypass the assurance provided by those defaults and need their own review.
+The default palette meets 4.5:1 for ordinary text and 3:1 for focus/control boundaries against the background. Optional `ui.validate_contrast => true` logs warnings for custom combinations below those thresholds while preserving the chosen colors and the page response. It defaults to `false`; accepting a custom color does not establish its accessibility. Invalid color formats fall back to defaults. Custom themes, CSS, and view changes need their own review.
 
 Check at 320 CSS pixels, 200% text resizing, and browser zoom equivalent to 400% reflow. Also apply text-spacing overrides, reduced motion, and forced-color preferences. Check that every actionable control remains visible, usable, and unoccluded.
 

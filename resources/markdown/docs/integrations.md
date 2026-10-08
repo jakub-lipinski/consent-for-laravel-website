@@ -10,7 +10,7 @@ Consent for Laravel supplies an in-application consent interface and runtime. In
 - Validated theme colors, configurable policy link, and editable copy.
 - A native preferences dialog and a small icon for reopening a saved choice.
 - English and Polish interface messages and preset purposes.
-- Native controls, keyboard interaction, managed focus, responsive reflow, and contrast validation.
+- Native controls, keyboard interaction, managed focus, responsive reflow, and optional contrast diagnostics.
 
 Read [banner and theme](/docs/banner-and-theme), [translations](/docs/translations), and [accessibility](/docs/accessibility).
 

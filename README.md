@@ -19,7 +19,7 @@ Use `php artisan config:clear` while developing after changes to cached configur
 
 ## Current scope
 
-Documentation covers `v1.1.2`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, matching Standard/Compact banner and preferences variants, configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities.
+Documentation covers `v1.1.3`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, matching Standard/Compact banner and preferences variants, configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities.
 
 The landing page includes an interactive preview of the package interface. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website's own GA4 preset uses the real installed package in Basic mode and loads only after analytics permission. `CONSENT_GA4_ID` overrides the public measurement ID configured for the official site. The website itself is in English; the package interface supports English and Polish.
 

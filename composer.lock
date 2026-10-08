@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f6f51913cf88c749b37304bc52ef325",
+    "content-hash": "6650bf6dfa98174845c08fac9b39300c",
     "packages": [
         {
             "name": "brick/math",
@@ -1060,16 +1060,16 @@
         },
         {
             "name": "jakub-lipinski/consent-for-laravel",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jakub-lipinski/consent-for-laravel.git",
-                "reference": "9d9f460b479ee861af9459c19741275ee71fd741"
+                "reference": "a4181138d7ac95891e9ef48d2b8d2dd12fda869b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jakub-lipinski/consent-for-laravel/zipball/9d9f460b479ee861af9459c19741275ee71fd741",
-                "reference": "9d9f460b479ee861af9459c19741275ee71fd741",
+                "url": "https://api.github.com/repos/jakub-lipinski/consent-for-laravel/zipball/a4181138d7ac95891e9ef48d2b8d2dd12fda869b",
+                "reference": "a4181138d7ac95891e9ef48d2b8d2dd12fda869b",
                 "shasum": ""
             },
             "require": {
@@ -1124,7 +1124,7 @@
                 "issues": "https://github.com/jakub-lipinski/consent-for-laravel/issues",
                 "source": "https://github.com/jakub-lipinski/consent-for-laravel"
             },
-            "time": "2026-10-08T22:38:06+00:00"
+            "time": "2026-10-08T23:30:43+00:00"
         },
         {
             "name": "laravel/framework",

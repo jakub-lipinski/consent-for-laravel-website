@@ -77,9 +77,9 @@ This is the default safety behavior for running code. Removing scripts cannot st
 
 Cookie deletion needs the correct declared path/domain and browser visibility. HttpOnly, third-party, other-scope cookies, non-cookie storage, and remote data require their own provider/server APIs. Protected preference, session, CSRF, and remember cookies are intentionally excluded.
 
-## A custom theme is rejected
+## Custom theme diagnostics
 
-Use known keys and six-digit hex values. Text combinations need 4.5:1 and control/focus colors need 3:1 against the UI background. A color that looks fine alone may fail in combination. See [banner and theme](/docs/banner-and-theme).
+In 1.1.3 and later, theme contrast does not cause HTTP 500. Diagnostics default to off; set `ui.validate_contrast` to `true` to log warnings without changing the selected colors. Text combinations need 4.5:1 and control/focus colors need 3:1 against the UI background. Invalid six-digit hex formats use default colors and log a warning. If an older installation throws a contrast exception, update the package and rebuild cached configuration/views. See [banner and theme](/docs/banner-and-theme).
 
 ## Published views or assets are stale
 

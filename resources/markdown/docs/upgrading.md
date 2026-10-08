@@ -3,7 +3,7 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.1.2"
+composer require "jakub-lipinski/consent-for-laravel:^1.1.3"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The public PHP, Blade, browser, and configuration APIs documented here belong to the stable version 1 series. The library itself does not commit a dependency lock file; your application normally should.
@@ -18,6 +18,12 @@ composer update jakub-lipinski/consent-for-laravel
 ```
 
 Run this in your consuming Laravel application. If you used another repository key, remove that specific entry instead; keep repositories for intentional forks or local package development. Keep the package requirement in `require`. No minimum-stability change, uninstall, or cookie migration is needed. Your published configuration and customized files remain in place. Commit the Composer file changes.
+
+## Moving from 1.1.2 to 1.1.3
+
+Theme contrast no longer interrupts host-page rendering. `ui.validate_contrast` defaults to `false`, including when the key is absent from existing published configuration. Set it to `true` to log contrast warnings while preserving selected colors; an unavailable logger cannot break the page. Invalid color formats fall back to their defaults, unknown keys are ignored, and malformed color arrays use the default palette. Unsafe values never enter CSS.
+
+Update the package, commit your Composer files, rebuild configuration/view caches, and restart persistent workers. No browser assets, views, translations, cookie schema, service fingerprints, or saved decisions need migration. Custom colors still need an accessibility review. See [the 1.1.3 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.1.3).
 
 ## Moving from 1.1.1 to 1.1.2
 

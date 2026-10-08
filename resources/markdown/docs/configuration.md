@@ -79,7 +79,8 @@ A script timeout fails its block. A cleanup failure or timeout requires safe rel
 | `ui.position` | `'bottom-left'` | `bottom-left`, `bottom-right`, `bottom-center` |
 | `ui.locale` | `null` | App locale fallback; explicit `en` or `pl` |
 | `ui.policy_url` | `null` | Absolute website path or safe HTTP(S) URL |
-| `ui.colors` | `[]` | Known color keys with six-digit hex values |
+| `ui.validate_contrast` | `false` | Boolean; `true` logs contrast warnings and preserves selected colors |
+| `ui.colors` | `[]` | Known six-digit hex colors; malformed values fall back without interrupting rendering |
 
 Color keys are `background`, `text`, `muted`, `accent`, `accent_text`, `border`, `control`, and `focus`. Defaults and contrast rules are listed in [banner and theme](/docs/banner-and-theme).
 
