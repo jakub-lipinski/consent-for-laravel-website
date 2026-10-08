@@ -644,6 +644,28 @@ h2 {
     box-decoration-break:clone;
     overflow-wrap:anywhere;
 }
+.integration-labels {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 12px;
+    padding:0;
+    margin:0 0 26px;
+    list-style:none;
+    color:var(--muted);
+    font:11px/1.6 var(--font-mono);
+}
+.integration-labels li:not(:last-child)::after {
+    content:'·';
+    margin-left:12px;
+}
+.integration-note {
+    display:block;
+    margin-top:8px;
+    color:var(--muted);
+}
+#setup .code-title {
+    align-items:center;
+}
 .code-example {
     background:#e9edf5;
     border:1px solid var(--line);
@@ -1774,6 +1796,11 @@ dialog::backdrop {
     }
     .statement h1 {
         font-size:38px;
+    }
+}
+@media(max-width:360px) {
+    #setup .code-example pre {
+        font-size:10.5px;
     }
 }
 @media(prefers-reduced-motion:reduce) {

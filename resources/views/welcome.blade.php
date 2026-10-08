@@ -41,26 +41,23 @@
         </div>
     </section>
     <section id="setup" class="developer-section" aria-labelledby="developer-title">
-        <div class="section-rail"><span>02 / The setup</span><span>Two components. Your tracking ID.</span></div>
+        <div class="section-rail"><span>02 / The setup</span><span>Composer. A preset. Two components.</span></div>
         <div class="developer-grid">
             <div>
-                <span class="eyebrow">Google Analytics, without the wiring</span>
-                <h2 id="developer-title">Your GA4 ID.<br><span class="text-accent">Consent handled.</span></h2>
-                <p>Install the package and publish its config. Set <code>presets.ga4.enabled</code> to <code>true</code> in <code>config/consent.php</code>, then add your measurement ID and the two Blade components.</p>
-                <p>The package loads the Google tag and updates Consent Mode v2. No separate GA4 snippet or manual consent checks needed.</p>
-                <a class="button button-accent" href="{{ route('docs.show', 'google-presets') }}">Set up GA4 <x-icon name="arrow-right" /></a>
+                <span class="eyebrow">BUILT-IN INTEGRATIONS · READY IN MINUTES</span>
+                <h2 id="developer-title">Your tracking IDs.<br><span class="text-accent">Consent handled.</span></h2>
+                <p>Enable the presets you need, add your GA4, Google Ads, Meta Pixel or Microsoft Clarity IDs, and you're ready to go.</p>
+                <p>Consent for Laravel takes care of loading each tool according to your visitors' choices, keeping consent signals in sync and handling withdrawal. No custom tracking setup required.</p>
+                <ul class="integration-labels" aria-label="Built-in integrations"><li>GA4</li><li>Google Ads</li><li>Meta Pixel</li><li>Microsoft Clarity</li></ul>
+                <a class="button button-accent" href="{{ route('docs.show', 'integrations') }}">Explore integrations <x-icon name="arrow-right" /></a>
             </div>
-            <div class="code-example">
-                <div class="code-title"><code>.env</code><span>GA4 preset enabled</span></div>
-                <pre><code class="language-dotenv">CONSENT_GA4_ID=G-XXXXXXXXXX</code></pre>
-                <p><span class="status-dot" aria-hidden="true"></span> In the default Basic mode, GA4 waits for analytics consent.</p>
-                <div class="code-title"><span>Your Blade layout</span><span>Blade</span></div>
-                <pre><code class="language-blade">@verbatim&lt;head&gt;
-    &lt;x-consent::head /&gt;
-&lt;/head&gt;
-
-&lt;!-- Before the closing body tag --&gt;
-&lt;x-consent::banner /&gt;@endverbatim</code></pre>
+            <div class="code-example" data-tracking-ids>
+                <div class="code-title"><code>.env</code><button class="hero-install-copy" type="button" aria-label="Copy tracking IDs" data-tracking-copy hidden><x-icon name="copy" /><span data-tracking-copy-label>Copy</span></button></div>
+                <pre tabindex="0" aria-label="Tracking IDs configuration"><code class="language-dotenv" data-tracking-code>CONSENT_GA4_ID=G-XXXXXXXXXX
+CONSENT_GOOGLE_ADS_ID=AW-123456789
+CONSENT_META_PIXEL_ID=123456789012345
+CONSENT_CLARITY_ID=abc123def4</code></pre>
+                <p><span class="status-dot" aria-hidden="true"></span> Add your IDs. The presets handle the rest.<span class="integration-note">Enable your chosen presets in <code>config/consent.php</code>.</span></p>
             </div>
         </div>
     </section>

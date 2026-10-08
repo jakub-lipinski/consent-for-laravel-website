@@ -44,6 +44,22 @@ document.querySelectorAll('[data-install-command]').forEach(container => {
         }
     });
 });
+document.querySelectorAll('[data-tracking-ids]').forEach(container => {
+    const code = container.querySelector('[data-tracking-code]');
+    const button = container.querySelector('[data-tracking-copy]');
+    const label = button.querySelector('[data-tracking-copy-label]');
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(code.textContent.trim());
+            label.textContent = 'Copied';
+            announce('Tracking IDs copied to clipboard.');
+            setTimeout(() => { label.textContent = 'Copy'; }, 2000);
+        } catch {
+            announce('Copy is unavailable. Select the tracking IDs and copy them manually.');
+        }
+    });
+});
 const restoreFocus = (opener) => { if (opener?.isConnected) opener.focus({ preventScroll: true }); };
 const outsideDialog = (event, dialog) => {
     const bounds = dialog.getBoundingClientRect();
