@@ -3,7 +3,7 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases), update the application dependency, and commit the resulting application lock file:
 
 ```bash
-composer require webcrafts-studio/consent-for-laravel:^1.0
+composer require jakub-lipinski/consent-for-laravel:^1.0
 ```
 
 The public PHP, Blade, browser, and configuration APIs documented here belong to the stable version 1 series. The library itself does not commit a dependency lock file; your application normally should.

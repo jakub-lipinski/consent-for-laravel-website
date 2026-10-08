@@ -16,6 +16,22 @@ document.querySelectorAll('dialog').forEach(dialog => {
 });
 const status = document.querySelector('[data-site-status]');
 const announce = (message) => { if (status) status.textContent = message; };
+document.querySelectorAll('[data-install-command]').forEach(container => {
+    const code = container.querySelector('[data-install-code]');
+    const button = container.querySelector('[data-install-copy]');
+    const label = button.querySelector('[data-install-copy-label]');
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(code.textContent.trim());
+            label.textContent = 'Copied';
+            announce('Installation command copied to clipboard.');
+            setTimeout(() => { label.textContent = 'Copy'; }, 2000);
+        } catch {
+            announce('Copy is unavailable. Select the installation command and copy it manually.');
+        }
+    });
+});
 const restoreFocus = (opener) => { if (opener?.isConnected) opener.focus({ preventScroll: true }); };
 const outsideDialog = (event, dialog) => {
     const bounds = dialog.getBoundingClientRect();

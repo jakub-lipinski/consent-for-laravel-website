@@ -3,7 +3,7 @@
 return [
     'name' => 'Consent for Laravel',
     'release' => 'v1.0.0',
-    'package' => 'webcrafts-studio/consent-for-laravel',
+    'package' => 'jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [

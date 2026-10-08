@@ -11,13 +11,13 @@ No npm installation, frontend build step, database, migrations, or application e
 Run these commands in your Laravel application:
 
 ```bash
-composer require webcrafts-studio/consent-for-laravel
+composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
 Composer resolves the stable package from Packagist. Your application's `composer.lock` records the installed version. You do not need a custom repository or a reduced minimum stability.
 
-The Composer publisher is `webcrafts-studio`; the GitHub owner is `jakub-lipinski`. The provider is discovered automatically through Spatie Laravel Package Tools. Configure your purposes and enabled presets before adding the [head and banner components](/docs/quick-start).
+The Composer publisher and GitHub owner are both `jakub-lipinski`. The provider is discovered automatically through Spatie Laravel Package Tools. Configure your purposes and enabled presets before adding the [head and banner components](/docs/quick-start).
 
 ## Published resources
 

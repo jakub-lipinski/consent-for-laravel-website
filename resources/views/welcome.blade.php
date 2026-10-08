@@ -10,6 +10,15 @@
             <h1 id="hero-title">Save time on<br><span class="text-accent">cookie consent</span></h1>
             <p class="hero-description">Build your Laravel app without creating its cookie banner, preferences and script controls from scratch. GA4, Google Ads, Meta Pixel and Microsoft Clarity are included in version 1.0, with ID-based setup and consent controls.</p>
             <div class="button-row"><a class="button button-primary" href="{{ route('docs.show', 'quick-start') }}">Install the package <x-icon name="arrow-right" /></a><a class="button button-outline" href="{{ route('docs.show', 'introduction') }}">Read the documentation</a></div>
+            <div class="hero-install" data-install-command>
+                <span class="hero-install-label">Install with Composer</span>
+                <div class="hero-install-row">
+                    <code data-install-code>composer require {{ config('site.package') }}</code>
+                    <button class="hero-install-copy" type="button" aria-label="Copy installation command" data-install-copy hidden>
+                        <x-icon name="copy" /><span data-install-copy-label>Copy</span>
+                    </button>
+                </div>
+            </div>
             <p class="hero-note">Open source for PHP 8.3+ and Laravel 12-13,<br>available as a stable Composer package.</p>
         </div>
         <div class="hero-art"><img class="permission-study" src="{{ asset('assets/permission-study.svg') }}" width="620" height="540" alt="Three ordered steps: a visitor chooses, permission is checked, and an allowed script runs."><div class="art-caption"><span>Consent checks handled for you</span><span>Fig. 01</span></div></div>

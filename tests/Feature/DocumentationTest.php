@@ -32,7 +32,7 @@ it('provides searchable text with working named chapter links', function () {
     }
     $installation = collect($chapters)->firstWhere('slug', 'installation');
     $blade = collect($chapters)->firstWhere('slug', 'blade-directives');
-    expect($installation['content'])->toContain('composer require webcrafts-studio/consent-for-laravel')->not->toContain('repositories.consent', '@dev')->not->toContain('<pre>');
+    expect($installation['content'])->toContain('composer require jakub-lipinski/consent-for-laravel')->not->toContain('repositories.consent', '@dev')->not->toContain('<pre>');
     expect($blade['content'])->toContain('@consent')->toContain('not a PHP condition');
     expect($blade['url'])->toBe(route('docs.show', 'blade-directives'));
 });
@@ -64,6 +64,7 @@ it('keeps documentation links within published chapters or real website routes',
 it('presents the stable release honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
         ->assertSee('v1.0.0')
+        ->assertSee('composer require jakub-lipinski/consent-for-laravel')
         ->assertDontSee('beta')
         ->assertDontSee('GTM')
         ->assertDontSee('Google Tag Manager')
