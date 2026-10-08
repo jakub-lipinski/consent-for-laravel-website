@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="64" viewBox="0 0 210 64" fill="none">
+  <title>Consent for Laravel</title>
+  <rect width="64" height="64" rx="16" fill="#315fe9"/>
+  <g stroke="#fff" stroke-width="6.5" stroke-linecap="butt" stroke-linejoin="round">
+    <path d="m41 17.196-9-5.196L14.679 22v20L32 52l9-5.196"/>
+    <path d="m27 30 8 8 17-17"/>
+  </g>
+  <g fill="#172b46" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+    <text x="83.2" y="29" font-size="32" font-weight="600" letter-spacing="-1.12">Consent</text>
+    <text x="83.2" y="54" font-size="19.2">for Laravel</text>
+  </g>
+</svg>

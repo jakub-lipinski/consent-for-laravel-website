@@ -12,8 +12,10 @@
     <meta property="og:title" content="@yield('title', 'Consent for Laravel - Every cookie starts with a choice')">
     <meta property="og:description" content="@yield('description', 'Thoughtful cookie consent for Laravel. Clear preferences, explicit choices, and scripts that respect them.')">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('assets/social-card.png') }}">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/favicon.svg') }}">
+    <meta property="og:image" content="{{ asset('assets/social-card.png') }}?v=2">
+    <link rel="icon" href="{{ asset('favicon.ico') }}?v=2" sizes="16x16 32x32 48x48">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/favicon.svg') }}?v=2" sizes="any">
+    <link rel="apple-touch-icon" href="{{ asset('assets/apple-touch-icon.png') }}" sizes="180x180">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

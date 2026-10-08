@@ -1,6 +1,6 @@
 <header class="site-header">
     <a class="brand" href="{{ route('home') }}" aria-label="Consent for Laravel home">
-        <img src="{{ asset('assets/consent-mark.svg') }}" width="40" height="40" alt="">
+        <img src="{{ asset('assets/consent-mark.svg') }}?v=2" width="40" height="40" alt="">
         <span>Consent <span class="brand-subtitle">for Laravel</span></span>
     </a>
     <nav class="main-nav" aria-label="Main navigation">

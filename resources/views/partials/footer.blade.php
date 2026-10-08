@@ -1,6 +1,6 @@
 <footer class="site-footer">
     <div class="footer-brand">
-        <a class="brand" href="{{ route('home') }}"><img src="{{ asset('assets/consent-mark.svg') }}" width="40" height="40" alt=""><span>Consent <span class="brand-subtitle">for Laravel</span></span></a>
+        <a class="brand" href="{{ route('home') }}"><img src="{{ asset('assets/consent-mark.svg') }}?v=2" width="40" height="40" alt=""><span>Consent <span class="brand-subtitle">for Laravel</span></span></a>
         <p>Cookie consent that fits<br>your Laravel workflow.</p>
         <span class="eyebrow">Open source / MIT</span>
     </div>
