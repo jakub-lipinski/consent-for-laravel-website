@@ -3,7 +3,7 @@
 @section('description', 'Add two Blade components, enable a preset, and enter your tracking IDs. Consent for Laravel handles the banner, preferences, and consent-aware loading for GA4, Google Ads, Meta Pixel, and Clarity.')
 @section('body')
 <main id="main-content" tabindex="-1">
-    <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
+    <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}" target="_blank" rel="noopener noreferrer">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
     <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
             <div class="release-label"><span class="status-dot" aria-hidden="true"></span> Built for Laravel developers</div>
@@ -23,7 +23,7 @@
         </div>
         <div class="hero-art"><img class="permission-study" src="{{ asset('assets/consent-architecture.svg') }}?v=2" width="760" height="660" alt="Isometric Laravel app with cookie preferences connected to Consent. Analytics is enabled and running; marketing is disabled and paused."><div class="art-caption"><span>Consent-aware tracking.</span></div></div>
     </section>
-    <div class="spec-strip" aria-label="Package essentials"><span><b>PHP</b><span class="spec-separator" aria-hidden="true"></span> 8.3+</span><span><b>Laravel</b><span class="spec-separator" aria-hidden="true"></span> 12-13</span><span><b>Browser</b><span class="spec-separator" aria-hidden="true"></span> No frontend framework</span><a href="{{ config('site.repository') }}/blob/main/LICENSE.md"><b>License</b><span class="spec-separator" aria-hidden="true"></span> MIT <x-icon name="arrow-up" /></a></div>
+    <div class="spec-strip" aria-label="Package essentials"><span><b>PHP</b><span class="spec-separator" aria-hidden="true"></span> 8.3+</span><span><b>Laravel</b><span class="spec-separator" aria-hidden="true"></span> 12-13</span><span><b>Browser</b><span class="spec-separator" aria-hidden="true"></span> No frontend framework</span><a href="{{ config('site.repository') }}/blob/main/LICENSE.md" target="_blank" rel="noopener noreferrer"><b>License</b><span class="spec-separator" aria-hidden="true"></span> MIT <x-icon name="arrow-up" /></a></div>
     <section id="principles" class="numbered-section" aria-labelledby="principles-title">
         <div class="section-rail"><span>01 / The approach</span><span>Less work on every project</span></div>
         <div class="section-intro"><h2 id="principles-title">A banner is only<br><span class="text-accent">the beginning</span></h2><p>Saving a choice, blocking scripts, and handling withdrawal all need code. Use one ready-made consent flow and spend that time on your application's features.</p></div>
@@ -104,6 +104,6 @@
             <details><summary>Do I need a hosted consent platform?<x-icon name="plus" /></summary><p>No. Consent is an open-source, MIT-licensed Composer package. The interface and configuration live in your Laravel app, with no separate consent dashboard to manage.</p></details>
         </div>
     </section>
-    <section class="closing-section" aria-labelledby="closing-title"><img src="{{ asset('assets/consent-mark.svg') }}?v=2" width="72" height="72" alt=""><span class="eyebrow">Open source for Laravel</span><h2 id="closing-title">Get back to<br><span class="text-accent">building your app</span></h2><div class="button-row"><a class="button button-primary" href="{{ route('docs.show', 'installation') }}">Install the package <x-icon name="arrow-right" /></a><a class="button button-outline" href="{{ config('site.repository') }}">View on GitHub <x-github-mark /></a></div><p>Let the package handle consent and tracking setup. Spend your next commit on the features your app needs.</p></section>
+    <section class="closing-section" aria-labelledby="closing-title"><img src="{{ asset('assets/consent-mark.svg') }}?v=2" width="72" height="72" alt=""><span class="eyebrow">Open source for Laravel</span><h2 id="closing-title">Get back to<br><span class="text-accent">building your app</span></h2><div class="button-row"><a class="button button-primary" href="{{ route('docs.show', 'installation') }}">Install the package <x-icon name="arrow-right" /></a><a class="button button-outline" href="{{ config('site.repository') }}" target="_blank" rel="noopener noreferrer">View on GitHub <x-github-mark /></a></div><p>Let the package handle consent and tracking setup. Spend your next commit on the features your app needs.</p></section>
 </main>
 @endsection

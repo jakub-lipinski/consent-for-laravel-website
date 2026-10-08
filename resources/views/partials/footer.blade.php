@@ -13,9 +13,9 @@
     </nav>
     <nav class="footer-links" aria-label="Footer project links">
         <span class="eyebrow">Project on GitHub</span>
-        <a href="{{ config('site.repository') }}">Source code <x-icon name="arrow-up-right" /></a>
-        <a href="{{ config('site.repository') }}/issues">Issues <x-icon name="arrow-up-right" /></a>
-        <a href="{{ config('site.repository') }}/releases">Releases <x-icon name="arrow-up-right" /></a>
+        <a href="{{ config('site.repository') }}" target="_blank" rel="noopener noreferrer">Source code <x-icon name="arrow-up-right" /></a>
+        <a href="{{ config('site.repository') }}/issues" target="_blank" rel="noopener noreferrer">Issues <x-icon name="arrow-up-right" /></a>
+        <a href="{{ config('site.repository') }}/releases" target="_blank" rel="noopener noreferrer">Releases <x-icon name="arrow-up-right" /></a>
         <a href="{{ route('accessibility') }}">Website accessibility</a>
     </nav>
     <div class="footer-bottom"><span>© {{ date('Y') }} Consent for Laravel</span><span>More time for your application.</span><a href="#top">Back to top <x-icon name="chevron-up" /></a></div>

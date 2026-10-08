@@ -99,3 +99,50 @@ it('isolates the preview with the unmodified released package stylesheet', funct
 
     expect(hash_file('sha256', resource_path('css/consent-preview.css')))->toBe('0440a1a5c538d32e44a1fcf98606b5c48b003cfadbd4fa57e567e295365782d3');
 });
+
+it('opens GitHub links in a new tab across the website and every documentation chapter', function () {
+    $paths = [route('home'), route('accessibility')];
+    foreach (app(Documentation::class)->pages() as $page) {
+        $paths[] = route('docs.show', $page['slug']);
+    }
+
+    foreach ($paths as $path) {
+        $response = $this->get($path)->assertOk();
+        $document = new DOMDocument;
+        $document->loadHTML($response->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $links = (new DOMXPath($document))->query('//a[starts-with(@href, "https://github.com/")]');
+
+        expect($links->length)->toBeGreaterThan(0);
+        foreach ($links as $link) {
+            expect($link->getAttribute('target'))->toBe('_blank');
+            expect(explode(' ', $link->getAttribute('rel')))->toContain('noopener', 'noreferrer');
+        }
+    }
+});
+
+it('opens only GitHub Markdown links in a new tab and preserves link titles', function () {
+    $rendered = app(Documentation::class)->render(<<<'MARKDOWN'
+[Repository](https://github.com/laravel/framework "Source")
+[Gist](https://gist.github.com/example/123)
+[Uppercase](https://GITHUB.COM/laravel/framework)
+[Internal](/docs/installation)
+[Other](https://laravel.com/docs)
+[Lookalike](https://github.com.example.com/repo)
+MARKDOWN);
+    $document = new DOMDocument;
+    $document->loadHTML($rendered['html'], LIBXML_NOERROR | LIBXML_NOWARNING);
+
+    foreach ($document->getElementsByTagName('a') as $link) {
+        if (in_array($link->textContent, ['Repository', 'Gist', 'Uppercase'], true)) {
+            expect($link->getAttribute('target'))->toBe('_blank');
+            expect(explode(' ', $link->getAttribute('rel')))->toContain('noopener', 'noreferrer');
+        } else {
+            expect($link->hasAttribute('target'))->toBeFalse();
+            expect($link->hasAttribute('rel'))->toBeFalse();
+        }
+
+        if ($link->textContent === 'Repository') {
+            expect($link->getAttribute('title'))->toBe('Source');
+        }
+    }
+});

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Support\Str;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 
 class Documentation
 {
@@ -49,7 +51,18 @@ class Documentation
     /** @return array{html: string, toc: list<array{level: int, title: string, id: string}>} */
     public function render(string $markdown): array
     {
-        $html = Str::markdown($markdown, ['html_input' => 'strip', 'allow_unsafe_links' => false]);
+        $html = Str::markdown($markdown, [
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+            'default_attributes' => [
+                'attributes' => [
+                    Link::class => [
+                        'target' => fn (Link $link): ?string => $this->isGitHubLink($link) ? '_blank' : null,
+                        'rel' => fn (Link $link): ?string => $this->isGitHubLink($link) ? 'noopener noreferrer' : null,
+                    ],
+                ],
+            ],
+        ], [new DefaultAttributesExtension]);
         $toc = [];
         $used = [];
         $html = (string) preg_replace_callback('/<h([23])>(.*?)<\/h\1>/is', function (array $matches) use (&$toc, &$used): string {
@@ -70,6 +83,13 @@ class Documentation
         $html = (string) preg_replace('/(<table>.*?<\/table>)/s', '<div class="table-wrapper" role="region" tabindex="0" aria-label="Reference table">$1</div>', $html);
 
         return compact('html', 'toc');
+    }
+
+    private function isGitHubLink(Link $link): bool
+    {
+        $host = strtolower((string) parse_url($link->getUrl(), PHP_URL_HOST));
+
+        return $host === 'github.com' || str_ends_with($host, '.github.com');
     }
 
     /** @return list<array{slug: string, title: string, section: string, description: string, url: string, content: string}> */
