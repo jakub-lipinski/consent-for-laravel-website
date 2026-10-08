@@ -1,0 +1,80 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-consent-website
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Preflight SSH check
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          echo "=== GitHub Runner IPv4 ==="
+          curl -4 -s https://api.ipify.org || true
+          echo
+
+          echo "=== Test SSH port ==="
+          timeout 10 bash -c "cat < /dev/null > /dev/tcp/${SSH_HOST}/22" \
+            && echo "Port 22 is reachable" \
+            || (echo "Port 22 is NOT reachable" && exit 1)
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          protocol: tcp4
+          timeout: 60s
+          command_timeout: 30m
+          script: |
+            set -e
+
+            cd /home/jakub/web/consent.lipinskijakub.pl/public_html
+
+            trap 'php artisan up || true' EXIT
+
+            echo "=== Connected ==="
+            whoami
+            hostname
+            pwd
+            date
+
+            echo "=== Enable maintenance mode ==="
+            php artisan down || true
+
+            echo "=== Pull latest code ==="
+            git pull origin main
+
+            echo "=== Install PHP dependencies ==="
+            composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+            echo "=== Build frontend ==="
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            npm ci || npm install
+            npm run build
+
+            echo "=== Laravel optimization ==="
+            php artisan optimize:clear
+            php artisan migrate --force --no-interaction
+            php artisan optimize
+            php artisan queue:restart || true
+
+            echo "=== Disable maintenance mode ==="
+            php artisan up
+
+            echo "=== Deploy finished successfully ==="
