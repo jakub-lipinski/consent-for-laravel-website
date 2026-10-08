@@ -6,7 +6,7 @@
     <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}" target="_blank" rel="noopener noreferrer">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
     <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-            <div class="release-label"><span class="status-dot" aria-hidden="true"></span><span>Made for Laravel</span></div>
+            <div class="release-label"><span class="status-dot" aria-hidden="true"></span><span>Made for Laravel developers</span></div>
             <h1 id="hero-title">Less cookie setup.<br><span class="text-accent">More building.</span></h1>
             <p class="hero-description">Add two Blade components, enable a tracking preset, and enter your GA4 or Meta Pixel ID. Consent for Laravel handles the banner, preferences, and consent-aware script loading.</p>
             <div class="button-row"><a class="button button-primary" href="{{ route('docs.show', 'installation') }}">Install the package <x-icon name="arrow-right" /></a><a class="button button-outline" href="{{ route('docs.show', 'quick-start') }}">Quick start</a></div>
@@ -41,10 +41,10 @@
         </div>
     </section>
     <section id="setup" class="developer-section" aria-labelledby="developer-title">
-        <div class="section-rail"><span>02 / The setup</span><span>Composer. A preset. Two components.</span></div>
+        <div class="section-rail"><span>02 / The setup</span><span>install with Composer and enable the presets you need</span></div>
         <div class="developer-grid">
             <div>
-                <span class="eyebrow">BUILT-IN INTEGRATIONS · READY IN MINUTES</span>
+                <span class="eyebrow">connect your tracking tools with the built-in presets</span>
                 <h2 id="developer-title">Your tracking IDs.<br><span class="text-accent">Consent handled.</span></h2>
                 <p>Enable the presets you need, add your GA4, Google Ads, Meta Pixel or Microsoft Clarity IDs, and you're ready to go.</p>
                 <p>Consent for Laravel takes care of loading each tool according to your visitors' choices, keeping consent signals in sync and handling withdrawal. No custom tracking setup required.</p>
@@ -62,7 +62,7 @@ CONSENT_CLARITY_ID=abc123def4</code></pre>
         </div>
     </section>
     <section id="integrations" class="numbered-section" aria-labelledby="integrations-title">
-        <div class="section-rail"><span>03 / The integrations</span><span>Add IDs. Skip the custom consent logic.</span></div>
+        <div class="section-rail"><span>03 / The integrations</span><span>connect your tools without writing custom consent logic</span></div>
         <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its ID; the package takes care of that consent logic.</p></div>
         <div class="release-grid">
             <div class="release-current">
