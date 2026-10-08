@@ -1,4 +1,4 @@
-## Microsoft Clarity in beta.5
+## Microsoft Clarity
 
 Enable the optional analytics preset in `config/consent.php`:
 
@@ -93,7 +93,7 @@ An existing `clarity` global or matching bootstrap causes a `configuration` erro
 
 ## Upgrading and verification
 
-Merge configuration and English/Polish translations, remove duplicate snippets/manual purposes, and republish/cache-bust external assets when used. Reserved service IDs are `microsoft-clarity` and, with advertising enabled, `microsoft-clarity-ads`. Enabling or changing ID, advertising, purpose, or cleanup scope invalidates saved decisions. With the new presets off, beta.4 fingerprints stay compatible. See [upgrading](/docs/upgrading).
+Merge configuration and English/Polish translations, remove duplicate snippets/manual purposes, and republish/cache-bust external assets when used. Reserved service IDs are `microsoft-clarity` and, with advertising enabled, `microsoft-clarity-ads`. Enabling or changing ID, advertising, purpose, or cleanup scope invalidates saved decisions. With the new presets off, existing fingerprints stay compatible. See [upgrading](/docs/upgrading).
 
 Local tests cover replacement APIs, granular consent, recordings-library gating, guarded events, withdrawal, CSP, and interface behavior with mocks. Verify live project recording, masked regions, consent, and network traffic separately on a controlled host. This preset does not provide vendor certification or a universal legal compliance claim. Microsoft excludes websites/apps targeting users under 18 from Clarity use; review provider eligibility before enabling it.
 

@@ -1,6 +1,6 @@
-## Consent Mode v2 in beta.4
+## Consent Mode v2
 
-The optional gtag.js bridge applies Google consent signals to GA4 and Google Ads. It is not a Google-certified CMP. GTM requires its own consent APIs and remains a separate milestone. Begin with [Google presets](/docs/google-presets).
+The optional gtag.js bridge applies Google consent signals to GA4 and Google Ads. It is not a Google-certified CMP. Begin with [Google presets](/docs/google-presets).
 
 ## Basic and Advanced
 
@@ -30,7 +30,7 @@ Every page begins with denied optional defaults, followed by the restored/curren
 | `functionality_storage` | Always denied; no functionality preset is supplied |
 | `security_storage` | Granted for necessary security storage |
 
-The bridge sets `ads_data_redaction: true` and `url_passthrough: false`. Presets disable Google signals and ad personalization signals; category acceptance does not enable these optional product features. Do not add conflicting global commands outside the package. Region-specific defaults, enhanced conversions, user ID, user-provided data, and arbitrary gtag configuration are not provided in this beta.
+The bridge sets `ads_data_redaction: true` and `url_passthrough: false`. Presets disable Google signals and ad personalization signals; category acceptance does not enable these optional product features. Do not add conflicting global commands outside the package. Region-specific defaults, enhanced conversions, user ID, user-provided data, and arbitrary gtag configuration are not provided in the package.
 
 ```javascript
 const signals = Consent.google.state();

@@ -17,7 +17,7 @@ it('renders every published documentation chapter and its title', function (stri
     'introduction', 'installation', 'quick-start', 'services-and-categories',
     'banner-and-theme', 'translations', 'accessibility', 'blade-directives',
     'browser-api', 'php-api', 'configuration', 'persistence', 'withdrawal',
-    'google-consent-mode', 'google-presets', 'meta-pixel', 'microsoft-clarity', 'csp-and-caching', 'spa-integration', 'troubleshooting', 'upgrading', 'roadmap', 'security',
+    'google-consent-mode', 'google-presets', 'meta-pixel', 'microsoft-clarity', 'csp-and-caching', 'spa-integration', 'troubleshooting', 'upgrading', 'integrations', 'security',
 ]);
 
 it('rejects unknown or path-like chapter names', function (string $path) {
@@ -27,9 +27,12 @@ it('rejects unknown or path-like chapter names', function (string $path) {
 it('provides searchable text with working named chapter links', function () {
     $response = $this->getJson(route('docs.search'))->assertOk()->assertJsonCount(23);
     $chapters = $response->json();
+    foreach ($chapters as $chapter) {
+        expect(strtolower($chapter['content']))->not->toContain('beta.', 'gtm', 'tag manager', 'planned milestone');
+    }
     $installation = collect($chapters)->firstWhere('slug', 'installation');
     $blade = collect($chapters)->firstWhere('slug', 'blade-directives');
-    expect($installation['content'])->toContain('repositories.consent vcs', 'consent-for-laravel:1.0.0-beta.5')->not->toContain('<pre>');
+    expect($installation['content'])->toContain('composer require webcrafts-studio/consent-for-laravel')->not->toContain('repositories.consent', '@dev')->not->toContain('<pre>');
     expect($blade['content'])->toContain('@consent')->toContain('not a PHP condition');
     expect($blade['url'])->toBe(route('docs.show', 'blade-directives'));
 });
@@ -58,11 +61,14 @@ it('keeps documentation links within published chapters or real website routes',
     }
 });
 
-it('presents the current beta honestly and exposes a cookie-free interface preview', function () {
+it('presents the stable release honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
-        ->assertSee('v1.0.0-beta.5')
+        ->assertSee('v1.0.0')
+        ->assertDontSee('beta')
+        ->assertDontSee('GTM')
+        ->assertDontSee('Google Tag Manager')
         ->assertSee('No cookies or trackers.')
-        ->assertSeeInOrder(['Available in beta.5', 'Google Consent Mode v2', 'Meta Pixel and Microsoft Clarity presets', 'Next steps', 'Deferred, with no assigned beta'])
+        ->assertSeeInOrder(['Included in version 1.0', 'Google Consent Mode v2', 'Meta Pixel and Microsoft Clarity presets', 'Consent throughout the lifecycle'])
         ->assertSee('Skip to content')
         ->assertSee('aria-labelledby="preview-title"', false);
 });

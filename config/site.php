@@ -2,14 +2,14 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.0.0-beta.5',
+    'release' => 'v1.0.0',
     'package' => 'webcrafts-studio/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and the current beta.'],
-            ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install the current beta with Composer and Laravel auto-discovery.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.0.'],
+            ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install the package with Composer and Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Register a purpose, add the interface, and gate your first script.'],
         ],
         'The interface' => [
@@ -40,8 +40,8 @@ return [
             ['slug' => 'troubleshooting', 'title' => 'Troubleshooting', 'description' => 'Diagnose loading, storage, configuration, and interface problems.'],
         ],
         'The project' => [
-            ['slug' => 'upgrading', 'title' => 'Upgrading', 'description' => 'Move between the development betas without losing valid choices.'],
-            ['slug' => 'roadmap', 'title' => 'Roadmap and integrations', 'description' => 'What ships today and what comes next before version 1.0.'],
+            ['slug' => 'upgrading', 'title' => 'Upgrading', 'description' => 'Upgrade safely, merge published resources, and preserve valid choices.'],
+            ['slug' => 'integrations', 'title' => 'Included features', 'description' => 'The implemented interface, consent lifecycle, and tracker integrations.'],
             ['slug' => 'security', 'title' => 'Security and privacy', 'description' => 'Cookie boundaries, protected state, and site-specific responsibilities.'],
         ],
     ],

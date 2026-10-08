@@ -25,7 +25,7 @@ Increment the policy version when purposes or policy change outside the register
 | `cookie.secure` | `null` | Follow request HTTPS, or explicitly true/false |
 | `cookie.same_site` | `'lax'` | `lax` or `strict` |
 
-The cookie name must start with a letter, use only letters, digits, dots, underscores, or hyphens, and be at most 64 characters. Paths must start with `/` and contain no whitespace, semicolon, or control characters. Domains must be valid cookie domains of at most 254 characters, optionally starting with a dot. `secure` accepts only `null` or an actual boolean. Unknown cookie, loader, UI, and color options are rejected. Session/CSRF cookie-name collisions are rejected. The provider excludes only this preference cookie from encryption. `HttpOnly` is always false; it is not a configurable authorization cookie.
+The cookie name must start with a letter, use only letters, digits, dots, underscores, or hyphens, and be at most 64 characters. Paths must start with `/` and contain no whitespace, semicolon, or control characters. Domains must be valid cookie domains of at most 254 characters, optionally starting with a dot. `secure` accepts only `null` or an actual boolean. Unknown cookie, loader, UI, and color options are rejected. Session/CSRF cookie-name collisions and names starting with `remember_` are rejected. The provider excludes only this preference cookie from encryption. `HttpOnly` is always false; it is not a configurable authorization cookie.
 
 For proxies, old scopes, expiry, and storage limitations, read [persistence](/docs/persistence).
 

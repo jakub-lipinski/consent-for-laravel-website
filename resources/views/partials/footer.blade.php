@@ -9,13 +9,13 @@
         <a href="{{ route('docs.show', 'installation') }}">Installation</a>
         <a href="{{ route('docs.show', 'quick-start') }}">Quick start</a>
         <a href="{{ route('docs.show', 'configuration') }}">Configuration</a>
-        <a href="{{ route('docs.show', 'roadmap') }}">Roadmap</a>
+        <a href="{{ route('docs.show', 'integrations') }}">Included features</a>
     </nav>
     <nav class="footer-links" aria-label="Footer project links">
         <span class="eyebrow">Project on GitHub</span>
         <a href="{{ config('site.repository') }}">Source code <x-icon name="arrow-up-right" /></a>
         <a href="{{ config('site.repository') }}/issues">Issues <x-icon name="arrow-up-right" /></a>
-        <a href="{{ config('site.repository') }}/tags">Releases <x-icon name="arrow-up-right" /></a>
+        <a href="{{ config('site.repository') }}/releases">Releases <x-icon name="arrow-up-right" /></a>
         <a href="{{ route('accessibility') }}">Website accessibility</a>
     </nav>
     <div class="footer-bottom"><span>© {{ date('Y') }} Consent for Laravel</span><span>More time for your application.</span><a href="#top">Back to top <x-icon name="chevron-up" /></a></div>

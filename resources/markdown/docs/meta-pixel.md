@@ -1,4 +1,4 @@
-## Meta Pixel in beta.5
+## Meta Pixel
 
 Enable the optional marketing preset in `config/consent.php`:
 
@@ -41,7 +41,7 @@ try {
 }
 ```
 
-`track(name, parameters = {}, options = {})` calls the vendor's `track`; `trackCustom` calls `trackCustom`. Use Meta standard event names with `track` and your own names with `trackCustom`. This beta owns one Pixel ID; do not initialize other pixels through the same `fbq` global.
+`track(name, parameters = {}, options = {})` calls the vendor's `track`; `trackCustom` calls `trackCustom`. Use Meta standard event names with `track` and your own names with `trackCustom`. The preset owns one Pixel ID; do not initialize other pixels through the same `fbq` global.
 
 Parameters must be an object with JSON-serializable data. The optional options object accepts only `eventID`, a non-empty string up to 128 characters, for your own event deduplication strategy. An event ID does not add a server-side integration or deduplicate every repeated browser call automatically. Do not include personal data or sensitive page contents in event parameters.
 
@@ -71,9 +71,9 @@ A detected existing `fbq`, `_fbq`, or matching bootstrap fails closed with a `co
 
 ## Upgrading and verification
 
-Merge the new configuration and English/Polish preset translations, remove the manual `meta-pixel` service if duplicating the enabled preset, and republish/cache-bust separate assets when used. Enabling or changing the preset's ID, PageView option, purpose, or cookie scope invalidates saved decisions. With the new presets off, beta.4 fingerprints remain compatible. See [upgrading](/docs/upgrading).
+Merge the new configuration and English/Polish preset translations, remove the manual `meta-pixel` service if duplicating the enabled preset, and republish/cache-bust separate assets when used. Enabling or changing the preset's ID, PageView option, purpose, or cookie scope invalidates saved decisions. With the new presets off, existing fingerprints remain compatible. See [upgrading](/docs/upgrading).
 
-Local tests use SDK mocks and native browser checks for consent, events, ordering, CSP, and withdrawal. They do not confirm delivery to your Meta account. Verify Events Manager/Test Events in your own controlled host environment without transmitting personal test data. GTM is deferred.
+Local tests use SDK mocks and native browser checks for consent, events, ordering, CSP, and withdrawal. They do not confirm delivery to your Meta account. Verify Events Manager/Test Events in your own controlled host environment without transmitting personal test data.
 
 ## Primary references
 

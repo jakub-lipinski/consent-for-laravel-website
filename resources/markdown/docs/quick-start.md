@@ -66,7 +66,7 @@ Opening and closing preferences does not make a decision. Checkbox changes remai
 
 Test an undecided visit, explicit rejection, acceptance, returning with each decision, and withdrawal after scripts have started. Confirm no relevant tracking requests occur before permission. Check keyboard focus, mobile reflow, your policy link, and overlays in the actual host application.
 
-Withdrawing an active category reloads by default. Read [withdrawal](/docs/withdrawal) before supplying custom cleanup. For GA4 or Google Ads, use the [built-in presets](/docs/google-presets) instead of wrapping a duplicate vendor bootstrap. They register purposes and apply [Consent Mode v2](/docs/google-consent-mode). For [Meta Pixel](/docs/meta-pixel) or [Clarity](/docs/microsoft-clarity), enable their ID-based presets and use the same components. GTM is deferred.
+Withdrawing an active category reloads by default. Read [withdrawal](/docs/withdrawal) before supplying custom cleanup. For GA4 or Google Ads, use the [built-in presets](/docs/google-presets) instead of wrapping a duplicate vendor bootstrap. They register purposes and apply [Consent Mode v2](/docs/google-consent-mode). For [Meta Pixel](/docs/meta-pixel) or [Clarity](/docs/microsoft-clarity), enable their ID-based presets and use the same components.
 
 ## Alternative: GA4 by ID
 
