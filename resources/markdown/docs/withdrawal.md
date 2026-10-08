@@ -45,6 +45,8 @@ Preference, configured session, CSRF, and `remember_` cookies are protected. The
 
 A failed choice remains denied in memory. A temporary denial marker normally allows a safe reload. If neither session storage nor history state can hold that marker, an automatic reload might restore the old grant. In that case the runtime reports that automatic reload is unavailable rather than claiming running code has stopped. See [persistence](/docs/persistence).
 
+Pending Google, Meta, and Clarity helper events never delay saving a refusal. Permission is rechecked immediately before dispatch; events still waiting when consent is withdrawn are not sent.
+
 ## Verify the provider lifecycle
 
 Exercise acceptance, active refusal, re-grant, another tab's change, expiry, storage failure, script failure, and cleanup timeout. Inspect actual network requests and provider state. The built-in Google presets update Consent Mode signals before cleanup and always reload after active withdrawal. Custom cleanup cannot disable this preset reload. Generic blocks do not automatically implement other provider consent APIs. See [Google Consent Mode](/docs/google-consent-mode).

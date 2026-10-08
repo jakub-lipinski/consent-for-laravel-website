@@ -3,7 +3,7 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.1.1"
+composer require "jakub-lipinski/consent-for-laravel:^1.1.2"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The public PHP, Blade, browser, and configuration APIs documented here belong to the stable version 1 series. The library itself does not commit a dependency lock file; your application normally should.
@@ -18,6 +18,12 @@ composer update jakub-lipinski/consent-for-laravel
 ```
 
 Run this in your consuming Laravel application. If you used another repository key, remove that specific entry instead; keep repositories for intentional forks or local package development. Keep the package requirement in `require`. No minimum-stability change, uninstall, or cookie migration is needed. Your published configuration and customized files remain in place. Commit the Composer file changes.
+
+## Moving from 1.1.1 to 1.1.2
+
+This patch keeps the pending banner visible when focus moves to a large page container, saves withdrawal independently of pending integration events, and lets gated modules await the Google, Meta, or Clarity event helper without blocking their own loader. A recurring script timeout receives at most one automatic reload per tab until that script succeeds; repeated failures, or unavailable retry storage, request manual recovery through `consent:reload-required` with `automatic: false`.
+
+Update both `consent.js` and `banner.js` if you serve published assets, preserve local customizations, and invalidate cached asset URLs. Inline components use the installed sources. Rebuild relevant application caches and restart persistent workers. CSS, banner views, configuration, translations, cookie schema, fingerprints, and saved decisions remain compatible. See [the 1.1.2 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.1.2).
 
 ## Moving from 1.1.0 to 1.1.1
 

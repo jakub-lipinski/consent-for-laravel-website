@@ -12,7 +12,7 @@ This is an implementation target supported by automated and native browser check
 - Space toggles switches; Enter activates buttons. In Compact, native service disclosures open with Enter or Space without changing consent.
 - Escape closes without saving a draft.
 - Closing returns focus to the opener, or the preferences launcher when the opener is unavailable.
-- Overlays yield when they would cover a focused host-page control. The launcher can also hide if it would obscure focus.
+- Overlays yield when they fully cover a focused host-page control. The launcher can also hide if it fully covers focus. Large page containers and partially visible controls do not dismiss the pending notice.
 
 Keep accessible button names and native dialog semantics when adapting the views. Do not replace controls with click-only generic elements.
 

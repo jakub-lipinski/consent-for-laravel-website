@@ -33,7 +33,7 @@ await window.Consent.refresh();
 
 Acceptance grants only used categories. Rejection creates a remembered refusal. Forgetting removes the saved decision and returns to pending. Refresh reads the cookie again and completes any resulting cleanup.
 
-Choice promises cover persistence and cleanup; they do not wait for newly allowed scripts to finish loading. `whenIdle()` awaits the package's initialization, operations, cleanup, and load queues. It does not await arbitrary vendor background tasks.
+Choice promises cover persistence and cleanup; they do not wait for newly allowed scripts to finish loading. `whenIdle()` awaits the package's initialization, decisions, cleanup, presets, custom scripts, and event queues. It does not await arbitrary vendor background tasks. Event helpers have an independent ordered queue: an event awaiting SDK loading cannot block saving a refusal. Gated modules may await a specific event helper, but must not await `whenIdle()` because it includes their own completion.
 
 ## Open preferences
 

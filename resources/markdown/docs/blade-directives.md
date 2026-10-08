@@ -31,7 +31,7 @@ Identical explicit IDs with identical contents deduplicate. Reusing an ID for di
 
 Scripts run in document order among currently allowed categories. A library finishes loading before its following initialization code. Modules wait for imports and top-level await. The loader checks permission again between activations.
 
-External sources are deduplicated using their resolved URL, classic/module type, integrity, CORS, and referrer policy. A failed block stops its dependent scripts; independent blocks can still proceed. Failed blocks are not retried automatically.
+External sources are deduplicated using their resolved URL, classic/module type, integrity, CORS, and referrer policy. A failed block stops its dependent scripts; independent blocks can still proceed. Failed blocks are not retried in the same document. A script timeout can reload once per tab until that script succeeds. Repeated timeouts, or unavailable retry storage, stop activation and emit `consent:reload-required` with `automatic: false` for host-managed manual recovery.
 
 The loader's timeout covers its own activation lifecycle, not every asynchronous operation later scheduled by a provider. Use `window.Consent.whenIdle()` to await package operations, then use the provider's own readiness API when needed.
 

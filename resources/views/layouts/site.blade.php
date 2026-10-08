@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,8 +17,10 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}?v=2" sizes="16x16 32x32 48x48">
     <link rel="icon" type="image/svg+xml" href="{{ asset('assets/favicon.svg') }}?v=2" sizes="any">
     <link rel="apple-touch-icon" href="{{ asset('assets/apple-touch-icon.png') }}" sizes="180x180">
+    <x-consent::head />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="site-frame">
@@ -27,5 +30,7 @@
     </div>
     @include('partials.search')
     <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-site-status></p>
+    <x-consent::banner />
 </body>
+
 </html>

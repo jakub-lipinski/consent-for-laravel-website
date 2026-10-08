@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.1.1',
+    'release' => 'v1.1.2',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
