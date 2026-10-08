@@ -53,7 +53,7 @@
         <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its ID; the package takes care of that consent logic.</p></div>
         <div class="release-grid">
             <div class="release-current">
-                <span class="eyebrow">Included in version 1.0</span>
+                <span class="eyebrow">Included in version 1.1</span>
                 <h3>Four built-in integrations</h3>
                 <ul>
                     <li><x-icon name="arrow-down-right" />GA4 and Google Ads setup from your IDs</li>
@@ -76,7 +76,7 @@
         <div class="section-intro"><h2 id="principles-title">A banner is only<br><span class="text-accent">the beginning</span></h2><p>Saving a choice, blocking scripts, and handling withdrawal all need code. Use one ready-made consent flow and spend that time on your application's features.</p></div>
         <div class="principle-grid">
             @foreach([
-                ['choice', 'Skip the UI build', 'Start with a complete banner and preferences screen. Adjust the colors, position, and wording instead of designing another cookie interface.'],
+                ['choice', 'Skip the UI build', 'Start with a complete banner and preferences screen. Choose Standard or Compact, then adjust the colors, position, and wording to match your app.'],
                 ['code', 'Your scripts, too', 'Register a custom service and wrap its script in the consent Blade directive. Reuse the same consent checks instead of writing another loader.'],
                 ['layers', 'One cached page', 'Serve the same cached HTML to everyone. Consent is checked in the browser, so you do not need a page variant for each consent choice.'],
                 ['refresh', 'No second settings flow', 'Visitors can reopen preferences and withdraw consent. The package remembers their choices and applies changes, including a reload when active trackers require it.'],
@@ -89,10 +89,10 @@
     </section>
     <section id="preview" class="numbered-section" aria-labelledby="preview-title">
         <div class="section-rail"><span>04 / The interface</span><span>Adapt it to your project</span></div>
-        <div class="section-intro"><h2 id="preview-title">Ready to use.<br><span class="text-accent">Easy to make yours.</span></h2><p>Match the position, colors, and wording to your app. No Tailwind, Alpine, or Livewire required. Try the banner and preferences below; this preview stores no cookies and loads no trackers.</p></div>
+        <div class="section-intro"><h2 id="preview-title">Ready to use.<br><span class="text-accent">Easy to make yours.</span></h2><p>Choose Standard or Compact for the banner and preferences. Match the position, colors, and wording to your app. No Tailwind, Alpine, or Livewire required. Try the banner and preferences below; this preview stores no cookies and loads no trackers.</p></div>
         @include('partials.consent-preview')
     </section>
-    <section class="numbered-section guide-section" aria-labelledby="guides-title"><div class="section-rail"><span>05 / Getting started</span><span>A clear path from install to launch</span></div><div class="guide-heading"><h2 id="guides-title">Make consent part<br><span class="text-accent">of your next app</span></h2><a class="text-link" href="{{ route('docs.index') }}">Browse the docs <x-icon name="arrow-right" /></a></div><div class="guide-grid">@foreach([['01', 'quick-start', 'Install and add the UI', 'Install with Composer, publish the config, and add the two Blade components. Follow the quick start for your first working consent flow.'], ['02', 'banner-and-theme', 'Match your design', 'Choose a banner position, set your colors, and link your privacy policy. Keep the consent interface consistent with your app.'], ['03', 'withdrawal', 'Check withdrawal', 'Review how active scripts stop and declared cookies are cleared, then check the behavior with your actual tracking setup.']] as [$number, $slug, $title, $description])<a class="guide-card" href="{{ route('docs.show', $slug) }}"><span class="eyebrow">Guide / {{ $number }}</span><h3>{{ $title }}</h3><p>{{ $description }}</p><x-icon name="arrow-up" /></a>@endforeach</div></section>
+    <section class="numbered-section guide-section" aria-labelledby="guides-title"><div class="section-rail"><span>05 / Getting started</span><span>A clear path from install to launch</span></div><div class="guide-heading"><h2 id="guides-title">Make consent part<br><span class="text-accent">of your next app</span></h2><a class="text-link" href="{{ route('docs.index') }}">Browse the docs <x-icon name="arrow-right" /></a></div><div class="guide-grid">@foreach([['01', 'quick-start', 'Install and add the UI', 'Install with Composer, publish the config, and add the two Blade components. Follow the quick start for your first working consent flow.'], ['02', 'banner-and-theme', 'Match your design', 'Choose a matching banner and preferences variant, set the position and colors, and link your privacy policy. Keep the consent interface consistent with your app.'], ['03', 'withdrawal', 'Check withdrawal', 'Review how active scripts stop and declared cookies are cleared, then check the behavior with your actual tracking setup.']] as [$number, $slug, $title, $description])<a class="guide-card" href="{{ route('docs.show', $slug) }}"><span class="eyebrow">Guide / {{ $number }}</span><h3>{{ $title }}</h3><p>{{ $description }}</p><x-icon name="arrow-up" /></a>@endforeach</div></section>
     <section class="faq-section" aria-labelledby="faq-title">
         <div><span class="eyebrow">Questions before you install</span><h2 id="faq-title">Before your<br> <span class="text-accent">first install</span></h2></div>
         <div class="faq-list">

@@ -4,6 +4,10 @@ Check that both `<x-consent::head />` and `<x-consent::banner />` are in the lay
 
 Opening preferences should still work through `data-consent-open` or `window.Consent.openPreferences()`. If the method returns false, the interface is not available. Verify JavaScript/CSP errors and native dialog support.
 
+## Compact does not appear
+
+Use `consent.ui.variant: compact` or `<x-consent::banner variant="compact" />`; missing configuration defaults to Standard. The variant applies to both the banner and preferences. Rebuild configuration/view caches, merge the new `variant` prop and `data-consent-variant` attribute into customized published views, and deploy matching, cache-busted package styles. A stale view or stylesheet can keep the original appearance. See [upgrading](/docs/upgrading).
+
 ## A category is missing
 
 Only optional categories used by enabled services are shown. The registry is global to the site. Check the service's category, enabled boolean, and configuration cache. Disabled service definitions remain validated.

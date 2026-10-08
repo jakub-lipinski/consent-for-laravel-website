@@ -32,7 +32,7 @@ it('provides searchable text with working named chapter links', function () {
     }
     $installation = collect($chapters)->firstWhere('slug', 'installation');
     $blade = collect($chapters)->firstWhere('slug', 'blade-directives');
-    expect($installation['content'])->toContain('composer require jakub-lipinski/consent-for-laravel')->not->toContain('repositories.consent', '@dev')->not->toContain('<pre>');
+    expect($installation['content'])->toContain('composer require jakub-lipinski/consent-for-laravel')->toContain('repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel.git', 'consent-for-laravel:^1.1')->not->toContain('@dev')->not->toContain('<pre>');
     expect($blade['content'])->toContain('@consent')->toContain('not a PHP condition');
     expect($blade['url'])->toBe(route('docs.show', 'blade-directives'));
 });
@@ -63,13 +63,16 @@ it('keeps documentation links within published chapters or real website routes',
 
 it('presents the stable release honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
-        ->assertSee('v1.0.0')
+        ->assertSee('v1.1.0')
         ->assertSee('composer require jakub-lipinski/consent-for-laravel')
         ->assertDontSee('beta')
         ->assertDontSee('GTM')
         ->assertDontSee('Google Tag Manager')
         ->assertSee('No cookies or trackers.')
-        ->assertSeeInOrder(['Included in version 1.0', 'Google Consent Mode v2', 'Meta Pixel and Microsoft Clarity presets', 'Consent throughout the lifecycle'])
+        ->assertSee('Interface variant')
+        ->assertSee('name="preview-variant" value="standard"', false)
+        ->assertSee('name="preview-variant" value="compact"', false)
+        ->assertSeeInOrder(['Included in version 1.1', 'Google Consent Mode v2', 'Meta Pixel and Microsoft Clarity presets', 'Consent throughout the lifecycle'])
         ->assertSee('Skip to content')
         ->assertSee('aria-labelledby="preview-title"', false);
 });

@@ -8,14 +8,15 @@ No npm installation, frontend build step, database, migrations, or application e
 
 ## Install with Composer
 
-Run these commands in your Laravel application:
+Install the stable GitHub release through Composer. Register the official VCS source once in your Laravel application:
 
 ```bash
-composer require jakub-lipinski/consent-for-laravel
+composer config repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel.git
+composer require jakub-lipinski/consent-for-laravel:^1.1
 php artisan vendor:publish --tag=consent-config
 ```
 
-Composer resolves the stable package from Packagist. Your application's `composer.lock` records the installed version. You do not need a custom repository or a reduced minimum stability.
+Packagist does not currently index this package. The VCS source lets Composer resolve the stable `v1.1.0` GitHub tag. Your application's `composer.lock` records the installed version; no reduced minimum stability or development branch is needed.
 
 The Composer publisher and GitHub owner are both `jakub-lipinski`. The provider is discovered automatically through Spatie Laravel Package Tools. Configure your purposes and enabled presets before adding the [head and banner components](/docs/quick-start).
 
@@ -42,6 +43,6 @@ Keep configuration serializable. Use arrays and scalar values rather than closur
 
 ## Compatibility
 
-CI covers PHP 8.3/8.4 across Laravel 12/13 with lowest and highest dependency selections. Local release verification also exercises four isolated installed configurations: highest Laravel 12/13 on PHP 8.3 and lowest Laravel 12/13 on PHP 8.4. These checks describe the tested combinations, not every possible dependency version.
+The version 1.1 CI matrix passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. Local package verification used PHP 8.4 / Laravel 13, including a clean installation from the exported archive. These checks describe the tested combinations, not every possible dependency version.
 
 Continue with [the quick start](/docs/quick-start).

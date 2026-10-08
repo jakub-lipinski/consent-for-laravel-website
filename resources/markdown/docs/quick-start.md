@@ -39,10 +39,11 @@ Place the runtime in the layout's head, before any code using `window.Consent`. 
 
 `/js/site-insights.js` is an example file owned by your app, not supplied by the package. Each component renders once per response. The directive always emits inert HTML. Optional code starts only after the browser has a valid stored decision allowing analytics.
 
-## 4. Set a policy link
+## 4. Choose the interface and set a policy link
 
 ```php
 'ui' => [
+    'variant' => 'standard', // standard or compact; banner and preferences
     'position' => 'bottom-left',
     'locale' => null,
     'policy_url' => '/cookies',
@@ -54,7 +55,7 @@ Create that policy page in your host application and describe its real processin
 
 ## 5. Add a custom preferences entry
 
-The compact cookie button already reopens preferences after a decision. You may also add a footer button:
+The cookie icon already reopens preferences after a decision. You may also add a footer button:
 
 ```blade
 <button type="button" data-consent-open>Cookie preferences</button>

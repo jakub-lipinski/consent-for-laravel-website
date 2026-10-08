@@ -9,10 +9,22 @@ The built-in interface needs both components. They render once per response. A v
 
 After a choice, a small button reopens preferences. If no optional service is registered, only the button appears, allowing visitors to read the necessary category. The modal shows actual purposes and only used optional categories.
 
+## Two matching variants
+
+Set `consent.ui.variant` to `standard` (default) or `compact`. The setting selects both the banner and its preferences dialog; it is independent of position, colors, and language. Existing published configurations without the setting keep Standard. Invalid values are rejected.
+
+- **Standard** preserves the original spacious cards/dialog, filled acceptance/refusal buttons, and expanded service lists.
+- **Compact** uses smaller cards/dialogs, less spacing, simpler corners, outlined acceptance/refusal buttons, and side-by-side choices on wider cards. Category purposes remain visible; complete service lists use native disclosures that open with Enter or Space.
+
+Both keep the same wording, consent actions, purposes, policy links, switches, and draft/save/withdrawal behavior. Opening service information makes no decision. Changing appearance does not invalidate or extend a saved choice. Both variants stack actions and scroll long content on small screens. At the default font size, choice controls are at least 48 CSS pixels high in Standard and 44 in Compact.
+
+The interactive website preview switches both surfaces together, keeps its choices in memory only, and runs no package scripts or trackers.
+
 ## Three positions
 
 ```php
 'ui' => [
+    'variant' => 'standard', // standard or compact
     'position' => 'bottom-left',
     'locale' => null,
     'policy_url' => '/cookies',
@@ -20,8 +32,8 @@ After a choice, a small button reopens preferences. If no optional service is re
 ],
 ```
 
-- `bottom-left`: compact card in the lower left.
-- `bottom-right`: compact card in the lower right.
+- `bottom-left`: card in the lower left.
+- `bottom-right`: card in the lower right.
 - `bottom-center`: a wide horizontal layout on larger screens.
 
 All three stack on small screens. The launcher follows the selected position. The package's default interface is a white card with a subtle shadow and sentence-case copy. The website preview is illustrative and does not execute package scripts or store decisions.
@@ -30,6 +42,7 @@ All three stack on small screens. The launcher follows the selected position. Th
 
 ```blade
 <x-consent::banner
+    variant="compact"
     locale="pl"
     position="bottom-right"
     policy-url="/cookies"
@@ -80,4 +93,6 @@ The browser method returns `true` if the mounted UI handles the request and `fal
 php artisan vendor:publish --tag=consent-views
 ```
 
-Published files are application-owned. Preserve the package's control bindings, labels, native dialog behavior, and focus protections. Recheck contrast, geometry, reflow, text resizing, and keyboard interaction after changes. Theme, position, and UI language changes do not invalidate a decision.
+Published files are application-owned. Preserve the package's control bindings, labels, native dialog behavior, and focus protections. Recheck contrast, geometry, reflow, text resizing, and keyboard interaction after changes. Variant, theme, position, and UI language changes do not invalidate or extend a decision.
+
+When upgrading published views, merge the `variant` prop and `data-consent-variant` root attribute along with the Compact service disclosures. Update and cache-bust published styles/scripts together with the views. See [upgrading](/docs/upgrading).

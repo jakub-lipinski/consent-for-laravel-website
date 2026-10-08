@@ -11,7 +11,7 @@ if (siteHeader) {
 document.querySelectorAll('dialog').forEach(dialog => {
     dialog.addEventListener('keydown', event => {
         if (event.key !== 'Tab') return;
-        const controls = [...dialog.querySelectorAll('a[href], button, input, select, textarea, [tabindex]')]
+        const controls = [...dialog.querySelectorAll('a[href], button, input, select, textarea, summary, [tabindex]')]
             .filter(element => !element.disabled && element.tabIndex >= 0 && element.getClientRects().length);
         const first = controls[0], last = controls.at(-1);
         if (!first) return;
@@ -182,13 +182,21 @@ if (preview) {
         dialog.querySelector('h2').focus({ preventScroll: true });
     };
 
-    preview.querySelector('.position-selector').disabled = false;
+    preview.querySelectorAll('.position-selector').forEach(selector => { selector.disabled = false; });
     banner.querySelectorAll('button').forEach(button => { button.disabled = false; });
     reset.hidden = false;
     preview.querySelectorAll('[name="preview-position"]').forEach(input => input.addEventListener('change', () => {
         stage.dataset.position = input.value;
         interfaceRoot.dataset.consentPosition = input.value;
         message.textContent = `Position changed to ${input.value.replace('bottom-', '')}. Preview only.`;
+    }));
+    preview.querySelectorAll('[name="preview-variant"]').forEach(input => input.addEventListener('change', () => {
+        interfaceRoot.dataset.consentVariant = input.value;
+        interfaceRoot.querySelectorAll('[data-preview-services]').forEach(details => {
+            details.open = input.value === 'standard';
+            details.querySelector('summary').hidden = input.value === 'standard';
+        });
+        message.textContent = `${input.value === 'compact' ? 'Compact' : 'Standard'} banner and preferences selected. Preview only.`;
     }));
     preview.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => {
         const accept = button.dataset.previewChoice === 'all';

@@ -42,6 +42,7 @@ A script timeout fails its block. A cleanup failure or timeout requires safe rel
 
 | Key | Default | Accepted values |
 | --- | --- | --- |
+| `ui.variant` | `'standard'` | `standard` or `compact`; applies to banner and preferences dialog |
 | `ui.position` | `'bottom-left'` | `bottom-left`, `bottom-right`, `bottom-center` |
 | `ui.locale` | `null` | App locale fallback; explicit `en` or `pl` |
 | `ui.policy_url` | `null` | Absolute website path or safe HTTP(S) URL |
@@ -93,6 +94,6 @@ Reserved IDs: `meta-pixel`, `microsoft-clarity`, and, with advertising enabled, 
 | Component | Props |
 | --- | --- |
 | `x-consent::head` | `nonce`, `src` |
-| `x-consent::banner` | `nonce`, `locale`, `position`, `policyUrl`, `styleSrc`, `scriptSrc` |
+| `x-consent::banner` | `nonce`, `locale`, `variant`, `position`, `policyUrl`, `styleSrc`, `scriptSrc` |
 
 Use kebab-case attributes in Blade, such as `policy-url`, `style-src`, and `script-src`. Bind values with `:` when they come from PHP expressions. Published asset destinations are in [CSP and caching](/docs/csp-and-caching).

@@ -34,7 +34,7 @@ The cookie is browser-readable, unsigned, user-editable, and `HttpOnly=false`. I
 - `policy_version` belongs to your application; increment it for material policy/purpose changes.
 - `servicesVersion` fingerprints enabled service IDs, categories, names, descriptions, and non-empty cookie cleanup rules.
 
-Adding, enabling, disabling, removing, renaming, or changing an active definition invalidates previous decisions. Reordering definitions, trimming outer whitespace, editing disabled metadata, and changing UI colors/position/language do not. Beta.1 fingerprints remain compatible when cookie rules are absent or empty.
+Adding, enabling, disabling, removing, renaming, or changing an active definition invalidates previous decisions. Reordering definitions, trimming outer whitespace, editing disabled metadata, and changing UI variant/colors/position/language do not invalidate or extend a decision.
 
 ## Expiry
 

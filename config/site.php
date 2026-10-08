@@ -2,19 +2,19 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.0.0',
+    'release' => 'v1.1.0',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.0.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.1.'],
             ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install the package with Composer and Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Register a purpose, add the interface, and gate your first script.'],
         ],
         'The interface' => [
             ['slug' => 'services-and-categories', 'title' => 'Services and categories', 'description' => 'Describe your processing purposes and expose only used categories.'],
-            ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Choose a position, policy link, and accessible colors.'],
+            ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Choose Standard or Compact, a position, policy link, and accessible colors.'],
             ['slug' => 'translations', 'title' => 'Translations', 'description' => 'English, Polish, and translated service descriptions.'],
             ['slug' => 'accessibility', 'title' => 'Accessibility', 'description' => 'Keyboard, focus, contrast, reflow, and integration responsibilities.'],
         ],

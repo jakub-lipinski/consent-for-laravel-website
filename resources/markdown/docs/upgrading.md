@@ -3,10 +3,19 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases), update the application dependency, and commit the resulting application lock file:
 
 ```bash
-composer require jakub-lipinski/consent-for-laravel:^1.0
+composer config repositories.consent vcs https://github.com/jakub-lipinski/consent-for-laravel.git
+composer require jakub-lipinski/consent-for-laravel:^1.1
 ```
 
 The public PHP, Blade, browser, and configuration APIs documented here belong to the stable version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Moving from 1.0 to 1.1
+
+Version 1.1 adds matching Standard and Compact banner/preferences variants. Existing published configuration without `ui.variant` keeps `standard`; set it to `compact` or use `<x-consent::banner variant="compact" />` to opt in. Both retain complete category purposes and service information; Compact service lists use native, keyboard-accessible disclosures.
+
+No new translation keys or cookie migration are required. Variant changes do not invalidate or extend saved decisions. Presets, purpose fingerprints, cookie schema, retention, and browser APIs remain compatible. The release also isolates policy-link and button spacing from generic host styles.
+
+Merge the current banner view deliberately, including the `variant` prop, `data-consent-variant` root attribute, and Compact disclosures. Update the CSS and views together; republish/cache-bust separate assets, rebuild configuration/view caches, and restart persistent workers. Check both variants in the integrated host application. See [the 1.1.0 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.1.0).
 
 ## Moving an existing installation to 1.0
 

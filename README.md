@@ -4,7 +4,7 @@ The standalone landing page and documentation for [Consent for Laravel](https://
 
 ## Current scope
 
-Documentation covers `v1.0.0`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, banner configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities.
+Documentation covers `v1.1.0`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, matching Standard/Compact banner and preferences variants, configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities.
 
 The landing page includes an illustrative interface preview. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website itself is in English; the package interface supports English and Polish.
 
@@ -47,4 +47,6 @@ Feature coverage checks published chapters, search data, internal documentation 
 
 Set the application's URL and normal Laravel production environment settings. Build Vite assets during deployment, optimize Laravel caches, and point the web server at `public`. The site needs no database-backed product feature, account, consent service, or third-party font request. Use the appropriate production session/cache driver for your hosting environment.
 
-Package installation instructions use the standard Composer package name and stable releases. Update `config/site.php` and all affected guides deliberately for a new release.
+Package installation instructions use the standard Composer package name and stable GitHub tags through the official VCS source; no reduced minimum stability is needed. Update `config/site.php` and all affected guides deliberately for a new release.
+
+The interface preview switches Standard and Compact together with all three positions. Compact keeps category purposes visible and exposes full service details through native disclosures. Preview choices remain in memory; changing the variant never saves a real consent decision.
