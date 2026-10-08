@@ -86,6 +86,11 @@ SOFTWARE.
         <path d="m21 21-4.34-4.34" />
         <circle cx="11" cy="11" r="8" />
         @break
+    @case('menu')
+        <path d="M4 5h16" />
+        <path d="M4 12h16" />
+        <path d="M4 19h16" />
+        @break
     @case('git-fork')
     @case('github')
         <circle cx="12" cy="18" r="3" />

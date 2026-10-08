@@ -41,7 +41,7 @@
         </div>
     </section>
     <section id="setup" class="developer-section" aria-labelledby="developer-title">
-        <div class="section-rail"><span>02 / The setup</span><span>install with Composer and enable the presets you need</span></div>
+        <div class="section-rail"><span>02 / Built-in integrations</span><span>enable a preset and add your tracking IDs</span></div>
         <div class="developer-grid">
             <div>
                 <span class="eyebrow">connect your tracking tools with the built-in presets</span>
@@ -62,7 +62,7 @@ CONSENT_CLARITY_ID=abc123def4</code></pre>
         </div>
     </section>
     <section id="integrations" class="numbered-section" aria-labelledby="integrations-title">
-        <div class="section-rail"><span>03 / The integrations</span><span>connect your tools without writing custom consent logic</span></div>
+        <div class="section-rail"><span>03 / How consent works</span><span>the presets follow consent changes and withdrawal</span></div>
         <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its ID; the package takes care of that consent logic.</p></div>
         <div class="release-grid">
             <div class="release-current">
