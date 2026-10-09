@@ -24,7 +24,7 @@ Use the existing `<x-consent::head />` before vendor code and `<x-consent::banne
 ## Activation and events
 
 
-The `meta-pixel` service uses `marketing`. Its default English/Polish purpose is shown automatically. The preset creates the vendor-compatible `fbq` queue with revoked consent, applies a current saved grant, then loads `https://connect.facebook.net/en_US/fbevents.js` only with marketing permission. It rechecks permission before `init` and the optional `PageView`. Initialization and automatic PageView happen once per document. There is no noscript tracking image, automatic matching payload, Conversions API request, or server-side event integration supplied by this preset.
+The `meta-pixel` service uses `marketing`. Its default localized purpose is shown automatically. The preset creates the vendor-compatible `fbq` queue with revoked consent, applies a current saved grant, then loads `https://connect.facebook.net/en_US/fbevents.js` only with marketing permission. It rechecks permission before `init` and the optional `PageView`. Initialization and automatic PageView happen once per document. There is no noscript tracking image, automatic matching payload, Conversions API request, or server-side event integration supplied by this preset.
 
 ### Standard and custom events
 
@@ -71,7 +71,7 @@ A detected existing `fbq`, `_fbq`, or matching bootstrap fails closed with a `co
 
 ## Upgrading and verification
 
-Merge the new configuration and English/Polish preset translations, remove the manual `meta-pixel` service if duplicating the enabled preset, and republish/cache-bust separate assets when used. Enabling or changing the preset's ID, PageView option, purpose, or cookie scope invalidates saved decisions. With the new presets off, existing fingerprints remain compatible. See [upgrading](/docs/upgrading).
+Merge the new configuration and application-owned preset translations, remove the manual `meta-pixel` service if duplicating the enabled preset, and republish/cache-bust separate assets when used. Enabling or changing the preset's ID, PageView option, purpose, or cookie scope invalidates saved decisions. With the new presets off, existing fingerprints remain compatible. See [upgrading](/docs/upgrading).
 
 Local tests use SDK mocks and native browser checks for consent, events, ordering, CSP, and withdrawal. They do not confirm delivery to your Meta account. Verify Events Manager/Test Events in your own controlled host environment without transmitting personal test data.
 

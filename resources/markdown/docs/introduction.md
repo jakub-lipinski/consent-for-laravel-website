@@ -2,7 +2,7 @@
 
 Consent for Laravel is a Composer library for explicit, service-based cookie preferences. It gives your Laravel application a configurable banner, a native preferences dialog, versioned decisions, and a browser runtime that gates declared scripts.
 
-The current release is **v1.1.3**, available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). The package targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
+The package is available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). It targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
 
 ```bash
 composer require jakub-lipinski/consent-for-laravel
@@ -18,17 +18,17 @@ Run these in your existing Laravel app. Follow [the quick start](/docs/quick-sta
 - Strict, versioned preference persistence shared by the PHP and browser APIs.
 - Inert `@consent` script blocks with ordering, duplicate prevention, and checks before activation.
 - Safe default reload when consent is withdrawn from running code.
-- Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, safe color-format fallbacks, optional non-blocking contrast diagnostics, and English/Polish translations.
+- Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, safe color-format fallbacks, optional non-blocking contrast diagnostics, and seven bundled languages with custom locale fallback.
 - Keyboard interaction, native modal semantics, responsive layouts, and protection against covering focused host controls.
 - Google Consent Mode v2 with Basic and explicit Advanced modes.
 - ID-based GA4 and Google Ads presets with permission-checked event routing.
 - Meta Pixel and Microsoft Clarity presets with strict loading gates, guarded events, and opt-in Clarity advertising.
 
-## Implemented for the next release
+## Languages and themes
 
-The next update adds German, French, Italian, Spanish, and European Portuguese, custom locale fallback, config-only light/dark/auto themes, 72-hour theme warning suppression, and a clearer published config. These additions are **not yet available in stable v1.1.3 on Packagist**. This website marks their examples as unreleased; the live preview uses the released light interface.
+English, Polish, German, French, Italian, Spanish, and European Portuguese are included. Custom dictionaries use regional and English fallback. Choose light, dark, or auto in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview demonstrates the light palette.
 
-Read [upcoming themes](/docs/banner-and-theme#unreleased-light-dark-and-auto), [custom languages](/docs/translations#unreleased-languages-and-custom-locales), and [the unreleased upgrade guidance](/docs/upgrading#unreleased-ui-update).
+Read [theme modes](/docs/banner-and-theme#light-dark-and-auto), [custom languages](/docs/translations#languages-and-custom-locales), and [the upgrade guidance](/docs/upgrading#language-and-theme-update).
 
 ## The lifecycle
 

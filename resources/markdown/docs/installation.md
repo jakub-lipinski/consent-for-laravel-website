@@ -15,7 +15,7 @@ composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
-Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. This documentation covers **v1.1.3**; [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
+Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
 
 The provider is discovered automatically. If your application disables discovery or installs with `--no-scripts`, see [provider troubleshooting](/docs/troubleshooting#configuration-cannot-be-published).
 
@@ -42,7 +42,7 @@ Enable a [built-in preset](/docs/configuration#choose-an-integration) and set it
 | `consent-translations` | `lang/vendor/consent` | Interface messages and service translations |
 | `consent-assets` | `public/vendor/consent` | Separate JavaScript and CSS files |
 
-Start with `consent-config`. English/Polish translations, component views, JavaScript, and CSS work from the installed package without publishing them. Publish the other groups only when customizing their files or serving separate assets. Read [CSP and assets](/docs/csp-and-caching) if your deployment requires separate files or nonces.
+Start with `consent-config`. Bundled translations, component views, JavaScript, and CSS work from the installed package without publishing them. Publish the other groups only when customizing their files or serving separate assets. Read [CSP and assets](/docs/csp-and-caching) if your deployment requires separate files or nonces.
 
 ## Configuration caching
 

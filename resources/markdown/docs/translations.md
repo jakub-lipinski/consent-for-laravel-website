@@ -1,28 +1,26 @@
-## English and Polish
+## Select a language
 
-This section describes stable **v1.1.3**. Five additional bundled languages and custom locale selection are documented below as [unreleased additions](#unreleased-languages-and-custom-locales).
-
-`ui.locale` is `null` by default, following the application's locale. `pl`, `pl_PL`, and `pl-PL` select Polish. Other application locales fall back to English. An explicit UI override must be `en` or `pl`.
+`ui.locale` is `null` by default, following the application's locale. Select a bundled or custom language through the component, config, or app; precedence is **component > config > application**. The package does not change the application's locale. Regional tags inherit parent-language and English values per key.
 
 ```php
 'ui' => [
-    'locale' => 'pl',
+    'locale' => 'fr',
 ],
 ```
 
 ```blade
-<x-consent::banner locale="en" />
+<x-consent::banner locale="fr-CA" />
 ```
 
 ## Publish interface messages
 
-English and Polish work from the installed package without publishing files. Publish translations only when changing the bundled wording:
+All seven bundled languages work without publishing files. Publish translations only when changing the bundled wording:
 
 ```bash
 php artisan vendor:publish --tag=consent-translations
 ```
 
-Edit `lang/vendor/consent/en/messages.php` or `lang/vendor/consent/pl/messages.php`. Preserve accurate meaning, accessible names, and equal prominence for acceptance and rejection. Longer translations need reflow and text-resizing checks.
+Edit `lang/vendor/consent/{locale}/messages.php` for the language you want to customize. Preserve accurate meaning, accessible names, and equal prominence for acceptance and rejection. Longer translations need reflow and text-resizing checks.
 
 ## Translate service descriptions
 
@@ -39,7 +37,7 @@ return [
 ];
 ```
 
-A missing translation falls back to the service's canonical name and description. IDs containing dots use Laravel's dot lookup and need corresponding nested translation arrays.
+Missing translations inherit parent-language and English values, then the service's canonical name and description. IDs containing dots use Laravel's dot lookup and need corresponding nested translation arrays.
 
 ## Language and consent versions
 
@@ -49,13 +47,13 @@ If you share-cache HTML in multiple languages, vary the cache by locale. Inert s
 
 ## Google preset wording
 
-Default GA4/Ads, Meta, and Clarity purposes and the Advanced-mode disclosure are available in English and Polish. Canonical preset name/description changes keep their custom wording rather than being replaced by bundled defaults. You can explicitly translate the `google-ga4` / `google-ads` display fields in `consent::services`. Published `messages.php` files should retain `google_advanced` and all used preset purposes under `presets`, including `meta-pixel`, `microsoft-clarity`, and `microsoft-clarity-ads`. The same `consent::services` display overrides work for these IDs. Canonical description changes still affect the fingerprint.
+Default GA4/Ads, Meta, and Clarity purposes and the Advanced-mode disclosure are available in all seven bundled languages. Canonical preset name/description changes keep their custom wording rather than being replaced by bundled defaults. You can explicitly translate the `google-ga4` / `google-ads` display fields in `consent::services`. Published `messages.php` files should retain `google_advanced` and all used preset purposes under `presets`, including `meta-pixel`, `microsoft-clarity`, and `microsoft-clarity-ads`. The same `consent::services` display overrides work for these IDs. Canonical description changes still affect the fingerprint.
 
 Standard and Compact share the same interface dictionaries and service-purpose translations. No extra translation keys are needed for version 1.1; both variants' service disclosures use the existing `services_label` message.
 
-## Unreleased languages and custom locales
+## Languages and custom locales
 
-The following behavior is implemented for the next package release and is **not yet available in v1.1.3 on Packagist**. Standard and Compact share the same dictionaries, including category purposes, preset descriptions, accessible names, status/error messages, and the Advanced Google notice.
+Standard and Compact share the same dictionaries, including category purposes, preset descriptions, accessible names, status/error messages, and the Advanced Google notice.
 
 | Locale | Bundled language |
 | --- | --- |
@@ -109,4 +107,4 @@ Create `lang/vendor/consent/{locale}/services.php` using the service structure s
 
 Display wording and locale changes preserve consent fingerprints and original decision expiry. A real purpose change still needs updated canonical metadata or `policy_version`. Vary shared HTML caches by the locale used to render the UI, including config/component overrides. The built-in layout is left-to-right; custom RTL languages also need a published view/layout adaptation and native browser verification.
 
-See [the unreleased upgrade guidance](/docs/upgrading#unreleased-ui-update) for application-owned dictionaries.
+See [the upgrade guidance](/docs/upgrading#language-and-theme-update) for application-owned dictionaries.

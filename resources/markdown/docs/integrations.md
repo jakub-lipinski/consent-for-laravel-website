@@ -1,4 +1,4 @@
-## Included in v1.1.3
+## Included capabilities
 
 Consent for Laravel supplies an in-application consent interface and runtime. Installation adds no separate dashboard, website, application route, database table, or frontend framework.
 
@@ -9,7 +9,7 @@ Consent for Laravel supplies an in-application consent interface and runtime. In
 - Matching Standard and Compact banners/preferences dialogs, with bottom-left, bottom-right, and wide bottom-center placement. Category purposes stay visible; both variants use initially collapsed native service-list disclosures with a state-indicating chevron.
 - Safe six-digit hex theme colors with per-color defaults for invalid formats, configurable policy link, and editable copy.
 - A native preferences dialog and a small icon for reopening a saved choice.
-- English and Polish interface messages and preset purposes.
+- English, Polish, German, French, Italian, Spanish, and European Portuguese, plus custom locales with regional/English fallback.
 - Native controls, keyboard interaction, managed focus, responsive reflow, and optional contrast diagnostics.
 
 Read [banner and theme](/docs/banner-and-theme), [translations](/docs/translations), and [accessibility](/docs/accessibility).
@@ -39,8 +39,8 @@ Presets initialize once per document. Helpers check permission at invocation and
 
 Use actual provider IDs, remove duplicate snippets, describe your processing accurately, and configure vendor accounts and cookie scopes. Local release checks use SDK mocks rather than live measurements. Verify account delivery in your controlled host environment. The package supplies consent tooling, not whole-site legal or accessibility certification.
 
-## Unreleased interface additions
+## Theme modes and diagnostics
 
-The next release adds five more bundled languages (seven total), custom locales with regional/English fallback, configuration-only light/dark/auto modes, independent dark colors, and 72-hour diagnostic suppression. These are **not yet included in v1.1.3**. No additional tracker preset is introduced by this update.
+Both variants support configuration-only light/dark/auto modes, independent light and dark palettes, and 72-hour diagnostic suppression. Theme and language choices preserve saved decisions and the existing tracker lifecycle.
 
-See [the unreleased upgrade guidance](/docs/upgrading#unreleased-ui-update), [theme modes](/docs/banner-and-theme#unreleased-light-dark-and-auto), and [custom locales](/docs/translations#unreleased-languages-and-custom-locales). The existing presets and browser consent lifecycle keep their behavior.
+See [the upgrade guidance](/docs/upgrading#language-and-theme-update), [theme modes](/docs/banner-and-theme#light-dark-and-auto), and [custom locales](/docs/translations#languages-and-custom-locales). The existing presets and browser consent lifecycle keep their behavior.

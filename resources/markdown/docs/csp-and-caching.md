@@ -59,10 +59,10 @@ External modules retain their original SRI/credential checks and use a second no
 
 Both bootstrap scripts inherit the head nonce. Meta starts from `connect.facebook.net/en_US/fbevents.js`; Clarity from `www.clarity.ms/tag/PROJECT_ID`. Review actual vendor script, image, and connection requirements separately. Microsoft documents `*.clarity.ms` and `c.bing.com`; apply appropriate directives rather than broad unsafe-inline allowances. Nonce inheritance alone does not permit outgoing fetches/images. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity) for verification.
 
-## Unreleased themes and locale fallback
+## Themes and locale fallback
 
-The upcoming light/dark/auto support is not available in v1.1.3. Its new `data-consent-theme` attribute and scoped CSS resolve auto in the browser, so shared HTML does not need to vary by system color preference. It must still reflect the UI config used to render it, and multilingual HTML must vary by the selected component/config/app locale.
+The `data-consent-theme` attribute and scoped CSS resolve auto in the browser, so shared HTML does not need to vary by system color preference. It must still reflect the UI config used to render it, and multilingual HTML must vary by the selected component/config/app locale.
 
 Custom colors in **either** palette emit a nonce-protected inline override even when the main CSS is external. Empty palettes that resolve to defaults need no extra theme style. Deploy updated published CSS and customized banner views together; preserve their nonce and both-palette override logic. The package theme change adds no JavaScript dependency or visitor preference cookie.
 
-The 72-hour warning marker uses the app's default server cache independently of HTML caching and consent decisions. Its failure skips diagnostics without breaking the response. See [the unreleased upgrade steps](/docs/upgrading#unreleased-ui-update).
+The 72-hour warning marker uses the app's default server cache independently of HTML caching and consent decisions. Its failure skips diagnostics without breaking the response. See [the upgrade steps](/docs/upgrading#language-and-theme-update).

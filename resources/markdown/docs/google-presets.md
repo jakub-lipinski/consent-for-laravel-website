@@ -70,7 +70,7 @@ For SPA navigation, set `ga4.send_page_view` to `false` and send the intended `p
 
 Both presets accept actual boolean `enabled` (default `false`), optional canonical `name` / `description`, and optional `cookie_path` (default `/`) / `cookie_domain` (default `null`). GA4 additionally accepts boolean `send_page_view` (default `true`). Unknown keys are rejected. IDs must match `G-` plus 4-32 uppercase letters/digits, or `AW-` plus 1-20 digits starting with 1-9. Disabled definitions are also validated; a disabled ID can be null.
 
-Enabled GA4 registers `google-ga4` in analytics with `_ga` and `_ga_` cleanup rules. Enabled Ads registers `google-ads` in marketing with `_gcl_` rules. These IDs must not collide with custom services. Default purposes have English and Polish display translations. Canonical overrides take precedence over built-in default wording; `consent::services` translations can still explicitly override display fields. Describe the real processing rather than relying on generic defaults.
+Enabled GA4 registers `google-ga4` in analytics with `_ga` and `_ga_` cleanup rules. Enabled Ads registers `google-ads` in marketing with `_gcl_` rules. These IDs must not collide with custom services. Default purposes have display translations in all seven bundled languages and support custom locale fallback. Canonical overrides take precedence over built-in default wording; `consent::services` translations can still explicitly override display fields. Describe the real processing rather than relying on generic defaults.
 
 Match cleanup scopes to the cookies actually written by the vendor. Google can choose a parent-domain cookie automatically; if appropriate, explicitly set the matching domain:
 

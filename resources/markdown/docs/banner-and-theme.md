@@ -1,5 +1,3 @@
-This page covers stable **v1.1.3** and clearly marked unreleased additions. Light/dark/auto modes and 72-hour warning suppression are not yet available in the stable package.
-
 ## Mount the interface
 
 After [installing and configuring the package](/docs/quick-start), place the head component in your shared layout's head and the banner in its body:
@@ -54,7 +52,7 @@ All three stack on small screens. The launcher follows the selected position. Th
 />
 ```
 
-Use the app locale by leaving `locale` as `null`. In stable v1.1.3, explicit overrides accept only `en` or `pl`. The [unreleased language update](/docs/translations#unreleased-languages-and-custom-locales) adds bundled and custom locale tags. A policy URL may be an absolute website path or an HTTP(S) URL without credentials. Create the example `/cookies` page in your app or use your existing policy URL; the package does not register that route. Whitespace, backslashes, unsafe schemes, and relative paths are rejected. `null` omits the link. Refresh [cached configuration](/docs/configuration#apply-configuration-changes) after editing UI settings in `config/consent.php`.
+Use the app locale by leaving `locale` as `null`. Explicit overrides accept bundled and custom language tags; see [languages and fallback](/docs/translations#languages-and-custom-locales). A policy URL may be an absolute website path or an HTTP(S) URL without credentials. Create the example `/cookies` page in your app or use your existing policy URL; the package does not register that route. Whitespace, backslashes, unsafe schemes, and relative paths are rejected. `null` omits the link. Refresh [cached configuration](/docs/configuration#apply-configuration-changes) after editing UI settings in `config/consent.php`.
 
 ## Theme colors
 
@@ -106,9 +104,9 @@ Published files are application-owned. Preserve the package's control bindings, 
 
 When upgrading published views, merge the `variant` prop and `data-consent-variant` root attribute along with the service disclosures and summary chevrons. Update and cache-bust published styles/scripts together with the views. See [upgrading](/docs/upgrading).
 
-## Unreleased light, dark, and auto
+## Light, dark, and auto
 
-These modes are implemented for the next release, **not yet published on Packagist**. Choose the mode in `config/consent.php`; no visitor-facing theme button or new Blade theme prop is added.
+Choose the mode in `config/consent.php`; no visitor-facing theme button or new Blade theme prop is added.
 
 ```php
 'ui' => [
@@ -118,7 +116,7 @@ These modes are implemented for the next release, **not yet published on Packagi
 ],
 ```
 
-This is an excerpt for a version containing theme support. Keep your other UI settings. Stable v1.1.3 rejects `theme` and `dark_colors`.
+This is an excerpt; keep your other UI settings.
 
 - `light` always uses the light palette and remains the default, including in old configs without the key.
 - `dark` always uses the dark palette.
@@ -154,7 +152,7 @@ Standard and Compact share the selected palette across the banner, preferences d
 
 The light defaults remain as listed above. Standard fills choice buttons with the accent; Compact puts accent text on the palette background. Both default palettes meet the package's contrast thresholds. The launcher gives its focus outline a backing in its own background color so it remains distinguishable on an opposite-themed host page. Custom CSS/colors still need browser checks.
 
-## Unreleased warning suppression
+## Warning suppression
 
 With `ui.validate_contrast` enabled, diagnostics check **both palettes**, including the inactive one, and identify light/dark in each issue. Invalid colors fall back to the relevant palette default and warn regardless of the contrast flag. None of these warnings changes selected valid colors or interrupts rendering.
 
@@ -164,4 +162,4 @@ The app's default Laravel cache claims the interval with atomic `add` before log
 
 An unavailable cache, failed/rejected claim, or logger failure never breaks the host page. Cache failure skips logging rather than flooding logs on every request. A logger failure keeps the claimed marker until expiry. Clearing/evicting markers can permit earlier attempts. Healthy palettes do not access the diagnostic cache. No visitor identifier, new cookie, table, or migration is introduced.
 
-For customized views/assets, follow [the unreleased upgrade steps](/docs/upgrading#unreleased-ui-update). The website's live preview still shows the released light interface.
+For customized views/assets, follow [the upgrade steps](/docs/upgrading#language-and-theme-update). The website's live preview demonstrates the light palette.

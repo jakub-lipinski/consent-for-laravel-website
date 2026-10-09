@@ -3,14 +3,14 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.1.3"
+composer require jakub-lipinski/consent-for-laravel
 ```
 
-If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The stable APIs documented here belong to the version 1 series. Sections explicitly marked unreleased describe additions that a normal stable Composer install/update does not provide yet. The library itself does not commit a dependency lock file; your application normally should.
+If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
 
-## Unreleased UI update
+## Language and theme update
 
-These steps apply **after installing a package version containing the unreleased additions**. The current stable release remains v1.1.3; no new version/tag has been published. Do not add the upcoming `theme` or `dark_colors` keys to v1.1.3, which rejects unknown UI options.
+When updating an existing English/Polish, light-only installation, merge the language and theme changes into application-owned files. Older versions such as 1.1.3 reject `theme` and `dark_colors`; update the package before using the new keys.
 
 The update adds five bundled languages, custom locale fallback, configuration-only light/dark/auto themes, and 72-hour theme warning suppression. The sectioned config adds comments/examples without changing existing defaults.
 
@@ -22,7 +22,7 @@ The update adds five bundled languages, custom locale fallback, configuration-on
 
 These presentation changes preserve the consent schema, unchanged service fingerprints, saved acceptance/refusal, and original expiry. Existing light color overrides stay light; configure dark brand colors independently.
 
-Warning suppression uses the current default cache and adds no cache store, table, cookie, or migration. A persistent store with atomic `add` suppresses across requests; cache/logger failures skip optional diagnostics and preserve rendering. The first warning after upgrading may be reported again because grouping now includes both palettes. See [themes and diagnostics](/docs/banner-and-theme#unreleased-light-dark-and-auto) and [custom locales](/docs/translations#unreleased-languages-and-custom-locales).
+Warning suppression uses the current default cache and adds no cache store, table, cookie, or migration. A persistent store with atomic `add` suppresses across requests; cache/logger failures skip optional diagnostics and preserve rendering. The first warning after upgrading may be reported again because grouping now includes both palettes. See [themes and diagnostics](/docs/banner-and-theme#light-dark-and-auto) and [custom locales](/docs/translations#languages-and-custom-locales).
 
 ## Switching from a VCS installation
 

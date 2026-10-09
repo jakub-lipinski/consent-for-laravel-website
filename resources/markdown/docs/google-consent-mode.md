@@ -14,7 +14,7 @@ The optional gtag.js bridge applies Google consent signals to GA4 and Google Ads
 'google' => ['enabled' => null, 'mode' => 'advanced'],
 ```
 
-Enabled presets load and configure while optional consent is denied. Google's tags can then send cookieless measurement pings. This is processing before consent, not a promise of zero requests or zero personal data. Decide whether this is appropriate for the site's processing and jurisdiction, explain it in the policy, and test the actual network. The built-in banner and dialog display an additional English/Polish disclosure. The event helper still refuses optional events without permission. Custom `@consent` blocks remain gated in both modes; Advanced changes built-in presets only.
+Enabled presets load and configure while optional consent is denied. Google's tags can then send cookieless measurement pings. This is processing before consent, not a promise of zero requests or zero personal data. Decide whether this is appropriate for the site's processing and jurisdiction, explain it in the policy, and test the actual network. The built-in banner and dialog display an additional localized disclosure. The event helper still refuses optional events without permission. Custom `@consent` blocks remain gated in both modes; Advanced changes built-in presets only.
 
 ## Signals and ordering
 
