@@ -66,7 +66,7 @@ CONSENT_CLARITY_ID=abc123def4</code></pre>
         <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its ID; the package takes care of that consent logic.</p></div>
         <div class="release-grid">
             <div class="release-current">
-                <span class="eyebrow">Included in version 1.1</span>
+                <span class="eyebrow">Included out of the box</span>
                 <h3>Four built-in integrations</h3>
                 <ul>
                     <li><x-icon name="arrow-down-right" />GA4 and Google Ads setup from your IDs</li>

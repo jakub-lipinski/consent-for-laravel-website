@@ -32,11 +32,7 @@ Without JavaScript or the core runtime, optional script templates stay inert. Wi
 
 Test the actual host page, not only a standalone component: header and footer controls, other modals, sticky elements, scrolling, focus, validation messages, language, and vendor UI all affect the result. Automated axe/jsdom checks do not establish native dialog modality, visual geometry, screen-reader behavior, or every WCAG criterion.
 
-For **v1.1.3**, `composer check` passed Composer validation, Pint, PHPStan level 8, **259 PHP tests / 575 assertions**, JavaScript syntax checks, and **132 JavaScript tests** on local PHP 8.4 / Laravel 13. Focused theme, banner, and configuration tests passed 112 cases / 288 assertions in four cached PHP 8.3/8.4 and Laravel 12/13 dependency sets. CI separately passed all eight configured lowest/highest combinations. See [the v1.1.3 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.1.3/docs/releases/v1.1.3.md#verification).
-
-The v1.1.3 native-browser recheck covered both variants, contrast diagnostics on/off, nonce CSP, preferences, draft versus saved choices, gated script activation, withdrawal/reload, invalid-color fallback, and an unavailable logger. Custom low-contrast colors are intentionally preserved and are not certified by these checks.
-
-Broader [v1.1.2 interface verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.1.2/docs/releases/v1.1.2.md#verification) covered both variants, all three positions, English/Polish, and inline/published assets under nonce CSP. All 24 native axe checks reported no violations. Twelve reflow checks at 320 CSS pixels with 200% text size and increased spacing had no horizontal overflow, with all service lists expanded and the final Save control fully visible. Keyboard interaction, modal focus, disclosures, saved choices, script ordering, and withdrawal were verified. Incomplete axe results were reviewed manually and are not counted as automatic passes.
+For **v1.2.0**, local `composer check` passed strict Composer validation, Pint, PHPStan level 8, **362 PHP tests / 1999 assertions**, JavaScript syntax checks, and **148 JavaScript tests** on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1. The [tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/37972130515) separately passed all eight configured PHP 8.3/8.4 and Laravel 12/13 lowest/highest combinations. See [the v1.2.0 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/releases/v1.2.0.md#verification) and [detailed interface checks](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/interface.md#verification) for evidence and limitations.
 
 These results do not certify other browser engines, screen readers, OS high-contrast modes, arbitrary custom themes, or whole-site accessibility.
 
@@ -44,7 +40,7 @@ For this documentation website's own controls and reporting, read [website acces
 
 ## Language and theme checks
 
-On 2026-10-09, the package's local `composer check` passed **362 PHP tests and 148 JavaScript tests** on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1. This is local verification, not a rerun of the configured CI matrix.
+The v1.2.0 native-browser checks covered all seven bundled languages, a partial Dutch dictionary, and a Canadian French override in both variants. Reflow and text-resizing checks included custom dictionaries and the five added languages; French layouts also fit all three positions. These host checks are separate from the release's PHP/Laravel CI matrix.
 
 A disposable host outside the package checkout was checked in the native Codex in-app browser. Light, dark, and auto rendered in both variants with no full-axe violations in the tested banner/modal states; the closed-dialog reference check remained incomplete and was reviewed manually. The browser's actual preference was light. Host-only emulation of the CSS media-rule condition exercised live auto branches and preserved an open draft; an actual OS preference toggle and other browser engines were not verified.
 

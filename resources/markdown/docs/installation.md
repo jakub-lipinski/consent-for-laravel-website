@@ -15,7 +15,7 @@ composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
-Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
+The current documented release is [v1.2.0](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.2.0), including seven languages, custom locale fallback, light/dark/auto themes, and 72-hour warning suppression. Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
 
 The provider is discovered automatically. If your application disables discovery or installs with `--no-scripts`, see [provider troubleshooting](/docs/troubleshooting#configuration-cannot-be-published).
 
@@ -62,6 +62,6 @@ Restart long-running application workers after deployment. Keep configuration se
 
 ## Compatibility
 
-The v1.1.3 CI matrix passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. The full local package checks ran on PHP 8.4 / Laravel 13. Focused theme, banner, and configuration checks also passed in four cached PHP 8.3/8.4 and Laravel 12/13 dependency sets; these local sets were not newly resolved global minima/maxima. See [the v1.1.3 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.1.3/docs/releases/v1.1.3.md#verification) for scope and limitations. These checks do not cover every possible dependency version.
+The [v1.2.0 tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/37972130515) passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. The release's local `composer check` passed on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1, including **362 PHP tests / 1999 assertions** and **148 JavaScript tests**. CI coverage and locally executed checks are separate; they do not cover every possible dependency version. See [the v1.2.0 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/releases/v1.2.0.md#verification) for scope and limitations.
 
 Continue with [the quick start](/docs/quick-start).

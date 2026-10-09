@@ -12,7 +12,16 @@ If your application already allows the desired version, use `composer update jak
 
 When updating an existing English/Polish, light-only installation, merge the language and theme changes into application-owned files. Older versions such as 1.1.3 reject `theme` and `dark_colors`; update the package before using the new keys.
 
-The update adds five bundled languages, custom locale fallback, configuration-only light/dark/auto themes, and 72-hour theme warning suppression. The sectioned config adds comments/examples without changing existing defaults.
+Version **1.2.0** adds five bundled languages, custom locale fallback, configuration-only light/dark/auto themes, and 72-hour theme warning suppression. The sectioned config adds comments/examples without changing existing defaults. See [the v1.2.0 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.2.0).
+
+Update the package in your consuming application before merging the options below:
+
+```bash
+composer require "jakub-lipinski/consent-for-laravel:^1.2.0"
+php artisan view:clear
+```
+
+Commit the application's Composer files and deploy with `composer install`.
 
 1. Merge `ui.theme => 'light'` and `ui.dark_colors => []` when opting into these settings. Old configs work without them, keeping light. Preserve your existing colors, presets, IDs, policy version, cookie scopes, and canonical purposes.
 2. Merge the new `data-consent-theme` root attribute and both-palette inline override logic into customized banner views. Theme selection is config-only, not a new Blade prop or visitor button. Keep nonces and control bindings.

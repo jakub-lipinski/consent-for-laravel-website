@@ -85,7 +85,7 @@ it('presents the stable release honestly and exposes a cookie-free interface pre
         ->assertDontSee('<summary hidden>', false)
         ->assertSee('name="preview-variant" value="standard"', false)
         ->assertSee('name="preview-variant" value="compact"', false)
-        ->assertSeeInOrder(['Included in version 1.1', 'Google Consent Mode v2', 'Meta Pixel and Microsoft Clarity presets', 'Consent throughout the lifecycle'])
+        ->assertSeeInOrder(['Included out of the box', 'Google Consent Mode v2', 'Meta Pixel and Microsoft Clarity presets', 'Consent throughout the lifecycle'])
         ->assertSee('Skip to content')
         ->assertSee('aria-labelledby="preview-title"', false);
 });

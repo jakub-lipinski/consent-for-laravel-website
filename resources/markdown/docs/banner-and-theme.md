@@ -28,10 +28,12 @@ The interactive website preview switches both surfaces together, keeps its choic
 'ui' => [
     'variant' => 'standard', // standard or compact
     'position' => 'bottom-left',
+    'theme' => 'light',
     'locale' => null,
     'policy_url' => '/cookies',
     'validate_contrast' => false,
     'colors' => [],
+    'dark_colors' => [],
 ],
 ```
 
@@ -65,7 +67,7 @@ Colors must be six-digit hex values. Supply only the keys you wish to change:
 ],
 ```
 
-| Key | Default | Role |
+| Key | Light default | Role |
 | --- | --- | --- |
 | `background` | `#ffffff` | Card, dialog, and launcher |
 | `text` | `#182722` | Headings and ordinary text |
@@ -106,7 +108,7 @@ When upgrading published views, merge the `variant` prop and `data-consent-varia
 
 ## Light, dark, and auto
 
-Choose the mode in `config/consent.php`; no visitor-facing theme button or new Blade theme prop is added.
+Available since **v1.2.0**. Choose the mode in `config/consent.php`; no visitor-facing theme button or new Blade theme prop is added.
 
 ```php
 'ui' => [
