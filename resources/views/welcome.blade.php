@@ -86,13 +86,13 @@ CONSENT_CLARITY_ID=abc123def4</code></pre>
     </section>
     <section id="preview" class="numbered-section" aria-labelledby="preview-title">
         <div class="section-rail"><span>04 / The interface</span><span>Adapt it to your project</span></div>
-        <div class="section-intro"><h2 id="preview-title">Ready to use.<br><span class="text-accent">Easy to make yours.</span></h2><p>Choose Standard or Compact for the banner and preferences. Match the position, colors, and wording to your app. No Tailwind, Alpine, or Livewire required. Try the banner and preferences below; this preview stores no cookies and loads no trackers.</p></div>
+        <div class="section-intro"><h2 id="preview-title">Ready to use.<br><span class="text-accent">Easy to make yours.</span></h2><p>Choose Standard or Compact for the banner and preferences. Try light, dark, or automatic themes, and match the position, colors, and wording to your app. No Tailwind, Alpine, or Livewire required. Try the banner and preferences below; this preview stores no cookies and loads no trackers.</p></div>
         @include('partials.consent-preview')
         <div class="release-grid" aria-labelledby="customization-title">
             <div class="release-current">
                 <span class="eyebrow">Included / Make it yours</span>
                 <h3 id="customization-title">More ways to<br>make it yours.</h3>
-                <p>Choose from seven languages, add your own translations, and match the interface to your app with light, dark, or automatic themes. The live preview above demonstrates the light palette.</p>
+                <p>Choose from seven languages, add your own translations, and match the interface to your app with light, dark, or automatic themes. The preview controls above let you try both variants and all three theme modes.</p>
                 <a href="{{ route('docs.show', 'upgrading') }}#language-and-theme-update">Read the update notes <x-icon name="arrow-up" /></a>
             </div>
             <div class="release-planned">

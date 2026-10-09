@@ -26,7 +26,7 @@ Run these in your existing Laravel app. Follow [the quick start](/docs/quick-sta
 
 ## Languages and themes
 
-English, Polish, German, French, Italian, Spanish, and European Portuguese are included. Custom dictionaries use regional and English fallback. Choose light, dark, or auto in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview demonstrates the light palette.
+English, Polish, German, French, Italian, Spanish, and European Portuguese are included. Custom dictionaries use regional and English fallback. Choose light, dark, or auto in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview lets you try all three theme modes.
 
 Read [theme modes](/docs/banner-and-theme#light-dark-and-auto), [custom languages](/docs/translations#languages-and-custom-locales), and [the upgrade guidance](/docs/upgrading#language-and-theme-update).
 

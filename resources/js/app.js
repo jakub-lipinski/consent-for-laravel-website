@@ -274,6 +274,12 @@ if (preview) {
         interfaceRoot.dataset.consentVariant = input.value;
         message.textContent = `${input.value === 'compact' ? 'Compact' : 'Standard'} banner and preferences selected. Preview only.`;
     }));
+    preview.querySelectorAll('[name="preview-theme"]').forEach(input => input.addEventListener('change', () => {
+        interfaceRoot.dataset.consentTheme = input.value;
+        message.textContent = input.value === 'auto'
+            ? 'Automatic theme follows your system preference. Preview only.'
+            : `${input.value === 'dark' ? 'Dark' : 'Light'} banner and preferences selected. Preview only.`;
+    }));
     surface.querySelectorAll('[data-preview-choice]').forEach(button => button.addEventListener('click', () => {
         const accept = button.dataset.previewChoice === 'all';
         choose(Object.fromEntries(optionalFields.map(field => [field.name, accept])), accept ? 'All categories accepted.' : 'Optional categories rejected.');

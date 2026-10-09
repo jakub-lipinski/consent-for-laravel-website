@@ -70,7 +70,7 @@ it('keeps documentation links within published chapters or real website routes',
 
 it('presents the stable release honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
-        ->assertSee('v1.1.3')
+        ->assertSee('v1.2.0')
         ->assertSee('data-consent-runtime', false)
         ->assertSee('data-consent-banner', false)
         ->assertSee('composer require jakub-lipinski/consent-for-laravel')
@@ -101,13 +101,18 @@ it('isolates the preview with the unmodified released package stylesheet', funct
         ->assertSee('shadowrootmode="open"', false)
         ->assertSee('data-preview-package-styles', false)
         ->assertSee('data-preview-position-selector', false)
-        ->assertSeeInOrder(['name="preview-variant"', 'name="preview-position"', 'data-preview-stage'], false)
+        ->assertSee('aria-label="Preview theme"', false)
+        ->assertSee('name="preview-theme" value="light" checked', false)
+        ->assertSee('name="preview-theme" value="dark"', false)
+        ->assertSee('name="preview-theme" value="auto"', false)
+        ->assertSee('data-consent-theme="light"', false)
+        ->assertSeeInOrder(['name="preview-variant"', 'name="preview-position"', 'name="preview-theme"', 'data-preview-stage'], false)
         ->assertSee('Google Analytics 4')
         ->assertSee('Microsoft Clarity')
         ->assertSee('Google Ads')
         ->assertSee('Meta Pixel');
 
-    expect(hash_file('sha256', resource_path('css/consent-preview.css')))->toBe('0440a1a5c538d32e44a1fcf98606b5c48b003cfadbd4fa57e567e295365782d3');
+    expect(hash_file('sha256', resource_path('css/consent-preview.css')))->toBe('bc7bbbf38a974f537ad278c38c5d79543991f9207b31788fed5f8d7fa51b3ebc');
 });
 
 it('opens GitHub links in a new tab across the website and every documentation chapter', function () {

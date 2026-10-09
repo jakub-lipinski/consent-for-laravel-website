@@ -12,6 +12,12 @@
             <label><input type="radio" name="preview-position" value="bottom-center"><span><x-icon name="banner-center" /> Center</span></label>
             <label><input type="radio" name="preview-position" value="bottom-right"><span><x-icon name="banner-right" /> Right</span></label>
         </fieldset>
+        <fieldset class="position-selector theme-selector" aria-label="Preview theme" disabled>
+            <legend>Theme</legend>
+            <label><input type="radio" name="preview-theme" value="light" checked><span><x-icon name="sun" /> Light</span></label>
+            <label><input type="radio" name="preview-theme" value="dark"><span><x-icon name="moon" /> Dark</span></label>
+            <label><input type="radio" name="preview-theme" value="auto"><span><x-icon name="monitor" /> Auto</span></label>
+        </fieldset>
         <button class="text-button" type="button" data-preview-reset hidden>Reset preview <x-icon name="refresh" /></button>
     </div>
     <div class="preview-stage" data-preview-stage data-position="bottom-left">
@@ -37,7 +43,7 @@
             <template shadowrootmode="open">
                 <style data-preview-package-styles>{!! file_get_contents(resource_path('css/consent-preview.css')) !!}</style>
                 <style>{!! file_get_contents(resource_path('css/preview-frame.css')) !!}</style>
-                <div class="consent-ui consent-preview-ui" data-consent-position="bottom-left" data-consent-variant="standard" lang="en" dir="ltr">
+                <div class="consent-ui consent-preview-ui" data-consent-position="bottom-left" data-consent-variant="standard" data-consent-theme="light" lang="en" dir="ltr">
                     <section class="consent-banner" data-preview-banner aria-labelledby="preview-banner-title">
                         <div class="consent-banner__content">
                             <div class="consent-heading">

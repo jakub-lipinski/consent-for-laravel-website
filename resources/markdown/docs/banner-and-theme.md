@@ -162,4 +162,4 @@ The app's default Laravel cache claims the interval with atomic `add` before log
 
 An unavailable cache, failed/rejected claim, or logger failure never breaks the host page. Cache failure skips logging rather than flooding logs on every request. A logger failure keeps the claimed marker until expiry. Clearing/evicting markers can permit earlier attempts. Healthy palettes do not access the diagnostic cache. No visitor identifier, new cookie, table, or migration is introduced.
 
-For customized views/assets, follow [the upgrade steps](/docs/upgrading#language-and-theme-update). The website's live preview demonstrates the light palette.
+For customized views/assets, follow [the upgrade steps](/docs/upgrading#language-and-theme-update). The website's live preview switches light, dark, and auto for both variants. These controls affect only the preview, not the host page.

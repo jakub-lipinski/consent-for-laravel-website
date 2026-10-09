@@ -1999,3 +1999,20 @@ body {
 @media (max-width: 35rem) {
     [data-preview-position-selector] { display: none; }
 }
+
+.theme-selector { gap: 0; }
+.theme-selector legend { margin-right: 14px; }
+.theme-selector span {
+    min-height: 44px;
+    padding: 9px 10px;
+    border-color: var(--line);
+}
+.theme-selector label + label { margin-left: -1px; }
+.theme-selector label:first-of-type span { border-radius: 6px 0 0 6px; }
+.theme-selector label:last-of-type span { border-radius: 0 6px 6px 0; }
+.theme-selector .icon { width: 16px; height: 16px; }
+.theme-selector input:checked + span { position: relative; z-index: 1; }
+.preview-toolbar [data-preview-reset] { margin-left: auto; }
+@media (max-width: 35rem) {
+    .theme-selector { order: 1; flex-basis: 100%; justify-content: center; }
+}
