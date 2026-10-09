@@ -88,6 +88,20 @@ CONSENT_CLARITY_ID=abc123def4</code></pre>
         <div class="section-rail"><span>04 / The interface</span><span>Adapt it to your project</span></div>
         <div class="section-intro"><h2 id="preview-title">Ready to use.<br><span class="text-accent">Easy to make yours.</span></h2><p>Choose Standard or Compact for the banner and preferences. Match the position, colors, and wording to your app. No Tailwind, Alpine, or Livewire required. Try the banner and preferences below; this preview stores no cookies and loads no trackers.</p></div>
         @include('partials.consent-preview')
+        <div class="release-grid" aria-labelledby="upcoming-title">
+            <div class="release-current">
+                <span class="eyebrow">Next release / not yet published</span>
+                <h3 id="upcoming-title">More ways to<br>make it yours.</h3>
+                <p>These additions are implemented for the next package release. They are not available in {{ config('site.release') }}; the live preview above shows the current release.</p>
+                <a href="{{ route('docs.show', 'upgrading') }}#unreleased-ui-update">Read the upcoming update notes <x-icon name="arrow-up" /></a>
+            </div>
+            <div class="release-planned">
+                <div><strong>Seven languages, plus your own</strong><span>German, French, Italian, Spanish, and Portuguese join English and Polish. Add custom wording with regional and English fallback.</span></div>
+                <div><strong>Light, dark, or automatic</strong><span>Choose the mode in config for both variants. Override each palette independently, with no extra theme button.</span></div>
+                <div><strong>Quieter theme diagnostics</strong><span>Identical color and contrast warnings are limited to one logging attempt every 72 hours.</span></div>
+                <a href="{{ route('docs.show', 'banner-and-theme') }}#unreleased-light-dark-and-auto">Explore the upcoming theme options <x-icon name="arrow-up" /></a>
+            </div>
+        </div>
     </section>
     <section class="numbered-section guide-section" aria-labelledby="guides-title"><div class="section-rail"><span>05 / Getting started</span><span>A clear path from install to launch</span></div><div class="guide-heading"><h2 id="guides-title">Make consent part<br><span class="text-accent">of your next app</span></h2><a class="text-link" href="{{ route('docs.index') }}">Browse the docs <x-icon name="arrow-right" /></a></div><div class="guide-grid">@foreach([['01', 'quick-start', 'Install and add the UI', 'Install with Composer, publish the config, and add the two Blade components. Follow the quick start for your first working consent flow.'], ['02', 'banner-and-theme', 'Match your design', 'Choose a matching banner and preferences variant, set the position and colors, and link your privacy policy. Keep the consent interface consistent with your app.'], ['03', 'withdrawal', 'Check withdrawal', 'Review how active scripts stop and declared cookies are cleared, then check the behavior with your actual tracking setup.']] as [$number, $slug, $title, $description])<a class="guide-card" href="{{ route('docs.show', $slug) }}"><span class="eyebrow">Guide / {{ $number }}</span><h3>{{ $title }}</h3><p>{{ $description }}</p><x-icon name="arrow-up" /></a>@endforeach</div></section>
     <section class="faq-section" aria-labelledby="faq-title">

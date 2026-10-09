@@ -38,3 +38,9 @@ Presets initialize once per document. Helpers check permission at invocation and
 ## Integration responsibilities
 
 Use actual provider IDs, remove duplicate snippets, describe your processing accurately, and configure vendor accounts and cookie scopes. Local release checks use SDK mocks rather than live measurements. Verify account delivery in your controlled host environment. The package supplies consent tooling, not whole-site legal or accessibility certification.
+
+## Unreleased interface additions
+
+The next release adds five more bundled languages (seven total), custom locales with regional/English fallback, configuration-only light/dark/auto modes, independent dark colors, and 72-hour diagnostic suppression. These are **not yet included in v1.1.3**. No additional tracker preset is introduced by this update.
+
+See [the unreleased upgrade guidance](/docs/upgrading#unreleased-ui-update), [theme modes](/docs/banner-and-theme#unreleased-light-dark-and-auto), and [custom locales](/docs/translations#unreleased-languages-and-custom-locales). The existing presets and browser consent lifecycle keep their behavior.

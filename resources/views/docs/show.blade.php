@@ -28,7 +28,7 @@
             @if($previous)<a href="{{ route('docs.show', $previous['slug']) }}"><span class="eyebrow">Previous chapter</span><strong>{{ $previous['title'] }}</strong><x-icon name="arrow-left" /></a>@else<div></div>@endif
             @if($next)<a href="{{ route('docs.show', $next['slug']) }}"><span class="eyebrow">Next chapter</span><strong>{{ $next['title'] }}</strong><x-icon name="arrow-right" /></a>@endif
         </nav>
-        <div class="docs-bottom-note"><span>For {{ config('site.release') }}</span><a href="{{ config('site.website_repository') }}/blob/main/resources/markdown/docs/{{ $page['slug'] }}.md" target="_blank" rel="noopener noreferrer">Improve this page <x-icon name="arrow-up-right" /></a></div>
+        <div class="docs-bottom-note"><span>Stable {{ config('site.release') }}; unreleased additions are marked</span><a href="{{ config('site.website_repository') }}/blob/main/resources/markdown/docs/{{ $page['slug'] }}.md" target="_blank" rel="noopener noreferrer">Improve this page <x-icon name="arrow-up-right" /></a></div>
     </main>
     <aside class="docs-toc" aria-label="On this page"><div class="docs-toc-inner"><span class="eyebrow">On this page</span><nav aria-label="Table of contents">@foreach($toc as $heading)<a href="#{{ $heading['id'] }}" @class(['toc-subheading' => $heading['level'] === 3])>{{ $heading['title'] }}</a>@endforeach</nav><p>One choice.<br>A clear contract.</p></div></aside>
 </div>

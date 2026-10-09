@@ -41,3 +41,13 @@ Broader [v1.1.2 interface verification](https://github.com/jakub-lipinski/consen
 These results do not certify other browser engines, screen readers, OS high-contrast modes, arbitrary custom themes, or whole-site accessibility.
 
 For this documentation website's own controls and reporting, read [website accessibility](/accessibility). The normative criteria are available in [WCAG 2.2 from W3C](https://www.w3.org/TR/WCAG22/).
+
+## Unreleased language and theme checks
+
+The additional languages, custom locale fallback, light/dark/auto modes, and 72-hour diagnostics are not yet published. On 2026-10-09, the package's local `composer check` passed **362 PHP tests and 148 JavaScript tests** on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1. This is local verification, not a rerun of the configured CI matrix.
+
+A disposable host outside the package checkout was checked in the native Codex in-app browser. Light, dark, and auto rendered in both variants with no full-axe violations in the tested banner/modal states; the closed-dialog reference check remained incomplete and was reviewed manually. The browser's actual preference was light. Host-only emulation of the CSS media-rule condition exercised live auto branches and preserved an open draft; an actual OS preference toggle and other browser engines were not verified.
+
+Dark layouts passed 320px reflow with French text, 200% text resizing, increased spacing, all three positions, both variants, and expanded service disclosures. Keyboard focus brought Save fully into view. Native checks covered heading focus, Tab/Shift+Tab wrapping, Space, Escape, focus return, independent palette overrides, published assets under nonce CSP, and gated module ordering. The host had no CSP violations at DOM readiness; later browser instrumentation produced a blocked anonymous inline-style event, so this is not a clean-console claim.
+
+Both default palettes meet the package contrast thresholds; diagnostics check both, including the inactive palette, without changing valid colors. Theme changes do not grant consent or reset an open draft. Recheck custom CSS, RTL layouts, screen readers, forced-colors environments, and the complete host experience. See [theme configuration](/docs/banner-and-theme#unreleased-light-dark-and-auto).

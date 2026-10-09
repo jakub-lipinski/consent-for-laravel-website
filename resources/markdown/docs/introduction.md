@@ -24,6 +24,12 @@ Run these in your existing Laravel app. Follow [the quick start](/docs/quick-sta
 - ID-based GA4 and Google Ads presets with permission-checked event routing.
 - Meta Pixel and Microsoft Clarity presets with strict loading gates, guarded events, and opt-in Clarity advertising.
 
+## Implemented for the next release
+
+The next update adds German, French, Italian, Spanish, and European Portuguese, custom locale fallback, config-only light/dark/auto themes, 72-hour theme warning suppression, and a clearer published config. These additions are **not yet available in stable v1.1.3 on Packagist**. This website marks their examples as unreleased; the live preview uses the released light interface.
+
+Read [upcoming themes](/docs/banner-and-theme#unreleased-light-dark-and-auto), [custom languages](/docs/translations#unreleased-languages-and-custom-locales), and [the unreleased upgrade guidance](/docs/upgrading#unreleased-ui-update).
+
 ## The lifecycle
 
 1. Register your services and purposes in configuration.

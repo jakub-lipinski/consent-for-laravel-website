@@ -100,3 +100,11 @@ Confirm the preset is enabled, its ID is valid, and the correct category is gran
 Check the enabled preset and its string ID, required category, saved decision, config cache, CSP, blockers, and timeout. A pre-existing `fbq`/`_fbq`/`clarity` or matching bootstrap causes `configuration` failure. Remove all duplicate snippets and container installs. Failed initialization reports `meta` or `clarity` and never retries in the same document.
 
 For Clarity, enable Require cookie consent and use the case-sensitive Consent API v2 fields. Advertising is off unless explicitly configured and both required categories are granted. For Meta, disable automatic PageView if your router owns it. Helpers returning true only confirm a local SDK command, not server delivery. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).
+
+## Unreleased theme or language options fail
+
+Check the installed version with `composer show jakub-lipinski/consent-for-laravel`. Stable v1.1.3 does not support `theme`, `dark_colors`, expanded explicit locales, or 72-hour warning suppression. Those examples are marked unreleased and require a version containing the update; `composer update` does not expose unpublished changes.
+
+After upgrading to theme support, compare published views/CSS, merge `data-consent-theme` and both-palette overrides, clear compiled views, and refresh config/asset caches. A valid custom language without dictionaries safely falls back to English; create `lang/vendor/consent/{locale}/messages.php` to supply wording. Malformed explicit tags and non-string messages remain configuration errors.
+
+For repeated theme warnings after installing suppression, use a persistent default cache with atomic `add`. `array` only remembers within its lifetime; cleared or evicted markers allow earlier logging. Cache/logger failure never causes a page error. See [warning suppression](/docs/banner-and-theme#unreleased-warning-suppression).

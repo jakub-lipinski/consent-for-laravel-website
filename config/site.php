@@ -15,15 +15,15 @@ return [
         ],
         'The interface' => [
             ['slug' => 'services-and-categories', 'title' => 'Services and categories', 'description' => 'Describe your processing purposes and expose only used categories.'],
-            ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Choose Standard or Compact, a position, policy link, and accessible colors.'],
-            ['slug' => 'translations', 'title' => 'Translations', 'description' => 'English, Polish, and translated service descriptions.'],
+            ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Variants, positions, colors, and upcoming light/dark/auto modes.'],
+            ['slug' => 'translations', 'title' => 'Translations', 'description' => 'English/Polish plus upcoming bundled languages and custom locale fallback.'],
             ['slug' => 'accessibility', 'title' => 'Accessibility', 'description' => 'Keyboard, focus, contrast, reflow, and integration responsibilities.'],
         ],
         'Developer API' => [
             ['slug' => 'blade-directives', 'title' => 'Blade directives', 'description' => 'Cache-safe script blocks with ordering and duplicate prevention.'],
             ['slug' => 'browser-api', 'title' => 'Browser API', 'description' => 'Choose, inspect, refresh, and react to browser preferences.'],
             ['slug' => 'php-api', 'title' => 'PHP API', 'description' => 'Read and persist consent from Laravel controllers and services.'],
-            ['slug' => 'configuration', 'title' => 'Configuration reference', 'description' => 'Every implemented option, default, and validation rule.'],
+            ['slug' => 'configuration', 'title' => 'Configuration reference', 'description' => 'Stable options and unreleased additions, with defaults and validation.'],
         ],
         'Google integrations' => [
             ['slug' => 'google-consent-mode', 'title' => 'Google Consent Mode v2', 'description' => 'Basic and Advanced modes, denied defaults, signal mapping, and withdrawal.'],

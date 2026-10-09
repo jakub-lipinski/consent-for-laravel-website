@@ -73,6 +73,8 @@ A script timeout fails its block. A cleanup failure or timeout requires safe rel
 
 ## UI settings
 
+The following table describes stable **v1.1.3**. Additional languages, custom locale fallback, and the two new theme keys are listed separately under [unreleased UI configuration](#unreleased-ui-configuration). Do not add unreleased keys to a stable installation: unknown UI options are rejected.
+
 | Key | Default | Accepted values |
 | --- | --- | --- |
 | `ui.variant` | `'standard'` | `standard` or `compact`; applies to banner and preferences dialog |
@@ -131,3 +133,35 @@ Reserved IDs: `meta-pixel`, `microsoft-clarity`, and, with advertising enabled, 
 | `x-consent::banner` | `nonce`, `locale`, `variant`, `position`, `policyUrl`, `styleSrc`, `scriptSrc` |
 
 Use kebab-case attributes in Blade, such as `policy-url`, `style-src`, and `script-src`. Bind values with `:` when they come from PHP expressions. Published asset destinations are in [CSP and caching](/docs/csp-and-caching).
+
+## Unreleased UI configuration
+
+These additions are implemented for the next package release but are **not available in v1.1.3 on Packagist**. The published config is also organized into Laravel-style sections with supported values and commented color/service examples; all existing defaults are preserved.
+
+| Key | Default | Upcoming behavior |
+| --- | --- | --- |
+| `ui.theme` | `'light'` | `light`, `dark`, or `auto`; config only, no visitor-facing theme button |
+| `ui.dark_colors` | `[]` | Independent overrides using the same eight keys and HEX format as `ui.colors` |
+| `ui.locale` | `null` | Component > config > app locale; bundled/custom tags with parent-language and English fallback |
+| `ui.validate_contrast` | `false` | Checks both palettes when true, with messages identifying light/dark |
+
+The complete upcoming UI defaults are:
+
+```php
+'ui' => [
+    'variant' => 'standard',
+    'position' => 'bottom-left',
+    'theme' => 'light',
+    'locale' => null,
+    'policy_url' => null,
+    'validate_contrast' => false,
+    'colors' => [],
+    'dark_colors' => [],
+],
+```
+
+Both color arrays remain empty by default. Omitted keys inherit the appropriate palette; partial arrays work and invalid entries fall back without entering CSS. Old published configs still resolve to light. Invalid theme values are configuration errors; contrast diagnostics and invalid colors remain non-blocking.
+
+Theme warnings use one logging attempt per identical pair of resolved palettes and issue list every **72 hours**, through the app's default cache. Changing the mode, variant, locale, position, or policy link does not repeat a warning. New palettes/issues can be reported immediately. Cache/logger failures preserve rendering; persistent suppression requires a cache supporting atomic `add`. See [warning suppression](/docs/banner-and-theme#unreleased-warning-suppression).
+
+These settings are compatible with Laravel configuration caching and do not change consent fingerprints or decision expiry. See [theme modes](/docs/banner-and-theme#unreleased-light-dark-and-auto), [custom locales](/docs/translations#unreleased-languages-and-custom-locales), and [the unreleased upgrade steps](/docs/upgrading#unreleased-ui-update).
