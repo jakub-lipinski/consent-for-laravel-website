@@ -11,7 +11,7 @@ composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
-The stable package installs directly from Packagist with Laravel provider auto-discovery. No custom Composer repository or minimum-stability change is needed. Requirements are PHP 8.3+ and Laravel 12 or 13; the package requires no npm build, database, or migrations.
+The stable package installs directly from Packagist with Laravel provider auto-discovery. No custom Composer repository or minimum-stability change is needed. Requirements are PHP 8.3+ and Laravel 12 or 13; the default flow requires no npm build, database, or migrations. Optional decision audit history uses owner-installed database tables and a same-origin endpoint.
 
 Next, edit `config/consent.php`, enable the presets you use and supply their IDs, then add `<x-consent::head />` in your layout's head and `<x-consent::banner />` in its body. All presets start disabled; setting an ID in `.env` alone does not enable one. For your own scripts, register a service and gate its script with `@consent` instead. Follow the [quick start](resources/markdown/docs/quick-start.md) for complete examples, a policy link, and verification.
 
@@ -19,9 +19,9 @@ Use `php artisan config:clear` while developing after changes to cached configur
 
 ## Current scope
 
-Documentation covers `v1.1.3`: service categories, versioned preferences, inert Blade script blocks, the browser runtime, withdrawal, matching Standard/Compact banner and preferences variants, optional non-blocking contrast diagnostics, safe color-format fallbacks, configuration, English/Polish translations, Google Consent Mode v2, GA4/Ads, Meta Pixel, Microsoft Clarity, and integration responsibilities.
+Documentation covers `v1.3.0`: optional decision audit history and signed notices, seven languages and custom locale fallback, light/dark/auto themes, 72-hour diagnostic suppression, service categories, versioned preferences, browser script gating, withdrawal, Standard/Compact interfaces, configuration, and Google/Meta/Clarity presets. The upgrade guide covers config, views, assets, and migration requirements for earlier stable releases.
 
-The landing page includes an interactive preview of the package interface. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website's own GA4 preset uses the real installed package in Basic mode and loads only after analytics permission. `CONSENT_GA4_ID` overrides the public measurement ID configured for the official site. The website itself is in English; the package interface supports English and Polish.
+The landing page includes an interactive preview of the package interface. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website's own GA4 preset uses the real installed package in Basic mode and loads only after analytics permission. `CONSENT_GA4_ID` overrides the public measurement ID configured for the official site. The website itself is in English; the package interface supports seven bundled languages and custom dictionaries. The website keeps its own audit logging disabled; no audit tables or identity cookie are introduced for visitors.
 
 ## Local development
 
@@ -44,7 +44,7 @@ Herd serves the application. Run `npm run dev` when actively editing frontend as
 - `resources/markdown/docs`: documentation source files.
 - `resources/views`: landing page, shared shell, documentation layout, and accessibility statement.
 - `resources/css/app.css` and `resources/js/app.js`: responsive visual system and progressive enhancement.
-- `resources/css/consent-preview.css`: unmodified package CSS matching the installed `v1.1.3` release, rendered inside a Shadow DOM so Tailwind and website typography cannot override it.
+- `resources/css/consent-preview.css`: unmodified package CSS matching the installed `v1.3.0` release, rendered inside a Shadow DOM so Tailwind and website typography cannot override it.
 - `resources/css/preview-frame.css`: isolates inherited website styles and contains banner placement in the illustrated app. The native preferences dialog retains the package geometry, colors, typography, hover, and focus styles.
 - `public/assets`: original line-art brand assets, illustration, favicon, and social image.
 
@@ -62,7 +62,7 @@ Feature coverage checks published chapters, search data, internal documentation 
 
 ## Production
 
-Set the application's URL and normal Laravel production environment settings. Build Vite assets during deployment, optimize Laravel caches, and point the web server at `public`. The site needs no database-backed product feature, account, consent service, or third-party font request. Use the appropriate production session/cache driver for your hosting environment.
+Set the application's URL and normal Laravel production environment settings. Build Vite assets during deployment, optimize Laravel caches, and point the web server at `public`. The site keeps optional audit logging disabled and adds no account, audit tables, or third-party font request. Use the appropriate production session/cache driver for your hosting environment.
 
 Package installation instructions use the stable release published on Packagist and the same Composer command throughout the site. For a new release, synchronize `config/site.php`, the installed Composer version, README, Introduction, Installation, Included features, upgrade instructions, and verification evidence. Review every chapter against the tagged source and check published package metadata before documenting new options. Keep earlier versions explicitly scoped to upgrade history or dated verification results.
 
@@ -71,3 +71,5 @@ The interface preview switches Standard and Compact together with all three posi
 Preview controls sit above the illustrated app. Standard/Compact remains available at every width; the position selector is hidden at the package's mobile breakpoint (35rem), where the banner fills the available width. The preview uses the package's default colors, close/launcher SVG geometry, English copy, and four built-in service descriptions.
 
 When updating the package release, copy `resources/css/consent.css` from that tagged source verbatim into `resources/css/consent-preview.css` and update the release fingerprint test. Keep containment rules in `preview-frame.css`; do not modify the package stylesheet to match the website. Recheck both variants, native preferences, hover/focus, and mobile layouts against a disposable app rendering the released package.
+
+The v1.3.0 audit chapter documents optional enablement, all config keys, the two related tables, custom/localized/cached notices, signing-key rotation, receipt-gated grants, immediate refusal, browser identity, pruning, and delivery limitations. Search/sidebar navigation includes this chapter; the landing links to it and to the upgrade sequence. The installed package and lock file match the documented release.

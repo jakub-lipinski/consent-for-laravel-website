@@ -3,10 +3,68 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require jakub-lipinski/consent-for-laravel
+composer require "jakub-lipinski/consent-for-laravel:^1.3.0"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Decision audit log update
+
+Version **1.3.0** adds optional database decision history. **Existing configurations keep auditing disabled**, require no audit migration, and preserve cookie schema 1, unchanged service fingerprints, and original choice expiry. See [the v1.3.0 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.3.0).
+
+```bash
+composer require "jakub-lipinski/consent-for-laravel:^1.3.0"
+php artisan view:clear
+```
+
+Commit the application's Composer files and deploy with `composer install`. Preserve services, presets, IDs, cookie scopes, policy version, colors, and custom wording.
+
+For audit history, merge this new top-level section into the published `config/consent.php`:
+
+```php
+'audit' => [
+    'enabled' => false,
+    'connection' => null,
+    'decisions_table' => 'consent_decisions',
+    'notices_table' => 'consent_notices',
+    'path' => '/consent/decisions',
+    'retention_days' => 180,
+    'timeout_ms' => 5000,
+],
+```
+
+1. Select the database connection and distinct table names before migrating. Keep them stable afterward. Review [validation and defaults](/docs/configuration#decision-audit-settings).
+2. Publish and run the optional migration while `audit.enabled` is still false:
+
+```bash
+php artisan vendor:publish --tag=consent-audit-migrations
+php artisan migrate
+```
+
+3. Merge the bundled notice capture block and nonce-protected `data-consent-notice` JSON into any customized published banner view. The capture block must include the actual banner/dialog text. Preserve control bindings and nonce handling. Missing or duplicate notice blocks prevent new grants when auditing is enabled.
+4. Refresh/cache-bust published `consent.js`. This release does not change `banner.js` or `consent.css`; update those too when skipping earlier versions that changed them. Inline components use the installed source directly.
+5. Set `audit.enabled` to true. Rebuild configuration and route caches, clear compiled views and stale page HTML, and restart long-running workers. The configured endpoint is registered at application boot. Ensure trusted proxies report the correct origin and CSP allows `connect-src 'self'`.
+6. Keep a valid `APP_KEY`; `app.previous_keys` can verify notices/identity cookies signed with earlier keys. After key rotation, refresh cached HTML deliberately. Do not add a CSRF exemption or disable session-cookie encryption for the bundled stateless endpoint.
+7. Choose a separate audit retention period and schedule `consent:audit-prune` in your application. Null retention disables pruning; 180 days is an editable default, not a legally prescribed duration.
+8. Verify acceptance, refusal, partial changes, withdrawal, cached/custom/localized notices, unavailable storage, and retries. New grants wait for a database receipt. Refusal and withdrawal apply locally immediately, including when logging fails.
+
+Existing valid preferences are not retroactively logged or invalidated when auditing is enabled. If your deployment requires a new explicit decision, increment the application-owned policy version and invalidate stale HTML. Text-only changes create a new snapshot on the next explicit decision without resetting existing choice expiry.
+
+See [the complete audit guide](/docs/audit-log) for tables, identity, signatures, retention, custom server interfaces, and delivery limitations. If updating from 1.1.x or earlier, also apply the relevant steps below; the final view/assets must come from the installed 1.3.0 package.
+
+## Earlier releases at a glance
+
+Apply every relevant row between your installed version and 1.3.0. Preserve application-owned settings rather than force-publishing the whole config.
+
+| Release | Configuration changes | Published resources / migration |
+| --- | --- | --- |
+| 1.3.0 | New optional `audit` section; absent keeps it off | Banner notice capture plus `consent.js`; audit tables only when enabled |
+| 1.2.0 | `ui.theme`, independent `ui.dark_colors`; absent keeps light | Banner theme attributes/overrides, CSS, custom dictionaries; no consent-cookie migration |
+| 1.1.3 | `ui.validate_contrast` defaults to false; absent remains valid | PHP diagnostics update; no browser asset change from 1.1.2 |
+| 1.1.2 | No new settings | Both `consent.js` and `banner.js` for withdrawal, ordering, and timeout recovery |
+| 1.1.1 | No new settings | Banner service disclosures/chevrons and matching CSS |
+| 1.1.0 | `ui.variant`; absent keeps Standard | Banner variant prop/attribute and matching CSS |
+| 1.0.0 | Merge stable preset settings and purposes; reject cookie-name collisions | Views, assets, preset translations; unchanged fingerprints and schema 1 remain compatible |
 
 ## Language and theme update
 
@@ -92,7 +150,7 @@ php artisan config:cache
 php artisan view:clear
 ```
 
-Restart long-running workers. Inline default components use the installed assets directly. Test pending, refusal, acceptance, expiry, withdrawal, CSP, keyboard, and mobile behavior in the host application.
+Restart long-running workers. Rebuild route caches too when enabling auditing or changing its endpoint. Inline default components use the installed assets directly. Test pending, refusal, acceptance, expiry, withdrawal, CSP, keyboard, and mobile behavior in the host application; with auditing enabled, also verify receipts, signed notices, retries, and storage failure.
 
 ## Provider configuration
 

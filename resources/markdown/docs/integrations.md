@@ -44,3 +44,9 @@ Use actual provider IDs, remove duplicate snippets, describe your processing acc
 Both variants support configuration-only light/dark/auto modes, independent light and dark palettes, and 72-hour diagnostic suppression. Theme and language choices preserve saved decisions and the existing tracker lifecycle.
 
 See [the upgrade guidance](/docs/upgrading#language-and-theme-update), [theme modes](/docs/banner-and-theme#light-dark-and-auto), and [custom locales](/docs/translations#languages-and-custom-locales). The existing presets and browser consent lifecycle keep their behavior.
+
+## Optional decision audit log
+
+Since **v1.3.0**, enable database history of explicit acceptance, refusal, saved preferences, and withdrawal. Decisions reference immutable signed snapshots of the actual banner/dialog, including custom text, translations, and cached pages. A separate HttpOnly cookie groups a pseudonymous browser history; no IP address, user-agent, email, or account ID is stored.
+
+The feature is disabled by default. Publish/run its optional migration before enabling it. New optional grants require a committed receipt, while refusal and withdrawal remain immediate locally. Retention and pruning are separately configurable. Read [the audit guide](/docs/audit-log), [configuration](/docs/configuration#decision-audit-settings), and [upgrade steps](/docs/upgrading#decision-audit-log-update).

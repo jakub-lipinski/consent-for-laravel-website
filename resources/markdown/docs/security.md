@@ -1,6 +1,6 @@
 ## Preference state is not authorization
 
-The preference cookie is intentionally readable by JavaScript, unsigned, and user-editable. It represents browser preferences. Do not use it to grant protected access, identify a visitor, authorize a purchase, or prove who made a decision. The package has no database audit trail.
+The preference cookie is intentionally readable by JavaScript, unsigned, and user-editable. It represents browser preferences. Do not use it to grant protected access, identify a visitor, authorize a purchase, or prove who made a decision. Optional [audit history](/docs/audit-log) records explicit submitted choices separately; the preference cookie remains untrusted.
 
 Malformed or outdated values deny optional processing. This fail-closed behavior does not turn the cookie into a trusted security credential.
 
@@ -33,3 +33,11 @@ Review [the package repository](https://github.com/jakub-lipinski/consent-for-la
 ## Google modes and event data
 
 Basic makes no Google requests before a valid category grant. Explicit Advanced presets can send cookieless pings before a choice and after refusal, so evaluate and disclose that processing. Consent Mode supplies vendor signals, not legal certification. Avoid personal data in ordinary analytics parameters; enhanced conversions and user-provided data are outside the package. The event helper guards destinations and permissions but cannot intercept tracking installed independently. See [Google Consent Mode](/docs/google-consent-mode).
+
+## Audit security boundaries
+
+The optional bundled endpoint validates the exact request origin, compatible Fetch Metadata, JSON content type, full category choices, event UUID, and an HMAC-signed notice. It registers only when auditing is enabled, uses no web/session middleware, and requires no CSRF exemption. Custom choice endpoints still need their own authentication/CSRF policy. Configure trusted proxies and external rate limits where appropriate.
+
+Notice signatures verify server-prepared content, not the visitor's identity, legal validity, or later administrator edits to database rows. Cached HTML contains no visitor identifier or session/CSRF token. Signing keys must contain at least 32 decoded bytes; keep prior keys through `app.previous_keys` only as required for deliberately retained cached notices.
+
+The separate signed identity cookie is HttpOnly and protected from cleanup. Audit tables contain a pseudonymous browser UUID rather than an account identity, IP address, or user-agent. Keep sensitive or visitor-specific content out of captured notice markup. Protect database access, exports, backups, and retention. Treat stored HTML as evidence data and never display it as trusted executable HTML in an admin interface. See [audit requests and identity](/docs/audit-log#requests-and-browser-identity).

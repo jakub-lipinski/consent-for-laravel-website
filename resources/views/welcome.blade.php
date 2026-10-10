@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title', 'Consent for Laravel - Less cookie setup. More building.')
-@section('description', 'Install Consent for Laravel from Packagist with Composer, add two Blade components, and enable your tracking presets. A configurable banner, preferences, and consent-aware loading for GA4, Google Ads, Meta Pixel, and Clarity.')
+@section('description', 'Install Consent for Laravel from Packagist with Composer, add two Blade components, and enable your tracking presets. A configurable banner, optional decision audit history, and consent-aware loading for GA4, Google Ads, Meta Pixel, and Clarity.')
 @section('body')
 <main id="main-content" tabindex="-1">
     <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}" target="_blank" rel="noopener noreferrer">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
@@ -47,7 +47,7 @@
                 <span class="eyebrow">connect your tracking tools with the built-in presets</span>
                 <h2 id="developer-title">Your tracking IDs.<br><span class="text-accent">Consent handled.</span></h2>
                 <p>Enable the presets you need, add your GA4, Google Ads, Meta Pixel or Microsoft Clarity IDs, and you're ready to go.</p>
-                <p>Consent for Laravel takes care of loading each tool according to your visitors' choices, keeping consent signals in sync and handling withdrawal. No custom tracking setup required.</p>
+                <p>Consent for Laravel takes care of loading each tool according to your visitors' choices, keeping consent signals in sync and handling withdrawal. Your app supplies actual events, provider account settings, and the policy information.</p>
                 <ul class="integration-labels" aria-label="Built-in integrations"><li>GA4</li><li>Google Ads</li><li>Meta Pixel</li><li>Microsoft Clarity</li></ul>
                 <a class="button button-accent" href="{{ route('docs.show', 'integrations') }}">Explore integrations <x-icon name="arrow-right" /></a>
             </div>
@@ -103,15 +103,38 @@ CONSENT_CLARITY_ID=abc123def4</code></pre>
             </div>
         </div>
     </section>
-    <section class="numbered-section guide-section" aria-labelledby="guides-title"><div class="section-rail"><span>05 / Getting started</span><span>A clear path from install to launch</span></div><div class="guide-heading"><h2 id="guides-title">Make consent part<br><span class="text-accent">of your next app</span></h2><a class="text-link" href="{{ route('docs.index') }}">Browse the docs <x-icon name="arrow-right" /></a></div><div class="guide-grid">@foreach([['01', 'quick-start', 'Install and add the UI', 'Install with Composer, publish the config, and add the two Blade components. Follow the quick start for your first working consent flow.'], ['02', 'banner-and-theme', 'Match your design', 'Choose a matching banner and preferences variant, set the position and colors, and link your privacy policy. Keep the consent interface consistent with your app.'], ['03', 'withdrawal', 'Check withdrawal', 'Review how active scripts stop and declared cookies are cleared, then check the behavior with your actual tracking setup.']] as [$number, $slug, $title, $description])<a class="guide-card" href="{{ route('docs.show', $slug) }}"><span class="eyebrow">Guide / {{ $number }}</span><h3>{{ $title }}</h3><p>{{ $description }}</p><x-icon name="arrow-up" /></a>@endforeach</div></section>
+    <section id="audit" class="numbered-section" aria-labelledby="audit-title">
+        <div class="section-rail"><span>05 / Decision history</span><span>Optional in v1.3.0</span></div>
+        <div class="section-intro"><h2 id="audit-title">Keep the choice.<br><span class="text-accent">Keep the notice.</span></h2><p>Enable database history of explicit acceptance, refusal, preference changes, and withdrawal. Each decision references an immutable copy of the banner and preferences text prepared for that page, including your own wording and translations.</p></div>
+        <div class="release-grid">
+            <div class="release-current">
+                <span class="eyebrow">Included / Enable when needed</span>
+                <h3>Optional audit history</h3>
+                <ul>
+                    <li><x-icon name="arrow-down-right" />Server timestamps and category choices</li>
+                    <li><x-icon name="arrow-down-right" />Original notices from translated or cached pages</li>
+                    <li><x-icon name="arrow-down-right" />Configurable retention and explicit pruning</li>
+                </ul>
+                <a href="{{ route('docs.show', 'audit-log') }}">Set up decision logging <x-icon name="arrow-up" /></a>
+            </div>
+            <div class="release-planned">
+                <div><strong>Off until you enable it</strong><span>Publish and run the optional migration, then turn on audit logging in your configuration. The default flow needs no database.</span></div>
+                <div><strong>A browser history identifier</strong><span>A separate HttpOnly cookie groups decisions. The audit tables store no IP address, user-agent, email, or account ID.</span></div>
+                <div><strong>Refusal stays immediate</strong><span>New optional grants wait for a database receipt. Refusal and withdrawal take effect locally even if logging fails.</span></div>
+                <a href="{{ route('docs.show', 'upgrading') }}#decision-audit-log-update">Read the v1.3.0 upgrade steps <x-icon name="arrow-up" /></a>
+            </div>
+        </div>
+    </section>
+    <section class="numbered-section guide-section" aria-labelledby="guides-title"><div class="section-rail"><span>06 / Getting started</span><span>A clear path from install to launch</span></div><div class="guide-heading"><h2 id="guides-title">Make consent part<br><span class="text-accent">of your next app</span></h2><a class="text-link" href="{{ route('docs.index') }}">Browse the docs <x-icon name="arrow-right" /></a></div><div class="guide-grid">@foreach([['01', 'quick-start', 'Install and add the UI', 'Install with Composer, publish the config, and add the two Blade components. Follow the quick start for your first working consent flow.'], ['02', 'banner-and-theme', 'Match your design', 'Choose a matching banner and preferences variant, set the position and colors, and link your privacy policy. Keep the consent interface consistent with your app.'], ['03', 'withdrawal', 'Check withdrawal', 'Review how active scripts stop and declared cookies are cleared, then check the behavior with your actual tracking setup.']] as [$number, $slug, $title, $description])<a class="guide-card" href="{{ route('docs.show', $slug) }}"><span class="eyebrow">Guide / {{ $number }}</span><h3>{{ $title }}</h3><p>{{ $description }}</p><x-icon name="arrow-up" /></a>@endforeach</div></section>
     <section class="faq-section" aria-labelledby="faq-title">
         <div><span class="eyebrow">Questions before you install</span><h2 id="faq-title">Before your<br> <span class="text-accent">first install</span></h2></div>
         <div class="faq-list">
             <details><summary>Can I install it from Packagist?<x-icon name="plus" /></summary><p>Yes. The stable package is available on <a href="{{ config('site.packagist') }}" target="_blank" rel="noopener noreferrer">Packagist</a>. Run <code>composer require {{ config('site.package') }}</code> in your Laravel app, then publish <code>consent-config</code>. Laravel discovers the provider automatically. Follow the <a href="{{ route('docs.show', 'quick-start') }}">quick start</a> to enable your integration and add the interface.</p></details>
-            <details><summary>Will it fit my Laravel project?<x-icon name="plus" /></summary><p>Consent supports PHP 8.3+ and Laravel 12-13. It runs in your app without Tailwind, Alpine, Livewire, a database, or an npm build. Start with the <a href="{{ route('docs.show', 'installation') }}">installation guide</a>.</p></details>
+            <details><summary>Will it fit my Laravel project?<x-icon name="plus" /></summary><p>Consent supports PHP 8.3+ and Laravel 12-13. It runs without a frontend framework or npm build. The default consent flow needs no database; optional decision logging uses your application database. Start with the <a href="{{ route('docs.show', 'installation') }}">installation guide</a>.</p></details>
             <details><summary>Is my GA4 ID all I need?<x-icon name="plus" /></summary><p>Publish the config, set <code>presets.ga4.enabled</code> to <code>true</code>, and set <code>CONSENT_GA4_ID</code>. An ID in <code>.env</code> alone does not enable tracking. With the head and banner components in your layout, the preset registers GA4 and handles its consent checks and tag loading. Remove any old standalone GA4 snippet and refresh cached configuration. See the <a href="{{ route('docs.show', 'google-presets') }}">GA4 setup</a>.</p></details>
             <details><summary>Can I use it with my own scripts?<x-icon name="plus" /></summary><p>Yes. Register a service with its category and purpose, then wrap its script in the <a href="{{ route('docs.show', 'blade-directives') }}">consent Blade directive</a>. The script waits for the matching consent, including on cached pages. Scripts outside this flow remain your responsibility.</p></details>
             <details><summary>What happens when someone changes their mind?<x-icon name="plus" /></summary><p>Visitors can reopen preferences and update or withdraw their choice. The package saves the new state and clears declared first-party cookies. Withdrawing consent from an active built-in tracker reloads the page to stop it. See <a href="{{ route('docs.show', 'withdrawal') }}">withdrawal and cleanup</a> for custom scripts and cookie scopes.</p></details>
+            <details><summary>Can I keep a history of decisions?<x-icon name="plus" /></summary><p>Yes. Enable optional audit logging to store explicit choices and their original banner/preferences text, including translations and custom wording. Publish and run its migration before enabling it. See <a href="{{ route('docs.show', 'audit-log') }}">decision audit logging</a> for retention, browser identity, caching, and delivery limitations.</p></details>
             <details><summary>Does it make my site GDPR compliant?<x-icon name="plus" /></summary><p>No package can guarantee that. Consent provides the choices, script controls, and withdrawal mechanism. You still need accurate service descriptions, privacy information, and a tracking setup that matches your site's requirements. See <a href="{{ route('docs.show', 'security') }}">security and privacy</a>.</p></details>
             <details><summary>Do I need a hosted consent platform?<x-icon name="plus" /></summary><p>No. Consent is an open-source, MIT-licensed Composer package. The interface and configuration live in your Laravel app, with no separate consent dashboard to manage.</p></details>
         </div>

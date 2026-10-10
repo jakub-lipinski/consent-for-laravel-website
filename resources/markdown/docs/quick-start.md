@@ -57,10 +57,12 @@ Each component renders once per response. JavaScript and CSS are embedded by def
 'ui' => [
     'variant' => 'standard', // standard or compact; banner and preferences
     'position' => 'bottom-left',
+    'theme' => 'light',
     'locale' => null,
     'policy_url' => '/cookies',
     'validate_contrast' => false,
     'colors' => [],
+    'dark_colors' => [],
 ],
 ```
 
@@ -93,6 +95,12 @@ During production deployment, run `php artisan config:cache` after setting envir
 5. Check keyboard focus, mobile layout, the policy link, and your custom preferences button if present.
 
 With all presets disabled and no optional custom service, only the preferences launcher appears; that is the expected empty configuration. For a missing banner, stale settings, or provider errors, see [troubleshooting](/docs/troubleshooting).
+
+## Optional: record explicit decisions
+
+Auditing is off by default. To retain decision history and the exact rendered notice, follow [audit enablement](/docs/audit-log#enable): select connection/table names, publish/run its migration, enable `audit.enabled`, and rebuild configuration/route caches. Existing custom views/assets must first receive [the audit update](/docs/upgrading#decision-audit-log-update).
+
+With auditing enabled, repeat the checks above and confirm a committed receipt before new analytics activation. Simulate a failed endpoint: acceptance must stay blocked, while refusal/withdrawal must apply locally immediately. Check signed notices with your custom texts/languages and schedule audit pruning independently of preference expiry.
 
 ## Alternative: your own script
 

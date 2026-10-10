@@ -16,6 +16,18 @@ return [
         'same_site' => 'lax',
     ],
 
+    // This website keeps database decision history disabled.
+    // See /docs/audit-log for optional migration and enablement in your app.
+    'audit' => [
+        'enabled' => false,
+        'connection' => null,
+        'decisions_table' => 'consent_decisions',
+        'notices_table' => 'consent_notices',
+        'path' => '/consent/decisions',
+        'retention_days' => 180,
+        'timeout_ms' => 5000,
+    ],
+
     'loader' => [
         'script_timeout_ms' => 15000,
         'cleanup_timeout_ms' => 3000,
@@ -25,6 +37,7 @@ return [
         // Applies to both the banner and the preferences dialog.
         'variant' => 'compact', // standard or compact
         'position' => 'bottom-right',
+        'theme' => 'light',
         // null uses the application's locale, with English as the fallback.
         'locale' => null,
         'policy_url' => null,
@@ -35,6 +48,7 @@ return [
             'accent' => '#315fe9',
             'focus' => '#315fe9',
         ],
+        'dark_colors' => [],
     ],
 
     // null enables the bridge automatically when a Google preset is enabled.

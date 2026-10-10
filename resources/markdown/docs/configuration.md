@@ -6,7 +6,7 @@ php artisan vendor:publish --tag=consent-config
 
 Install the package from [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel) first; see [installation](/docs/installation). The command above copies its default configuration into `config/consent.php`. All settings live under Laravel's `consent` configuration key.
 
-Edit the existing entries in that file. The examples in these guides are excerpts, so keep unrelated settings and other presets rather than replacing the entire returned array. Configuration must be serializable: use arrays and scalar values, with `env()` calls only inside configuration files. Partial cookie, loader, and UI arrays retain defaults for omitted settings.
+Edit the existing entries in that file. The examples in these guides are excerpts, so keep unrelated settings and other presets rather than replacing the entire returned array. Configuration must be serializable: use arrays and scalar values, with `env()` calls only inside configuration files. Partial cookie, audit, loader, and UI arrays retain defaults for omitted settings.
 
 ## Choose an integration
 
@@ -61,6 +61,26 @@ Increment the policy version when purposes or policy change outside the register
 The cookie name must start with a letter, use only letters, digits, dots, underscores, or hyphens, and be at most 64 characters. Paths must start with `/` and contain no whitespace, semicolon, or control characters. Domains must be valid cookie domains of at most 254 characters, optionally starting with a dot. `secure` accepts only `null` or an actual boolean. Unknown cookie, loader, and UI options are rejected. Session/CSRF cookie-name collisions and names starting with `remember_` are rejected. The provider excludes only this preference cookie from encryption. `HttpOnly` is always false; it is not a configurable authorization cookie.
 
 For proxies, old scopes, expiry, and storage limitations, read [persistence](/docs/persistence).
+
+## Decision audit settings
+
+Available since **v1.3.0**. Auditing is optional and disabled by default. The new section is independent of cookie persistence:
+
+| Key | Default | Validation / behavior |
+| --- | --- | --- |
+| `audit.enabled` | `false` | Actual boolean; registers the JSON POST route when enabled at application boot |
+| `audit.connection` | `null` | Default database connection, or a non-blank configured connection name |
+| `audit.decisions_table` | `'consent_decisions'` | SQL identifier starting with a letter; letters, digits, underscores; at most 40 characters |
+| `audit.notices_table` | `'consent_notices'` | Same rules; must differ from `decisions_table` |
+| `audit.path` | `'/consent/decisions'` | Absolute path of letter/digit/underscore/hyphen segments; no parameters, query, or trailing slash |
+| `audit.retention_days` | `180` | Integer from 1 to 36500, or `null` to disable pruning; independent of preference retention |
+| `audit.timeout_ms` | `5000` | Integer from 100 to 30000 milliseconds per attempt; one retry for transient network/server errors |
+
+Unknown audit keys, malformed arrays, and invalid values are rejected. Select connection/table names before publishing and running `consent-audit-migrations`, then enable auditing and rebuild config/route caches. The application signing key must decode to at least 32 bytes; `app.previous_keys` can retain earlier signing keys. CSP needs `connect-src 'self'`.
+
+The separate signed, HttpOnly identity cookie is named `{cookie.name}_audit`, uses the audit endpoint as its path, remains host-only, and inherits preference retention, secure, and SameSite settings. Its name is not separately configurable and must not collide with the application's session cookie. It is protected from browser cleanup.
+
+New optional grants wait for a committed database receipt; refusals and withdrawal apply locally immediately. Reads and rendering do not access audit tables. Schedule `consent:audit-prune` explicitly; the 180-day default is not a legally prescribed duration. See [installation, stored data, cache, and failures](/docs/audit-log), and [upgrade instructions](/docs/upgrading#decision-audit-log-update) for customized views/assets.
 
 ## Loader limits
 

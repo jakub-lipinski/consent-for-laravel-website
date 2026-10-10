@@ -47,3 +47,9 @@ Set `presets.ga4.send_page_view` to `false` if your router owns page-view report
 ## Meta and Clarity presets
 
 Keep one SDK owner per document. Set Meta `send_page_view` to false when the router owns page views, then call `Consent.meta.track('PageView')` once per committed navigation. Clarity's SDK handles recording/navigation; do not reinitialize it on fragments. `Consent.clarity.event()` can annotate permitted interactions. Events invoked without permission are discarded rather than replayed on another page. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).
+
+## Audit notice ownership
+
+With auditing enabled, keep one persistent banner and one signed `data-consent-notice` block for the document. Route fragments must not inject extra notices. The snapshot belongs to the server-prepared banner/dialog; client-side text mutations are not recaptured automatically.
+
+A policy/purpose change requires fresh server-rendered HTML and the correct policy version, not just a router text replacement. Preserve the original notice when submitting decisions on the current page. See [cached notices](/docs/audit-log#cache-and-signatures).

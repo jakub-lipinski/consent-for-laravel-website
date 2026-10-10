@@ -25,7 +25,7 @@ This is an illustration, not a cookie to copy. The package generates the real fi
 
 Optional processing is denied for missing, malformed, incomplete, overlong, future-dated, expired, or incompatible values. The maximum payload is 3072 UTF-8 bytes. Choices must include all five categories as booleans, with necessary allowed and unused optional categories denied.
 
-The cookie is browser-readable, unsigned, user-editable, and `HttpOnly=false`. It is a preference store, not proof of a particular person's consent or an authorization mechanism. There is no database audit trail.
+The cookie is browser-readable, unsigned, user-editable, and `HttpOnly=false`. It is a preference store, not proof of a particular person's consent or an authorization mechanism. Optional [database audit history](/docs/audit-log) is separate from this cookie.
 
 ## Versions with different jobs
 
@@ -61,3 +61,11 @@ The runtime rechecks about once per second and on focus, pageshow, and visibilit
 ## Google configuration changes
 
 Enabled Google IDs, Basic/Advanced mode, automatic page-view configuration, canonical preset purposes, and cleanup rules contribute to the active-service fingerprint. Changing them makes old decisions pending. Disabled presets and an inactive bridge preserve existing fingerprints. The preference cookie remains schema version 1.
+
+## Optional audit history
+
+With `audit.enabled`, explicit browser choices are also submitted to the audit endpoint. New optional grants require a committed receipt; refusal and withdrawal take effect locally immediately. Cookie reads, expiry, cross-tab refresh, and manual cookie edits do not append history.
+
+The audit endpoint issues a separate signed HttpOnly `{preference cookie name}_audit` cookie, host-only and scoped to its own path. It groups browser decisions while available and does not authenticate a person. Clearing it or using another device can split the history; there is no fingerprint-based reconnection.
+
+Preference `retention_days` controls current browser choice lifetime. `audit.retention_days` controls explicit pruning of historical decisions. The stored `expires_at` uses the original signed notice's preference lifetime and the server's UTC receipt time; it is not the audit deletion deadline and can differ slightly from the browser clock. A logged submission can still be followed by a failed preference-cookie write. See [stored data](/docs/audit-log#stored-data) and [failure behavior](/docs/audit-log#failures-and-withdrawal).

@@ -39,7 +39,7 @@ Declare cookies per service:
 
 Rules run on denied startup, refusal, expiry, and invalidation as well as active withdrawal. Only matching visible first-party cookies in the configured scope can be removed. Necessary-category cookies are not removed by optional withdrawal.
 
-Preference, configured session, CSRF, and `remember_` cookies are protected. The browser cannot remove HttpOnly or third-party cookies, cookies in inaccessible scopes, vendor storage outside cookies, or remote data. Use the appropriate application or provider APIs for those.
+Preference, optional audit identity, configured session, CSRF, and `remember_` cookies are protected. The browser cannot remove HttpOnly or third-party cookies, cookies in inaccessible scopes, vendor storage outside cookies, or remote data. Use the appropriate application or provider APIs for those.
 
 ## Save failures
 
@@ -56,3 +56,9 @@ Exercise acceptance, active refusal, re-grant, another tab's change, expiry, sto
 Meta sends revoked consent before listeners/reload; Clarity sends both updated `consentv2` fields. Active preset withdrawal always reloads, including Clarity advertising withdrawal with analytics still granted or its SDK in flight. Custom `reload: false` cannot suppress it. Clarity's storage-denied SDK mode can still collect limited cookieless activity, so the package gates loading and uses a fresh document to stop active processing.
 
 Meta cleanup covers declared `_fbp`/`_fbc` scopes; Clarity covers `_clck`/`_clsk`. Scope declarations do not configure vendor cookies or remove third-party/remote data. See [Meta](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).
+
+## Audit delivery during withdrawal
+
+When auditing is enabled, explicit refusal, saved reductions, and `forget()` start a keepalive submission before cleanup can reload the page. Local denial never waits for a database receipt. A late pending grant cannot reverse a later refusal or withdrawal.
+
+The audit promise can reject while refusal remains effective. Offline state, tab closure, shared keepalive quotas, and a reload preventing a retry can leave the event unrecorded; there is no persistent queue or guaranteed final delivery. Removing browser permission remains the priority. Expiry and cross-tab observation do not create new events. See [audit failure behavior](/docs/audit-log#failures-and-withdrawal).

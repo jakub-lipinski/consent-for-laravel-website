@@ -102,7 +102,7 @@ Variant, position, colors, language, and policy links can be configured without 
 php artisan vendor:publish --tag=consent-views
 ```
 
-Published files are application-owned. Preserve the package's control bindings, labels, native dialog behavior, and focus protections. Recheck contrast, geometry, reflow, text resizing, and keyboard interaction after changes. Variant, theme, position, and UI language changes do not invalidate or extend a decision.
+Published files are application-owned. Preserve the package's control bindings, labels, native dialog behavior, and focus protections. For optional auditing, also preserve the server-side notice capture and signed `data-consent-notice` block from the bundled view; see [v1.3.0 upgrade steps](/docs/upgrading#decision-audit-log-update). Recheck contrast, geometry, reflow, text resizing, and keyboard interaction after changes. Variant, theme, position, and UI language changes do not invalidate or extend a decision.
 
 When upgrading published views, merge the `variant` prop and `data-consent-variant` root attribute along with the service disclosures and summary chevrons. Update and cache-bust published styles/scripts together with the views. See [upgrading](/docs/upgrading).
 

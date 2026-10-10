@@ -108,3 +108,26 @@ Check the installed version with `composer show jakub-lipinski/consent-for-larav
 After upgrading to theme support, compare published views/CSS, merge `data-consent-theme` and both-palette overrides, clear compiled views, and refresh config/asset caches. A valid custom language without dictionaries safely falls back to English; create `lang/vendor/consent/{locale}/messages.php` to supply wording. Malformed explicit tags and non-string messages remain configuration errors.
 
 For repeated theme warnings after installing suppression, use a persistent default cache with atomic `add`. `array` only remembers within its lifetime; cleared or evicted markers allow earlier logging. Cache/logger failure never causes a page error. See [warning suppression](/docs/banner-and-theme#warning-suppression).
+
+## Audit prevents a new grant
+
+Confirm the installed package is at least 1.3.0. Select connection/table names, publish `consent-audit-migrations`, run the migration, and only then enable `audit.enabled`. Rebuild config/route caches and restart workers. Inspect the configured POST endpoint in the Network panel and `consent:error` with code `audit`.
+
+| Response / symptom | Check |
+| --- | --- |
+| 404 | Audit disabled at boot, stale route cache, changed path, or proxy routing |
+| 403 | Exact Origin and Fetch Metadata; HTTPS scheme/host from trusted proxies |
+| 413 / oversized render | 60 KiB package request limit and stricter proxy limits; shorten excessive custom markup |
+| 415 | JSON content type; blocked or rewritten request |
+| 422 | Signed notice, application/previous keys, valid full choices, and matching action |
+| 409 | Same event UUID reused with different content or browser identity |
+| 503 | Missing tables, connection/permissions, or unavailable storage; response hides database details |
+| Timeout / no request | CSP `connect-src 'self'`, blockers, offline state, timeout setting, keepalive quota, or missing/duplicate notice blocks |
+
+Merge updated capture/notice markup into published banner views and cache-bust published `consent.js`. Refresh cached HTML after removing signing keys. Keep session and CSRF cookies encrypted; no CSRF exemption is needed for the bundled endpoint. Refusal and withdrawal still apply locally when delivery fails. See [audit installation and failures](/docs/audit-log).
+
+## Missing audit records or split history
+
+Only explicit browser acceptance, refusal, saved preferences, and withdrawal are recorded. Existing preferences, page loads, dialog opening, expiry, cross-tab checks, and cookie edits are not retroactively logged. PHP cookie helpers need [explicit server integration](/docs/php-api#explicit-server-audit-integration).
+
+Cookie deletion/blocking, different devices, simultaneous first decisions, or changed cookie/endpoint names can split a browser history. Delivery is not guaranteed offline or after reload/tab closure. Review `audit.retention_days` and the application's scheduler if older records disappear. `expires_at` describes preference validity, not the audit deletion date. See [identity](/docs/audit-log#requests-and-browser-identity) and [retention](/docs/audit-log#retention).

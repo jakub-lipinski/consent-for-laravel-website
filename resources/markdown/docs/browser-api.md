@@ -33,7 +33,15 @@ await window.Consent.refresh();
 
 Acceptance grants only used categories. Rejection creates a remembered refusal. Forgetting removes the saved decision and returns to pending. Refresh reads the cookie again and completes any resulting cleanup.
 
-Choice promises cover persistence and cleanup; they do not wait for newly allowed scripts to finish loading. `whenIdle()` awaits the package's initialization, decisions, cleanup, presets, custom scripts, and event queues. It does not await arbitrary vendor background tasks. Event helpers have an independent ordered queue: an event awaiting SDK loading cannot block saving a refusal. Gated modules may await a specific event helper, but must not await `whenIdle()` because it includes their own completion.
+Choice promises cover persistence, cleanup, and audit delivery when enabled; they do not wait for newly allowed scripts to finish loading. `whenIdle()` awaits the package's initialization, decisions, cleanup, presets, custom scripts, and event queues. It does not await arbitrary vendor background tasks. Event helpers have an independent ordered queue: an event awaiting SDK loading cannot block saving a refusal. Gated modules may await a specific event helper, but must not await `whenIdle()` because it includes their own completion.
+
+## Optional audited decisions
+
+With `audit.enabled`, `acceptAll()`, `rejectOptional()`, `choose()`, and `forget()` submit explicit events using the page's signed notice. Refresh, state reads, dialog opening, cookie expiry, and cross-tab checks do not log decisions.
+
+New optional grants wait for a committed receipt. Refusals and withdrawal update local permissions immediately; a mixed selection removes old grants immediately and waits before adding new ones. A later refusal/withdrawal supersedes a pending grant, so its delayed receipt cannot restore permission.
+
+Audit failure emits `consent:error` with code `audit` and rejects the promise. In your custom interface, show retryable feedback while preserving the local refusal; a rejected refusal promise does not mean permission remains granted. Transient delivery failures get one bounded retry with the same event UUID/body. A manual repeated choice is a new event. There is no persistent offline queue. See [audit failures and withdrawal](/docs/audit-log#failures-and-withdrawal).
 
 ## Open preferences
 

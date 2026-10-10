@@ -2,14 +2,14 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.2.0',
+    'release' => 'v1.3.0',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.2.0.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.3.0.'],
             ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install from Packagist, publish the configuration, and check Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Install with Composer, enable a preset or your own script, and add the interface.'],
         ],
@@ -34,6 +34,7 @@ return [
             ['slug' => 'microsoft-clarity', 'title' => 'Microsoft Clarity', 'description' => 'Analytics gating, Consent API v2, optional advertising, and masking.'],
         ],
         'In production' => [
+            ['slug' => 'audit-log', 'title' => 'Decision audit log', 'description' => 'Optional database history, signed notices, browser identity, failures, and retention.'],
             ['slug' => 'persistence', 'title' => 'Persistence and expiry', 'description' => 'The cookie contract, versions, retention, and invalidation.'],
             ['slug' => 'withdrawal', 'title' => 'Withdrawal and cleanup', 'description' => 'Stop processing safely and remove declared first-party cookies.'],
             ['slug' => 'csp-and-caching', 'title' => 'CSP, assets, and caching', 'description' => 'Nonces, published assets, shared HTML, and deployment caches.'],

@@ -2,7 +2,7 @@
 
 Consent for Laravel is a Composer library for explicit, service-based cookie preferences. It gives your Laravel application a configurable banner, a native preferences dialog, versioned decisions, and a browser runtime that gates declared scripts.
 
-The package is available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). It targets PHP 8.3+ and Laravel 12-13. It does not add a website, dashboard, application routes, database tables, or a frontend framework dependency.
+The package is available on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). It targets PHP 8.3+ and Laravel 12-13. The default flow uses browser preferences and needs no database or application endpoint. Optional decision auditing adds a same-origin endpoint and owner-installed database tables. No frontend framework is required.
 
 ```bash
 composer require jakub-lipinski/consent-for-laravel
@@ -16,6 +16,7 @@ Run these in your existing Laravel app. Follow [the quick start](/docs/quick-sta
 - Five standard categories: necessary, analytics, marketing, performance, and other.
 - A service registry describing the actual purposes used by your application.
 - Strict, versioned preference persistence shared by the PHP and browser APIs.
+- Optional database audit history with server timestamps and signed snapshots of the actual banner/dialog, including custom translations and cached notices.
 - Inert `@consent` script blocks with ordering, duplicate prevention, and checks before activation.
 - Safe default reload when consent is withdrawn from running code.
 - Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, safe color-format fallbacks, optional non-blocking contrast diagnostics, and seven bundled languages with custom locale fallback.
@@ -30,12 +31,18 @@ English, Polish, German, French, Italian, Spanish, and European Portuguese are i
 
 Read [theme modes](/docs/banner-and-theme#light-dark-and-auto), [custom languages](/docs/translations#languages-and-custom-locales), and [the upgrade guidance](/docs/upgrading#language-and-theme-update).
 
+## Optional decision history
+
+Version **1.3.0** adds an opt-in audit log. Explicit acceptance, refusal, preference changes, and withdrawal reference an immutable snapshot of the page's rendered notice. Records share a pseudonymous browser identifier; no IP address, user-agent, email, or account ID is stored in the audit tables.
+
+Enable it only after installing the optional migration. New grants wait for a server receipt, while refusal and withdrawal remain immediate locally. Existing choices are not retroactively logged. See [the audit guide](/docs/audit-log), [configuration](/docs/configuration#decision-audit-settings), and [upgrading](/docs/upgrading#decision-audit-log-update).
+
 ## The lifecycle
 
 1. Register your services and purposes in configuration.
 2. Render the head component, banner, and inert script blocks.
 3. Until a valid choice exists, necessary is allowed and optional categories are denied. Basic blocks Google requests; explicitly configured Advanced presets can send cookieless pings while denied.
-4. An explicit choice is saved before newly allowed scripts start.
+4. An explicit choice is saved before newly allowed scripts start. When auditing is enabled, new grants also require a committed audit receipt.
 5. Scripts run in order, once per document, with permission checked again before activation.
 6. Withdrawal cleans declared cookies and reloads by default if optional code is already active.
 

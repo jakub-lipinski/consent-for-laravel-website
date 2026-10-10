@@ -108,3 +108,9 @@ Create `lang/vendor/consent/{locale}/services.php` using the service structure s
 Display wording and locale changes preserve consent fingerprints and original decision expiry. A real purpose change still needs updated canonical metadata or `policy_version`. Vary shared HTML caches by the locale used to render the UI, including config/component overrides. The built-in layout is left-to-right; custom RTL languages also need a published view/layout adaptation and native browser verification.
 
 See [the upgrade guidance](/docs/upgrading#language-and-theme-update) for application-owned dictionaries.
+
+## Wording in audit snapshots
+
+When auditing is enabled, the snapshot captures the final rendered banner/dialog after translations, per-key fallback, escaping, and component overrides. Custom languages, partial dictionaries, and service display text are included. A wording change creates a different notice when the next explicit decision stores it; no background watcher creates a row at file-edit time.
+
+Cached HTML retains its original signed wording. Text-only edits do not invalidate or extend saved preferences; a real processing-purpose change still requires updated canonical metadata or `policy_version` and invalidation of stale HTML. Keep the capture block when editing published views. Later client-side DOM changes and external policy-page contents are not archived. See [the notice table](/docs/audit-log#consent-notices).

@@ -66,3 +66,13 @@ The `data-consent-theme` attribute and scoped CSS resolve auto in the browser, s
 Custom colors in **either** palette emit a nonce-protected inline override even when the main CSS is external. Empty palettes that resolve to defaults need no extra theme style. Deploy updated published CSS and customized banner views together; preserve their nonce and both-palette override logic. The package theme change adds no JavaScript dependency or visitor preference cookie.
 
 The 72-hour warning marker uses the app's default server cache independently of HTML caching and consent decisions. Its failure skips diagnostics without breaking the response. See [the upgrade steps](/docs/upgrading#language-and-theme-update).
+
+## Signed audit notices and cached HTML
+
+When auditing is enabled, the banner includes a nonce-bearing `data-consent-notice` JSON script with its original snapshot and HMAC signature. Rendering and preference reads never query/write audit tables, create a browser identity, or insert session/CSRF tokens. Keep this block and the capture logic when customizing published views; missing or duplicate blocks prevent new grants.
+
+Allow `connect-src 'self'` for the configured same-origin JSON endpoint. Its successful receipt is `private, no-store`; do not cache audit POST responses. Leave session/CSRF cookie encryption intact and do not exempt the endpoint from CSRF middleware: the bundled route has no web/session middleware and validates origin, Fetch Metadata, JSON, and the signature itself.
+
+Cached old pages submit the original wording even after translation/config changes. Vary HTML by locale and relevant component/config values. A valid old signature does not make obsolete processing purposes suitable for current consent: invalidate stale HTML and request a fresh decision when policy/purposes change.
+
+`APP_KEY` signs notices; `app.previous_keys` can retain old verification keys. Refresh cached HTML when rotating/removing keys or enabling auditing. Snapshot fingerprints include bundled asset contents, but external policy documents and externally served asset contents are not archived. Keep those through your own deployment process. Rebuild route caches when enabling/changing the endpoint. See [audit upgrade steps](/docs/upgrading#decision-audit-log-update).

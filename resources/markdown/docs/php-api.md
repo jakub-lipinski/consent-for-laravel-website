@@ -39,7 +39,7 @@ Only a current valid decision can be persisted. The response gets the configured
 
 ## An application-owned endpoint
 
-The package registers no routes. You may create a CSRF-protected web endpoint for your own explicit interface actions:
+With auditing disabled, the package registers no decision route. Enabling auditing registers only its JSON audit endpoint; it does not turn the PHP cookie helpers into automatic audit writers. You may create a CSRF-protected web endpoint for your own explicit interface actions:
 
 ```php
 use ConsentForLaravel\ConsentForLaravel\ConsentManager;
@@ -67,3 +67,16 @@ return $consent->forget(response()->noContent(), $request);
 ```
 
 This expires the preference cookie in its configured scope and marks the response private/no-store. The next read is pending. It does not delete vendor cookies, stop running code, or invoke vendor withdrawal APIs. A remembered refusal is usually preferable to forgetting if the visitor's intent is to reject optional processing.
+
+## Explicit server audit integration
+
+`ConsentManager::persist()` and `forget()` remain cookie helpers, even when auditing is enabled. They cannot infer what a custom server interface showed and do not create database decisions. The bundled browser runtime supplies the notice automatically; custom server flows explicitly integrate these classes:
+
+| API | Contract |
+| --- | --- |
+| `AuditNotice::seal($html, $locale, $requestedLocale, $presentation)` | Capture server-prepared UI HTML, effective/requested locales, and presentation metadata; return `{payload, signature}`, or null when auditing is disabled |
+| `AuditRecorder::record($input, $consentId = null)` | Verify/store a complete signed submission; return `{id, consent_id}` after the transaction |
+
+Both classes use the `ConsentForLaravel\ConsentForLaravel` namespace and are resolved through Laravel's container. Recorder input contains an event `id` (lowercase UUID v4), the signed `notice`, an `action` (`accept_all`, `reject_optional`, `save_preferences`, or `withdraw`), and all five boolean `choices`. Necessary stays true; unused optional categories stay false. A supplied browser history ID must be a validated UUID from your trusted integration.
+
+Keep the original server-prepared notice with the interface. Do not reconstruct historical text from current translations at submit time or sign arbitrary client-supplied markup. Reuse the event UUID only for delivery retries of the same event. Conflicting reuse throws `AuditConflict`; invalid submissions throw `InvalidArgumentException`. Custom endpoints own identity-cookie handling, CSRF, response headers, and failure handling. See [the audit guide](/docs/audit-log).

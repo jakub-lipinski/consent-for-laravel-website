@@ -24,7 +24,7 @@ Check at 320 CSS pixels, 200% text resizing, and browser zoom equivalent to 400%
 
 ## Errors and fallback
 
-Saving displays a busy state. A storage failure produces a retryable error and leaves optional processing blocked. Status and error messages have appropriate live-region semantics.
+Saving displays a busy state. A storage failure produces a retryable error and leaves optional processing blocked. When auditing is enabled, new grants wait for the server receipt; failed delivery uses the same error feedback, while refusal/withdrawal applies locally immediately. Status and error messages have appropriate live-region semantics.
 
 Without JavaScript or the core runtime, optional script templates stay inert. Without native dialog support, readable fallback information and the configured policy link remain. An already valid preference can still be honored by the core runtime even where the UI cannot mount.
 
@@ -32,7 +32,9 @@ Without JavaScript or the core runtime, optional script templates stay inert. Wi
 
 Test the actual host page, not only a standalone component: header and footer controls, other modals, sticky elements, scrolling, focus, validation messages, language, and vendor UI all affect the result. Automated axe/jsdom checks do not establish native dialog modality, visual geometry, screen-reader behavior, or every WCAG criterion.
 
-For **v1.2.0**, local `composer check` passed strict Composer validation, Pint, PHPStan level 8, **362 PHP tests / 1999 assertions**, JavaScript syntax checks, and **148 JavaScript tests** on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1. The [tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/37972130515) separately passed all eight configured PHP 8.3/8.4 and Laravel 12/13 lowest/highest combinations. See [the v1.2.0 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/releases/v1.2.0.md#verification) and [detailed interface checks](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/interface.md#verification) for evidence and limitations.
+For **v1.3.0**, local `composer check` passed **423 PHP tests / 2179 assertions** and **159 JavaScript tests**, together with strict Composer validation, Pint, and PHPStan level 8. The [tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/38006469514) passed all eight configured PHP 8.3/8.4 and Laravel 12/13 lowest/highest combinations. Eighteen disposable native Chrome scenarios checked audit receipts, seven languages in both variants, keyboard modality, nonce CSP, cached original wording, 320px reflow, 200% text sizing, cross-origin rejection, and simulated storage failure. See [v1.3.0 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.3.0/docs/releases/v1.3.0.md#verification).
+
+Earlier **v1.2.0** interface checks remain relevant to the unchanged styles and banner runtime: local `composer check` passed strict Composer validation, Pint, PHPStan level 8, **362 PHP tests / 1999 assertions**, JavaScript syntax checks, and **148 JavaScript tests** on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1. The [tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/37972130515) separately passed all eight configured PHP 8.3/8.4 and Laravel 12/13 lowest/highest combinations. See [the v1.2.0 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/releases/v1.2.0.md#verification) and [detailed interface checks](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.2.0/docs/interface.md#verification) for evidence and limitations.
 
 These results do not certify other browser engines, screen readers, OS high-contrast modes, arbitrary custom themes, or whole-site accessibility.
 
