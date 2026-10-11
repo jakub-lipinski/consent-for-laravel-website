@@ -1060,16 +1060,16 @@
         },
         {
             "name": "jakub-lipinski/consent-for-laravel",
-            "version": "v1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jakub-lipinski/consent-for-laravel.git",
-                "reference": "b7ede21e14e2164884b8e141eacca0a29f197646"
+                "reference": "ce9629a5f7192a1c294cc9f1884bc873ccd119c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jakub-lipinski/consent-for-laravel/zipball/b7ede21e14e2164884b8e141eacca0a29f197646",
-                "reference": "b7ede21e14e2164884b8e141eacca0a29f197646",
+                "url": "https://api.github.com/repos/jakub-lipinski/consent-for-laravel/zipball/ce9629a5f7192a1c294cc9f1884bc873ccd119c3",
+                "reference": "ce9629a5f7192a1c294cc9f1884bc873ccd119c3",
                 "shasum": ""
             },
             "require": {
@@ -1127,7 +1127,7 @@
                 "issues": "https://github.com/jakub-lipinski/consent-for-laravel/issues",
                 "source": "https://github.com/jakub-lipinski/consent-for-laravel"
             },
-            "time": "2026-10-11T10:39:43+00:00"
+            "time": "2026-10-11T20:27:20+00:00"
         },
         {
             "name": "laravel/framework",

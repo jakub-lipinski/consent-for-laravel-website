@@ -22,6 +22,8 @@ php artisan vendor:publish --tag=consent-translations
 
 Edit `lang/vendor/consent/{locale}/messages.php` for the language you want to customize. Preserve accurate meaning, accessible names, and equal prominence for acceptance and rejection. Longer translations need reflow and text-resizing checks.
 
+For `save_failed`, use a neutral retry message such as "Your preferences could not be saved. Please try again." A failed audit can preserve earlier valid grants while blocking a new category; avoid claiming that all optional cookies are blocked or guessing that cookie storage caused the error. Merge the current message when updating application-owned dictionaries. See [the v1.4.1 upgrade steps](/docs/upgrading#stability-and-bug-fix-update).
+
 ## Translate service descriptions
 
 Canonical registry metadata remains the source of truth and contributes to the consent fingerprint. To localize display text separately, create `lang/vendor/consent/pl/services.php`:

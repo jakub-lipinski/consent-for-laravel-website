@@ -61,7 +61,7 @@ document.addEventListener('consent:error', event => {
 
 ## A cookie cannot be saved
 
-Check browser restrictions, the configured path/domain, HTTP versus `secure: true`, and trusted proxies. A save failure keeps optional processing denied and displays a retryable UI error. Do not treat clicking accept as a successful grant if persistence failed.
+Check browser restrictions, the configured path/domain, HTTP versus `secure: true`, and trusted proxies. A cookie-write failure prevents new grants and displays a retryable UI error. The generic save alert does not identify the cause: an audit failure can preserve earlier valid permissions while preventing a new grant. Inspect `consent:error` and the Network panel to distinguish storage from audit failures. Do not treat clicking accept as a successful grant if persistence failed.
 
 Read [persistence](/docs/persistence) for temporary denial markers and the case where automatic reload is unsafe.
 

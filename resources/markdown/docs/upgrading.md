@@ -3,10 +3,20 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.4.0"
+composer require "jakub-lipinski/consent-for-laravel:^1.4.1"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Stability and bug-fix update
+
+Version **1.4.1** fixes changed script blocks, dynamic loading order, detached templates, mixed audited choices across reload, and save-error wording. **Existing APIs, configuration, cookie schema, service fingerprints, and decision lifetimes remain compatible.** No new migration or consent reset is required. See [the v1.4.1 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.4.1).
+
+1. Update the package with the command above and preserve application-owned settings. If serving published assets, refresh/cache-bust `consent.js`. Inline components use the installed sources. The banner view, `banner.js`, and CSS are unchanged from 1.4.0.
+2. Merge the updated `save_failed` text into published or custom dictionaries. The bundled English text is "Your preferences could not be saved. Please try again." An audit failure can preserve earlier grants, so custom errors must not claim that every optional cookie is blocked or assume a cookie-storage failure.
+3. Keep each discovered script block's ID, category, and content unchanged. Give a different logical block its own stable ID. Waiting blocks use current DOM order; detached templates cannot activate, and detaching an active block prevents its remaining scripts from starting. Removal cannot stop already running code. See [SPA integration](/docs/spa-integration#newly-inserted-fragments).
+4. With auditing enabled, verify a mixed change that withdraws an active category and grants another. Withdrawal stays immediate; after reload, the runtime retries the same event and waits for a matching receipt before granting. A newer choice or failed/expired recovery keeps the new grant denied. See [audit failures and withdrawal](/docs/audit-log#failures-and-withdrawal).
+5. Clear compiled views and stale HTML, rebuild relevant configuration caches, and restart persistent workers. If using Boost, refresh selected resources with `php artisan boost:update`, preserving application overrides. Verify script ordering, conflicts, removal, receipt failures, and a successful save retry in the host application.
 
 ## Matomo, TikTok, and Boost update
 
@@ -97,10 +107,11 @@ See [the complete audit guide](/docs/audit-log) for tables, identity, signatures
 
 ## Earlier releases at a glance
 
-Apply every relevant row between your installed version and 1.4.0. Preserve application-owned settings rather than force-publishing the whole config.
+Apply every relevant row between your installed version and 1.4.1. Preserve application-owned settings rather than force-publishing the whole config.
 
 | Release | Configuration changes | Published resources / migration |
 | --- | --- | --- |
+| 1.4.1 | No new settings or migration | Updated `consent.js`, `save_failed` wording, and selected Boost references; preserve block identity |
 | 1.4.0 | Optional Matomo/TikTok preset entries; absent keeps both off | `consent.js`, new purpose translations, optional Boost refresh; no new migration |
 | 1.3.0 | New optional `audit` section; absent keeps it off | Banner notice capture plus `consent.js`; audit tables only when enabled |
 | 1.2.0 | `ui.theme`, independent `ui.dark_colors`; absent keeps light | Banner theme attributes/overrides, CSS, custom dictionaries; no consent-cookie migration |

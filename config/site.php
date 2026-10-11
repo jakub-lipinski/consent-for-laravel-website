@@ -2,14 +2,14 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.4.0',
+    'release' => 'v1.4.1',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.4.0.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.4.1.'],
             ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install from Packagist, publish the configuration, and check Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Install with Composer, enable a preset or your own script, and add the interface.'],
         ],

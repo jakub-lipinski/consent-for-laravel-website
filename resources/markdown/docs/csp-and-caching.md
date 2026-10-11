@@ -31,7 +31,7 @@ php artisan vendor:publish --tag=consent-assets
 
 The head component emits configuration before the runtime. Custom colors still create a small inline theme style, so a matching style nonce is required even when the main stylesheet is external. Serve published files from a CSP-allowed origin.
 
-Republish package assets after updates, using `--force` only after accounting for any application changes. Use your deployment's cache-busting strategy. Published filenames are not automatically content-hashed. For version 1.1, deploy matching views and styles together: customized banner views need the `variant` prop and `data-consent-variant` root attribute for Compact to style both the banner and preferences.
+Republish package assets after updates, using `--force` only after accounting for any application changes. Use your deployment's cache-busting strategy. Published filenames are not automatically content-hashed. The v1.4.1 fixes require the updated `consent.js` and current `save_failed` translations in rendered HTML; see [the upgrade steps](/docs/upgrading#stability-and-bug-fix-update). For version 1.1, deploy matching views and styles together: customized banner views need the `variant` prop and `data-consent-variant` root attribute for Compact to style both the banner and preferences.
 
 ## Shared HTML
 

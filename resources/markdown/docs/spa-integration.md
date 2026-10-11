@@ -8,7 +8,9 @@ The core runtime observes DOM additions and discovers newly inserted inert conse
 @endconsent
 ```
 
-Already executed blocks do not run again when remounted. Identical IDs/contents deduplicate. A reused ID with different contents reports a conflict. External-source deduplication also applies.
+Already executed blocks do not run again when remounted. Identical IDs/categories/contents deduplicate. A reused ID with different contents reports a conflict. External-source deduplication also applies.
+
+Keep a discovered template's ID, category, and content unchanged; a mutation stops its remaining chain. Waiting connected blocks follow current DOM order, including insertions and moves during an earlier load. Removed waiting templates cannot activate. An unchanged unstarted block can be reattached or replaced by an identical template; started blocks keep their deduplication and revocation history. See [block identity and ordering](/docs/blade-directives#stable-block-ids).
 
 ## Keep one runtime owner
 

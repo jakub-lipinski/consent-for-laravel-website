@@ -15,7 +15,7 @@ composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
-The current documented release is [v1.4.0](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.4.0), including Matomo, TikTok Pixel, and Laravel Boost resources alongside optional audit history, seven languages, and light/dark/auto themes. Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
+The current documented release is [v1.4.1](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.4.1), with script-gating, loading-order, audited-reload, and save-error fixes. Matomo, TikTok Pixel, Laravel Boost resources, optional audit history, seven languages, and light/dark/auto themes remain included. Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
 
 The provider is discovered automatically. If your application disables discovery or installs with `--no-scripts`, see [provider troubleshooting](/docs/troubleshooting#configuration-cannot-be-published).
 
@@ -71,6 +71,6 @@ Restart long-running application workers after deployment. Keep configuration se
 
 ## Compatibility
 
-The [v1.4.0 tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/38132845439) passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. The release's local `composer check` passed on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1, including **531 PHP tests / 2680 assertions** and **212 JavaScript tests**. The complete PHP suite also passed locally on PHP 8.3.33 / Laravel 12.69.3. CI coverage and locally executed checks are separate; they do not cover every possible dependency version. See [the v1.4.0 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.4.0/docs/releases/v1.4.0.md#verification) for scope and limitations.
+The [v1.4.1 tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/38172381014) passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. The release's local `composer check` passed on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1, including **531 PHP tests / 2680 assertions** and **258 JavaScript tests**. Native Chrome checks covered script mutation, dynamic order, detachment, audited reloads with SQLite, and save-error retries in both variants and all seven languages at 320px and 200% text size. CI coverage and locally executed checks are separate; they do not cover every possible dependency version. See [the v1.4.1 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.4.1/docs/releases/v1.4.1.md#verification) for scope and limitations.
 
 Continue with [the quick start](/docs/quick-start).

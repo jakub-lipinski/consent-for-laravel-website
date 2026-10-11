@@ -11,6 +11,8 @@ php artisan vendor:publish --tag=consent-config
 
 Run these in your existing Laravel app. Follow [the quick start](/docs/quick-start) to enable a preset or register your own scripts, add the two Blade components, and verify the result. The [package repository](https://github.com/jakub-lipinski/consent-for-laravel) contains the source and release notes.
 
+The current release is **v1.4.1**, with fixes for script-block integrity, dynamic loading order, audited choices across reload, and save-failure messages. Existing APIs and saved decisions remain compatible. See [the upgrade steps](/docs/upgrading#stability-and-bug-fix-update).
+
 ## What ships today
 
 - Five standard categories: necessary, analytics, marketing, performance, and other.
