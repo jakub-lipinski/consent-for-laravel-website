@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title', 'Consent for Laravel - Less cookie setup. More building.')
-@section('description', 'Install Consent for Laravel from Packagist with Composer, add two Blade components, and enable your tracking presets. A configurable banner, optional decision audit history, and consent-aware loading for GA4, Google Ads, Meta Pixel, and Clarity.')
+@section('description', 'Install Consent for Laravel from Packagist with Composer, add two Blade components, and enable your tracking presets. A configurable banner, optional decision audit history, and consent-aware loading for GA4, Google Ads, Meta Pixel, Clarity, Matomo, and TikTok Pixel.')
 @section('body')
 <main id="main-content" tabindex="-1">
     <div id="top" class="section-rail"><span>Cookie consent for Laravel</span><a href="{{ config('site.repository') }}/releases/tag/{{ config('site.release') }}" target="_blank" rel="noopener noreferrer">{{ config('site.release') }} <x-icon name="arrow-up" /></a></div>
@@ -46,9 +46,9 @@
             <div>
                 <span class="eyebrow">connect your tracking tools with the built-in presets</span>
                 <h2 id="developer-title">Your tracking IDs.<br><span class="text-accent">Consent handled.</span></h2>
-                <p>Enable the presets you need, add your GA4, Google Ads, Meta Pixel or Microsoft Clarity IDs, and you're ready to go.</p>
+                <p>Enable the presets you need and supply your tracking IDs. For Matomo, add your instance URL and site ID.</p>
                 <p>Consent for Laravel takes care of loading each tool according to your visitors' choices, keeping consent signals in sync and handling withdrawal. Your app supplies actual events, provider account settings, and the policy information.</p>
-                <ul class="integration-labels" aria-label="Built-in integrations"><li>GA4</li><li>Google Ads</li><li>Meta Pixel</li><li>Microsoft Clarity</li></ul>
+                <ul class="integration-labels" aria-label="Built-in integrations"><li>GA4</li><li>Google Ads</li><li>Meta Pixel</li><li>Microsoft Clarity</li><li>Matomo</li><li>TikTok Pixel</li></ul>
                 <a class="button button-accent" href="{{ route('docs.show', 'integrations') }}">Explore integrations <x-icon name="arrow-right" /></a>
             </div>
             <div class="code-example" data-tracking-ids>
@@ -56,28 +56,32 @@
                 <pre tabindex="0" aria-label="Tracking IDs configuration"><code class="language-dotenv" data-tracking-code>CONSENT_GA4_ID=G-XXXXXXXXXX
 CONSENT_GOOGLE_ADS_ID=AW-123456789
 CONSENT_META_PIXEL_ID=123456789012345
-CONSENT_CLARITY_ID=abc123def4</code></pre>
+CONSENT_CLARITY_ID=abc123def4
+CONSENT_MATOMO_URL=https://stats.example.com/
+CONSENT_MATOMO_SITE_ID=3
+CONSENT_TIKTOK_PIXEL_ID=C1234567890ABCDEFGHI</code></pre>
                 <p><span class="status-dot" aria-hidden="true"></span> Add your IDs. The presets handle the rest.<span class="integration-note">Enable your chosen presets in <code>config/consent.php</code>.</span></p>
             </div>
         </div>
     </section>
     <section id="integrations" class="numbered-section" aria-labelledby="integrations-title">
         <div class="section-rail"><span>03 / How consent works</span><span>the presets follow consent changes and withdrawal</span></div>
-        <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its ID; the package takes care of that consent logic.</p></div>
+        <div class="section-intro"><h2 id="integrations-title">Bring your tools.<br><span class="text-accent">Skip the wiring.</span></h2><p>Connecting a tracker usually means adding tags, checking consent, and handling changed choices. Enable a built-in preset and supply its settings; the package takes care of that consent logic.</p></div>
         <div class="release-grid">
             <div class="release-current">
                 <span class="eyebrow">Included out of the box</span>
-                <h3>Four built-in integrations</h3>
+                <h3>Six built-in integrations</h3>
                 <ul>
                     <li><x-icon name="arrow-down-right" />GA4 and Google Ads setup from your IDs</li>
                     <li><x-icon name="arrow-down-right" />Google Consent Mode v2 with Basic and Advanced</li>
                     <li><x-icon name="arrow-down-right" />Meta Pixel and Microsoft Clarity presets</li>
+                    <li><x-icon name="arrow-down-right" />Matomo and TikTok Pixel with guarded measurements</li>
                 </ul>
                 <a href="{{ route('docs.show', 'integrations') }}">Explore the integrations <x-icon name="arrow-up" /></a>
             </div>
             <div class="release-planned">
                 <span class="eyebrow">Consent throughout the lifecycle</span>
-                <div><strong>Loading follows the choice</strong><span>GA4 and Clarity use analytics consent; Ads and Meta use marketing. Google Basic waits for permission.</span></div>
+                <div><strong>Loading follows the choice</strong><span>GA4, Clarity, and Matomo use analytics consent; Ads, Meta, and TikTok use marketing. Google Basic waits for permission.</span></div>
                 <div><strong>Consent checks are built in</strong><span>Use the event helpers to check permission before sending events. Your app supplies the events and conversion details.</span></div>
                 <div><strong>Withdrawal is already handled</strong><span>The presets apply denied signals, clear declared cookies, and reload when an active tracker needs to stop.</span></div>
                 <a href="{{ route('docs.show', 'google-consent-mode') }}">Understand Basic and Advanced <x-icon name="arrow-up" /></a>
