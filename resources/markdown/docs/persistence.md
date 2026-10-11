@@ -69,3 +69,7 @@ With `audit.enabled`, explicit browser choices are also submitted to the audit e
 The audit endpoint issues a separate signed HttpOnly `{preference cookie name}_audit` cookie, host-only and scoped to its own path. It groups browser decisions while available and does not authenticate a person. Clearing it or using another device can split the history; there is no fingerprint-based reconnection.
 
 Preference `retention_days` controls current browser choice lifetime. `audit.retention_days` controls explicit pruning of historical decisions. The stored `expires_at` uses the original signed notice's preference lifetime and the server's UTC receipt time; it is not the audit deletion deadline and can differ slightly from the browser clock. A logged submission can still be followed by a failed preference-cookie write. See [stored data](/docs/audit-log#stored-data) and [failure behavior](/docs/audit-log#failures-and-withdrawal).
+
+## Matomo and TikTok configuration changes
+
+The Matomo instance/site, TikTok Pixel ID, automatic measurement options, canonical purposes, and declared scopes contribute to the active-service fingerprint. Enabling a new preset or changing those settings makes previous decisions pending. Disabled presets preserve existing fingerprints and schema 1. Presentation-only translations, variants, positions, and themes preserve choices and their expiry. See [the v1.4.0 upgrade steps](/docs/upgrading#matomo-tiktok-and-boost-update).

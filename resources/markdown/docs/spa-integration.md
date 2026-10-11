@@ -53,3 +53,14 @@ Keep one SDK owner per document. Set Meta `send_page_view` to false when the rou
 With auditing enabled, keep one persistent banner and one signed `data-consent-notice` block for the document. Route fragments must not inject extra notices. The snapshot belongs to the server-prepared banner/dialog; client-side text mutations are not recaptured automatically.
 
 A policy/purpose change requires fresh server-rendered HTML and the correct policy version, not just a router text replacement. Preserve the original notice when submitting decisions on the current page. See [cached notices](/docs/audit-log#cache-and-signatures).
+
+## Matomo and TikTok page views
+
+For application-managed first routes, set the corresponding preset's `send_page_view` to `false`. After committing the new URL and document title, invoke its helper once per completed navigation:
+
+```js
+await Consent.matomo.pageView({ url: '/checkout', title: 'Checkout', referrer: '/cart' });
+await Consent.tiktok.pageView();
+```
+
+These are independent examples; call only your enabled integration. Matomo requires analytics, TikTok requires marketing. Neither helper installs router listeners or replays views invoked without permission. Matomo captures the supplied/current URL and title, remembers only successfully dispatched views, and permits an explicit referrer. TikTok measures the current document through its `page` API; review account-controlled automatic SPA settings to avoid duplicates. Read [Matomo](/docs/matomo#page-views-and-spa-navigation) and [TikTok](/docs/tiktok-pixel#spa-page-views).

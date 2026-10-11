@@ -41,3 +41,9 @@ The optional bundled endpoint validates the exact request origin, compatible Fet
 Notice signatures verify server-prepared content, not the visitor's identity, legal validity, or later administrator edits to database rows. Cached HTML contains no visitor identifier or session/CSRF token. Signing keys must contain at least 32 decoded bytes; keep prior keys through `app.previous_keys` only as required for deliberately retained cached notices.
 
 The separate signed identity cookie is HttpOnly and protected from cleanup. Audit tables contain a pseudonymous browser UUID rather than an account identity, IP address, or user-agent. Keep sensitive or visitor-specific content out of captured notice markup. Protect database access, exports, backups, and retention. Treat stored HTML as evidence data and never display it as trusted executable HTML in an admin interface. See [audit requests and identity](/docs/audit-log#requests-and-browser-identity).
+
+## Matomo consent and TikTok matching
+
+The Matomo preset always requires analytics consent, including for initial page views and automatic links. Cookieless tracking and IP anonymisation alone do not establish an exemption. Separately assessed exempt measurement needs its own application setup with this preset disabled; do not reclassify optional analytics as necessary. See [the supported model](/docs/matomo#supported-consent-model).
+
+TikTok requires marketing for SDK loading, measurements, and `identify()`. Its public Pixel ID belongs in browser configuration; an Events API access token does not. Advanced Matching accepts only application-prepared SHA-256 digests, but hashing does not make identifiers anonymous. Follow the account's normalization/matching requirements and disclose actual processing. The package does not install a server-side Events API or automatically read identity fields. See [TikTok matching](/docs/tiktok-pixel#optional-advanced-matching).

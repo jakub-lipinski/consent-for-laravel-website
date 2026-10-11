@@ -131,3 +131,17 @@ Merge updated capture/notice markup into published banner views and cache-bust p
 Only explicit browser acceptance, refusal, saved preferences, and withdrawal are recorded. Existing preferences, page loads, dialog opening, expiry, cross-tab checks, and cookie edits are not retroactively logged. PHP cookie helpers need [explicit server integration](/docs/php-api#explicit-server-audit-integration).
 
 Cookie deletion/blocking, different devices, simultaneous first decisions, or changed cookie/endpoint names can split a browser history. Delivery is not guaranteed offline or after reload/tab closure. Review `audit.retention_days` and the application's scheduler if older records disappear. `expires_at` describes preference validity, not the audit deletion date. See [identity](/docs/audit-log#requests-and-browser-identity) and [retention](/docs/audit-log#retention).
+
+## Matomo or TikTok does not start
+
+Confirm package v1.4.0 or newer, refreshed published `consent.js`, an enabled preset, valid destination settings, a current decision, and rebuilt configuration. Matomo requires analytics; TikTok requires marketing. Analytics-only permission and Google Advanced do not activate TikTok. With auditing enabled, a new grant also needs a committed receipt.
+
+Remove duplicate Matomo/Piwik or TikTok installations. Pre-existing `_paq`, `Matomo`, `Piwik`, `ttq`, `TiktokAnalyticsObject`, or matching scripts can fail initialization closed. Use Matomo's instance base URL and numeric site ID, or TikTok's 20-character public Pixel ID. Do not pass an Events API access token. Inspect CSP, blockers, both TikTok SDK stages, and `consent:error` codes `matomo`/`tiktok`. Ordinary SDK failures leave independent permitted work available; timeouts use bounded reload recovery.
+
+A helper returning `true` confirms local dispatch, not account reporting. Create Matomo goals and configure its e-commerce currency in the instance. Review TikTok standard-event schemas, matching/account settings, and automatic measurements. Denied calls are discarded; accepting later does not replay them. See [Matomo](/docs/matomo) and [TikTok](/docs/tiktok-pixel).
+
+## Boost resources are missing or stale
+
+Install Boost in the development application and select AI Guidelines, Agent Skills, this package, and your agents. An existing unattended update refreshes the selected resources but does not select a newly discovered package; use `php artisan boost:update --discover` interactively. Check the installed package version and Boost support for third-party package skills.
+
+The original `core.blade.php` remains in `vendor`; its rendered content is merged into the agent guideline file. The skill and all twelve references are copied into the selected agent's skill directory. Preserve application overrides through Boost's custom mechanisms and keep their references alongside the skill. Do not edit generated copies or vendor files. See [Laravel Boost](/docs/laravel-boost).

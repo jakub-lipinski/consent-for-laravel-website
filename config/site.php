@@ -2,14 +2,14 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.3.0',
+    'release' => 'v1.4.0',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.3.0.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.4.0.'],
             ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install from Packagist, publish the configuration, and check Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Install with Composer, enable a preset or your own script, and add the interface.'],
         ],
@@ -32,6 +32,8 @@ return [
         'Other integrations' => [
             ['slug' => 'meta-pixel', 'title' => 'Meta Pixel', 'description' => 'Marketing consent, ID-based setup, guarded events, and PageView control.'],
             ['slug' => 'microsoft-clarity', 'title' => 'Microsoft Clarity', 'description' => 'Analytics gating, Consent API v2, optional advertising, and masking.'],
+            ['slug' => 'matomo', 'title' => 'Matomo', 'description' => 'Cloud/self-hosted analytics, page views, goals, searches, SPA views, and e-commerce.'],
+            ['slug' => 'tiktok-pixel', 'title' => 'TikTok Pixel', 'description' => 'Marketing consent, page views, standard/custom events, event IDs, and hashed matching.'],
         ],
         'In production' => [
             ['slug' => 'audit-log', 'title' => 'Decision audit log', 'description' => 'Optional database history, signed notices, browser identity, failures, and retention.'],
@@ -42,6 +44,7 @@ return [
             ['slug' => 'troubleshooting', 'title' => 'Troubleshooting', 'description' => 'Diagnose loading, storage, configuration, and interface problems.'],
         ],
         'The project' => [
+            ['slug' => 'laravel-boost', 'title' => 'Laravel Boost', 'description' => 'Install and update one development skill with focused references for your AI agents.'],
             ['slug' => 'upgrading', 'title' => 'Upgrading', 'description' => 'Upgrade safely, merge published resources, and preserve valid choices.'],
             ['slug' => 'integrations', 'title' => 'Included features', 'description' => 'The implemented interface, consent lifecycle, and tracker integrations.'],
             ['slug' => 'security', 'title' => 'Security and privacy', 'description' => 'Cookie boundaries, protected state, and site-specific responsibilities.'],

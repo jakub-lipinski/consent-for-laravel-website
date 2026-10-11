@@ -45,7 +45,7 @@ Preference, optional audit identity, configured session, CSRF, and `remember_` c
 
 A failed choice remains denied in memory. A temporary denial marker normally allows a safe reload. If neither session storage nor history state can hold that marker, an automatic reload might restore the old grant. In that case the runtime reports that automatic reload is unavailable rather than claiming running code has stopped. See [persistence](/docs/persistence).
 
-Pending Google, Meta, and Clarity helper events never delay saving a refusal. Permission is rechecked immediately before dispatch; events still waiting when consent is withdrawn are not sent.
+Pending Google, Meta, Clarity, Matomo, and TikTok helper events never delay saving a refusal. Permission is rechecked immediately before dispatch; events still waiting when consent is withdrawn are not sent.
 
 ## Verify the provider lifecycle
 
@@ -62,3 +62,11 @@ Meta cleanup covers declared `_fbp`/`_fbc` scopes; Clarity covers `_clck`/`_clsk
 When auditing is enabled, explicit refusal, saved reductions, and `forget()` start a keepalive submission before cleanup can reload the page. Local denial never waits for a database receipt. A late pending grant cannot reverse a later refusal or withdrawal.
 
 The audit promise can reject while refusal remains effective. Offline state, tab closure, shared keepalive quotas, and a reload preventing a retry can leave the event unrecorded; there is no persistent queue or guaranteed final delivery. Removing browser permission remains the priority. Expiry and cross-tab observation do not create new events. See [audit failure behavior](/docs/audit-log#failures-and-withdrawal).
+
+## Built-in Matomo and TikTok withdrawal
+
+Matomo synchronously calls `forgetConsentGiven` before application change listeners, disables link tracking and heartbeat timers, and deletes its declared cookies. Cleanup uses site-specific `_pk_*.<site>.` prefixes plus native Matomo consent markers, with the configured SDK cookie scope. Other site IDs are not matched by those prefixes; consent markers use shared names.
+
+TikTok synchronously sends `revokeConsent` and cancels queued measurements before listeners. It expires `_ttp`, `ttclid`, `ttcsid`, `_tt_enable_cookie`, and `ttcsid_` names in the declared scope. Those settings describe cleanup, rather than configuring the SDK's native cookie scope.
+
+Active or in-flight withdrawal requires reload for both presets, including either TikTok SDK stage. Custom `reload: false` cannot suppress it. Extra plugin cookies, former scopes, HttpOnly/third-party cookies, and already dispatched data require appropriate owner handling. Protected application cookies remain protected. See [Matomo consent and cookies](/docs/matomo#consent-cookies-and-withdrawal) and [TikTok consent and audit](/docs/tiktok-pixel#consent-cookies-and-audit).

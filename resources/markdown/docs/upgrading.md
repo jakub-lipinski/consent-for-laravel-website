@@ -3,10 +3,53 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.3.0"
+composer require "jakub-lipinski/consent-for-laravel:^1.4.0"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Matomo, TikTok, and Boost update
+
+Version **1.4.0** adds Matomo and TikTok Pixel presets plus Laravel Boost resources. **Existing configurations keep both presets disabled** when their entries are absent. Cookie schema 1, unchanged service fingerprints, and original saved-choice expiry remain compatible. No database migration is added by this release. See [the v1.4.0 release notes](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.4.0).
+
+1. Update the package with the command above. Preserve existing services, presets, destination IDs, canonical purposes, cookie scopes, policy version, audit settings, colors, and custom wording. Do not force-publish the entire config over your application settings.
+2. If using a new integration, merge the relevant entry into the existing `presets` array:
+
+```php
+'matomo' => [
+    'enabled' => false,
+    'url' => env('CONSENT_MATOMO_URL'),
+    'site_id' => env('CONSENT_MATOMO_SITE_ID'),
+    'send_page_view' => true,
+    'enable_link_tracking' => true,
+    'cookie_path' => '/',
+    'cookie_domain' => null,
+],
+'tiktok_pixel' => [
+    'enabled' => false,
+    'pixel_id' => env('CONSENT_TIKTOK_PIXEL_ID'),
+    'send_page_view' => true,
+    'cookie_path' => '/',
+    'cookie_domain' => null,
+],
+```
+
+3. Supply the actual instance base URL/site ID or public Pixel ID, remove duplicate tracker installations, and enable only the requested preset. Matomo needs analytics consent; TikTok needs marketing. Matomo's prior-consent preset does not implement an exempt baseline. Read [Matomo](/docs/matomo), [TikTok](/docs/tiktok-pixel), and [configuration rules](/docs/configuration#matomo-and-tiktok-presets) before enabling either.
+4. Refresh/cache-bust published `consent.js` before serving either enabled preset. An old runtime rejects the new configuration. Inline components use installed sources. The banner view, `banner.js`, and `consent.css` are unchanged from 1.3.0; merge earlier updates too if skipping releases. Preserve the audit notice capture block in customized views.
+5. Bundled purposes work in all seven languages without publishing translations. Merge the `matomo` and `tiktok-pixel` entries under `messages.presets` into application-owned dictionaries when maintaining your own wording. Custom service display overrides and regional fallback keep their existing behavior.
+6. Rebuild configuration/view caches, refresh stale page HTML, and restart long-running workers. With auditing enabled, rebuild route caches if its settings changed. Enabling a new preset or changing its destination/options/purpose/scope invalidates old decisions; visitors must choose again. Adding only Boost resources does not affect decisions.
+7. Verify pending, refusal, each relevant category, restored consent, active/in-flight withdrawal, CSP, declared cookie scopes, and actual vendor reporting. Review automatic page/link/SPA settings to avoid duplicate measurements. Business events need explicit application calls after successful actions. If auditing is enabled, verify receipts, persisted notices/decisions, and immediate refusal when storage fails.
+
+For AI assistance, install Boost as an optional development dependency if needed, then run its installer:
+
+```bash
+composer require laravel/boost --dev
+php artisan boost:install
+```
+
+Select AI Guidelines, Agent Skills, this package, and your agents. Existing Boost applications can discover the newly available resources with `php artisan boost:update --discover`; subsequent updates refresh the selected guideline and complete skill. Preserve custom instructions and skill overrides through Boost's application mechanisms. Do not edit generated copies or vendor files. See [Laravel Boost](/docs/laravel-boost) for the package tree, generated files, and updates.
+
+The package uses one development skill with twelve references, including dedicated Matomo and TikTok references. Installing it does not enable a tracker, modify consent configuration, or require runtime Boost. Applications without Boost continue using the same consent functionality.
 
 ## Decision audit log update
 
@@ -50,14 +93,15 @@ php artisan migrate
 
 Existing valid preferences are not retroactively logged or invalidated when auditing is enabled. If your deployment requires a new explicit decision, increment the application-owned policy version and invalidate stale HTML. Text-only changes create a new snapshot on the next explicit decision without resetting existing choice expiry.
 
-See [the complete audit guide](/docs/audit-log) for tables, identity, signatures, retention, custom server interfaces, and delivery limitations. If updating from 1.1.x or earlier, also apply the relevant steps below; the final view/assets must come from the installed 1.3.0 package.
+See [the complete audit guide](/docs/audit-log) for tables, identity, signatures, retention, custom server interfaces, and delivery limitations. If updating from 1.1.x or earlier, also apply the relevant steps below; the final views/assets must come from the installed package version.
 
 ## Earlier releases at a glance
 
-Apply every relevant row between your installed version and 1.3.0. Preserve application-owned settings rather than force-publishing the whole config.
+Apply every relevant row between your installed version and 1.4.0. Preserve application-owned settings rather than force-publishing the whole config.
 
 | Release | Configuration changes | Published resources / migration |
 | --- | --- | --- |
+| 1.4.0 | Optional Matomo/TikTok preset entries; absent keeps both off | `consent.js`, new purpose translations, optional Boost refresh; no new migration |
 | 1.3.0 | New optional `audit` section; absent keeps it off | Banner notice capture plus `consent.js`; audit tables only when enabled |
 | 1.2.0 | `ui.theme`, independent `ui.dark_colors`; absent keeps light | Banner theme attributes/overrides, CSS, custom dictionaries; no consent-cookie migration |
 | 1.1.3 | `ui.validate_contrast` defaults to false; absent remains valid | PHP diagnostics update; no browser asset change from 1.1.2 |

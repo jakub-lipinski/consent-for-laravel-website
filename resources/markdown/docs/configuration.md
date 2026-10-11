@@ -10,16 +10,18 @@ Edit the existing entries in that file. The examples in these guides are excerpt
 
 ## Choose an integration
 
-All presets start with `enabled` set to `false`, and `services` starts empty. For each built-in integration you use, set its existing `enabled` entry to the boolean `true` and provide the corresponding ID in `.env` or your production environment:
+All presets start with `enabled` set to `false`, and `services` starts empty. For each built-in integration you use, set its existing `enabled` entry to the boolean `true` and provide the corresponding destination settings in `.env` or your production environment:
 
-| Integration | Set to `true` in `config/consent.php` | Environment ID | Required category in Basic mode |
+| Integration | Set to `true` in `config/consent.php` | Environment settings | Loading permission with Google Basic |
 | --- | --- | --- | --- |
 | [GA4](/docs/google-presets) | `presets.ga4.enabled` | `CONSENT_GA4_ID=G-XXXXXXXXXX` | `analytics` |
 | [Google Ads](/docs/google-presets) | `presets.google_ads.enabled` | `CONSENT_GOOGLE_ADS_ID=AW-123456789` | `marketing` |
 | [Meta Pixel](/docs/meta-pixel) | `presets.meta_pixel.enabled` | `CONSENT_META_PIXEL_ID=123456789012345` | `marketing` |
 | [Microsoft Clarity](/docs/microsoft-clarity) | `presets.clarity.enabled` | `CONSENT_CLARITY_ID=abc123def4` | `analytics` |
+| [Matomo](/docs/matomo) | `presets.matomo.enabled` | `CONSENT_MATOMO_URL`, `CONSENT_MATOMO_SITE_ID` | `analytics` |
+| [TikTok Pixel](/docs/tiktok-pixel) | `presets.tiktok_pixel.enabled` | `CONSENT_TIKTOK_PIXEL_ID=C1234567890ABCDEFGHI` | `marketing` |
 
-Replace example IDs with your own. Setting an environment ID alone does not enable a preset. Presets register their purposes and load their SDKs automatically using the shared head/banner components; they need no custom service entry or `@consent` wrapper. Leave unused presets disabled. Google Advanced is an explicit alternative to Basic; Meta and Clarity remain strictly gated in either mode.
+Replace example IDs with your own. Setting an environment ID alone does not enable a preset. Presets register their purposes and load their SDKs automatically using the shared head/banner components; they need no custom service entry or `@consent` wrapper. Leave unused presets disabled. Google Advanced is an explicit alternative to Basic; Meta, Clarity, Matomo, and TikTok remain strictly gated in either mode.
 
 For your own scripts, add their purpose to `services` and gate the script with `@consent`; registration alone does not load code. With no optional purpose configured, the interface shows only the preferences launcher. Follow [the quick start](/docs/quick-start) for either path.
 
@@ -144,6 +146,27 @@ Cleanup scope declarations do not configure the vendor's cookie scope. Match act
 Both accept canonical `name`/`description` and cleanup `cookie_path`/`cookie_domain` with the same validation as services. Clarity also accepts `advertising_name`/`advertising_description` for its separate marketing purpose. Disabled definitions are validated; unknown keys, malformed IDs/options, and collisions with enabled preset service IDs are rejected.
 
 Reserved IDs: `meta-pixel`, `microsoft-clarity`, and, with advertising enabled, `microsoft-clarity-ads`. Meta declares `_fbp`/`_fbc`; Clarity declares `_clck`/`_clsk`. Match actual scopes; declarations do not set vendor cookie domains or remove third-party data. ID/options/purposes/scopes enter the consent fingerprint. Google Advanced never relaxes these gates. See [Meta Pixel](/docs/meta-pixel) and [Clarity](/docs/microsoft-clarity).
+
+## Matomo and TikTok presets
+
+Available since **v1.4.0**. Existing configuration without these entries keeps both disabled.
+
+| Key | Default | Validation / behavior |
+| --- | --- | --- |
+| `presets.matomo.enabled` | `false` | Actual boolean; registers `matomo` in analytics |
+| `presets.matomo.url` | `env('CONSENT_MATOMO_URL')` | HTTP(S) instance base URL; required when enabled; no credentials, query, or fragment |
+| `presets.matomo.site_id` | `env('CONSENT_MATOMO_SITE_ID')` | Positive integer or decimal string up to 2147483647, without leading zeroes; required when enabled |
+| `presets.matomo.send_page_view` | `true` | Actual boolean; initial document page view |
+| `presets.matomo.enable_link_tracking` | `true` | Actual boolean; automatic outlinks/downloads |
+| `presets.tiktok_pixel.enabled` | `false` | Actual boolean; registers `tiktok-pixel` in marketing |
+| `presets.tiktok_pixel.pixel_id` | `env('CONSENT_TIKTOK_PIXEL_ID')` | Exactly 20 uppercase letters/digits; required when enabled |
+| `presets.tiktok_pixel.send_page_view` | `true` | Actual boolean; initial document page view |
+
+Both accept optional canonical `name`/`description`, `cookie_path` (default `/`), and `cookie_domain` (default `null`) with existing service/scope validation. Invalid disabled definitions, unknown options, and collisions with their enabled service IDs are rejected. Neither accepts an access token, cookieless mode, or arbitrary SDK options.
+
+Matomo supports Cloud/self-hosted base URLs including a subdirectory. Omit `matomo.js` and `matomo.php`; the preset appends those endpoints and normalizes trailing slashes, host casing, and default ports. On HTTPS sites use HTTPS. Its cookie scopes configure both the SDK and cleanup. TikTok scopes describe cleanup only; match the cookies actually written by the SDK.
+
+Destination, automatic behavior, canonical purposes, and cookie scopes enter the fingerprint. Both presets disabled preserve existing decisions. Enabling or changing one requires a new choice. UI translations and themes remain presentation-only. See [Matomo](/docs/matomo), [TikTok Pixel](/docs/tiktok-pixel), and [the upgrade steps](/docs/upgrading#matomo-tiktok-and-boost-update).
 
 ## Component props
 

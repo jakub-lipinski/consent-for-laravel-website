@@ -32,7 +32,7 @@ In the published `config/consent.php`, edit the existing `ga4` entry inside `pre
 
 An ID alone does not enable a preset: `enabled` must be the boolean `true`. GA4 registers its analytics purpose and loads its tag automatically after analytics consent in the default Basic mode. Remove any existing standalone GA4 snippet or duplicate installation; a preset needs no manual service definition or `@consent` wrapper.
 
-For other tools, follow [Google Ads](/docs/google-presets), [Meta Pixel](/docs/meta-pixel), or [Microsoft Clarity](/docs/microsoft-clarity). You can enable several presets in the same `presets` array. For a script without a built-in preset, use [the custom-script alternative](/docs/quick-start#alternative-your-own-script) below.
+For other tools, follow [Google Ads](/docs/google-presets), [Meta Pixel](/docs/meta-pixel), [Microsoft Clarity](/docs/microsoft-clarity), [Matomo](/docs/matomo), or [TikTok Pixel](/docs/tiktok-pixel). You can enable several presets in the same `presets` array. For a script without a built-in preset, use [the custom-script alternative](/docs/quick-start#alternative-your-own-script) below.
 
 ## 3. Add the components
 

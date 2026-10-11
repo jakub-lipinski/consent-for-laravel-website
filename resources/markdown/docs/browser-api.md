@@ -117,3 +117,27 @@ const signals = Consent.clarity.state();
 Event helpers require their enabled preset, current permission at invocation and dispatch, and an initialized SDK. They return `true` for a submitted command and `false` for denied/unavailable processing; they do not confirm delivery or replay denied events. Invalid inputs and disabled presets reject. Names start with a letter, contain letters/digits/underscores/dots/hyphens, and have at most 128 characters. Meta parameters are a JSON-serializable object; options accept only a non-empty `eventID` string up to 128 characters. Payloads are captured at invocation.
 
 Clarity state is a frozen `analytics_Storage`/`ad_Storage` snapshot and loads nothing. Clarity advertising requires explicit configuration plus analytics and marketing permission. Active preset withdrawal always reloads. Full examples: [Meta Pixel](/docs/meta-pixel) and [Microsoft Clarity](/docs/microsoft-clarity).
+
+## Matomo measurements
+
+```js
+await Consent.matomo.event('Account', 'Login');
+await Consent.matomo.goal(7, 49.90);
+await Consent.matomo.search('winter boots', 'Products', 12);
+await Consent.matomo.link('/downloads/catalog.pdf', 'download');
+await Consent.matomo.pageView({ url: '/checkout', title: 'Checkout', referrer: '/cart' });
+```
+
+The Matomo preset must be enabled. Every helper requires analytics at invocation and dispatch, waits for initialization, and discards denied calls. `ecommerceCart()` and `ecommerceOrder()` accept application-supplied products/totals and use the website currency configured in Matomo. The helper clears the tracker cart between operations. See [all signatures and commerce examples](/docs/matomo#browser-api).
+
+## TikTok measurements
+
+```js
+await Consent.tiktok.track('Purchase', { value: 49.90, currency: 'PLN' }, { eventID: 'order-123' });
+await Consent.tiktok.trackCustom('NewsletterSignup', { source: 'footer' });
+await Consent.tiktok.pageView();
+```
+
+The enabled TikTok preset requires marketing at invocation and dispatch. Helpers wait for both SDK stages. `eventID` maps to TikTok's `event_id`; browser/server deduplication needs a separately implemented Events API integration. Optional `identify()` accepts application-prepared lowercase SHA-256 digests, never raw identifiers. See [TikTok events and matching](/docs/tiktok-pixel#browser-api).
+
+Both integrations return `Promise<boolean>`: `true` means local dispatch, `false` means permission or initialization prevented it. Invalid arguments or a disabled preset reject with `TypeError`; SDK exceptions reject. Data is captured at invocation, denied calls are never replayed, and withdrawal cancels pending work before reload. Gated modules may await individual helpers, but must not await `Consent.whenIdle()` inside themselves.

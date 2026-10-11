@@ -1,6 +1,6 @@
 ## Included capabilities
 
-Consent for Laravel supplies an in-application consent interface and runtime. Installation adds no separate dashboard, website, application route, database table, or frontend framework.
+Consent for Laravel supplies an in-application consent interface and runtime. The default flow adds no separate dashboard, application endpoint, database table, or frontend framework. Optional auditing registers a same-origin endpoint and uses owner-installed tables.
 
 ## Interface and languages
 
@@ -22,7 +22,7 @@ Preferences use a versioned browser-readable cookie shared by the stateless PHP 
 
 Read [Blade directives](/docs/blade-directives), [browser API](/docs/browser-api), [PHP API](/docs/php-api), and [withdrawal](/docs/withdrawal).
 
-## ID-based presets
+## Built-in presets
 
 | Integration | Required permission | Included behavior |
 | --- | --- | --- |
@@ -30,14 +30,16 @@ Read [Blade directives](/docs/blade-directives), [browser API](/docs/browser-api
 | [Google Ads](/docs/google-presets) | Marketing for guarded conversions and Basic loading | Conversion ID, explicit conversion labels, routed conversion events, scoped cleanup |
 | [Meta Pixel](/docs/meta-pixel) | Marketing | Pixel ID, optional PageView, standard/custom events, optional eventID, scoped cleanup |
 | [Microsoft Clarity](/docs/microsoft-clarity) | Analytics | Project ID, Consent API v2, custom events, recording masking guidance, scoped cleanup |
+| [Matomo](/docs/matomo) | Analytics | Cloud/self-hosted instance URL and site ID, initial page view, outlinks/downloads, guarded goals/search/SPA/e-commerce, scoped cleanup |
+| [TikTok Pixel](/docs/tiktok-pixel) | Marketing | Pixel ID, initial page view, standard/custom events, SPA views, event IDs, optional hashed matching, scoped cleanup |
 
-Google uses denied defaults and ordered Consent Mode v2 updates. Basic blocks Google requests before a grant. Explicit Advanced allows cookieless pings while denied; event helpers still require permission. Clarity advertising is off by default and additionally requires both analytics and marketing permission when enabled. Meta and Clarity retain strict loading gates in either Google mode.
+Google uses denied defaults and ordered Consent Mode v2 updates. Basic blocks Google requests before a grant. Explicit Advanced allows cookieless pings while denied; event helpers still require permission. Clarity advertising is off by default and additionally requires both analytics and marketing permission when enabled. Meta, Clarity, Matomo, and TikTok retain strict loading gates in either Google mode. The Matomo preset always uses prior consent; [separately assessed exempt deployments](/docs/matomo#supported-consent-model) are outside it.
 
 Presets initialize once per document. Helpers check permission at invocation and dispatch and never replay denied calls. Active preset withdrawal signals denial before cleanup and mandatory reload.
 
 ## Integration responsibilities
 
-Use actual provider IDs, remove duplicate snippets, describe your processing accurately, and configure vendor accounts and cookie scopes. Local release checks use SDK mocks rather than live measurements. Verify account delivery in your controlled host environment. The package supplies consent tooling, not whole-site legal or accessibility certification.
+Use actual provider IDs, remove duplicate snippets, describe your processing accurately, and configure vendor accounts and cookie scopes. Release checks use fixture SDKs and disposable browser hosts with official Matomo/TikTok SDKs and controlled collection endpoints; they do not establish live account reporting. Verify account delivery in your controlled host environment. The package supplies consent tooling, not whole-site legal or accessibility certification.
 
 ## Theme modes and diagnostics
 
@@ -50,3 +52,7 @@ See [the upgrade guidance](/docs/upgrading#language-and-theme-update), [theme mo
 Since **v1.3.0**, enable database history of explicit acceptance, refusal, saved preferences, and withdrawal. Decisions reference immutable signed snapshots of the actual banner/dialog, including custom text, translations, and cached pages. A separate HttpOnly cookie groups a pseudonymous browser history; no IP address, user-agent, email, or account ID is stored.
 
 The feature is disabled by default. Publish/run its optional migration before enabling it. New optional grants require a committed receipt, while refusal and withdrawal remain immediate locally. Retention and pruning are separately configurable. Read [the audit guide](/docs/audit-log), [configuration](/docs/configuration#decision-audit-settings), and [upgrade steps](/docs/upgrading#decision-audit-log-update).
+
+## Laravel Boost assistance
+
+The package ships one development skill, twelve focused references, and a short core guideline. Boost discovers them from the installed Composer package and installs the selected resources for your agents. The skill covers configuration, interface, scripts, APIs, auditing, all six presets, and verification. It does not configure or enable tracking automatically. Read [Laravel Boost](/docs/laravel-boost) for installation, generated files, updates, and custom overrides.

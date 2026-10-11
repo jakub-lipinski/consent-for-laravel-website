@@ -24,6 +24,15 @@ Run these in your existing Laravel app. Follow [the quick start](/docs/quick-sta
 - Google Consent Mode v2 with Basic and explicit Advanced modes.
 - ID-based GA4 and Google Ads presets with permission-checked event routing.
 - Meta Pixel and Microsoft Clarity presets with strict loading gates, guarded events, and opt-in Clarity advertising.
+- Matomo Cloud/self-hosted analytics with automatic page views and links, plus guarded goals, search, SPA views, and e-commerce.
+- TikTok Pixel with marketing gating, automatic page views, guarded standard/custom events, event IDs, and optional hashed matching.
+- Laravel Boost guidelines and one development skill with twelve focused references.
+
+## New in v1.4.0
+
+The new Matomo preset requires analytics consent and the TikTok Pixel preset requires marketing consent. Each provides initial measurements plus APIs for application-owned events. Both start disabled, work with the existing interface and optional audit log, and preserve saved choices when their services remain unchanged.
+
+AI assistance stays separate from runtime behavior. [Laravel Boost](/docs/laravel-boost) discovers the package guideline and one skill with references for setup, customization, APIs, auditing, integrations, and verification. Existing applications can follow [the v1.4.0 upgrade steps](/docs/upgrading#matomo-tiktok-and-boost-update).
 
 ## Languages and themes
 
@@ -50,7 +59,7 @@ A saved refusal is a valid decision. A missing, expired, malformed, or outdated 
 
 ## Included integrations
 
-GA4, Google Ads, [Meta Pixel](/docs/meta-pixel), and [Microsoft Clarity](/docs/microsoft-clarity) are included. Custom services describe purposes; enabled presets also initialize their SDKs. See [included features](/docs/integrations).
+GA4, Google Ads, [Meta Pixel](/docs/meta-pixel), [Microsoft Clarity](/docs/microsoft-clarity), [Matomo](/docs/matomo), and [TikTok Pixel](/docs/tiktok-pixel) are included. Custom services describe purposes; enabled presets also initialize their SDKs. See [included features](/docs/integrations).
 
 ## Before using it in production
 

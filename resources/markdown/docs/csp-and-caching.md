@@ -76,3 +76,11 @@ Allow `connect-src 'self'` for the configured same-origin JSON endpoint. Its suc
 Cached old pages submit the original wording even after translation/config changes. Vary HTML by locale and relevant component/config values. A valid old signature does not make obsolete processing purposes suitable for current consent: invalidate stale HTML and request a fresh decision when policy/purposes change.
 
 `APP_KEY` signs notices; `app.previous_keys` can retain old verification keys. Refresh cached HTML when rotating/removing keys or enabling auditing. Snapshot fingerprints include bundled asset contents, but external policy documents and externally served asset contents are not archived. Keep those through your own deployment process. Rebuild route caches when enabling/changing the endpoint. See [audit upgrade steps](/docs/upgrading#decision-audit-log-update).
+
+## Matomo and TikTok origins
+
+Matomo loads `matomo.js` from the configured instance and sends measurements to that instance's `matomo.php`. Permit its script origin where required, plus collection in `connect-src` and `img-src`; Matomo can use beacon/XHR and image transport. Its plugins may need additional origins. See [Matomo loading and CSP](/docs/matomo#loading-csp-and-deployment).
+
+TikTok's controlled bootstrap inherits the nonce, but its second-stage runtime creates additional scripts. Use a nonce with `strict-dynamic`, or authorize `https://analytics.tiktok.com` in `script-src`. Permit the actual collection origins in `connect-src` and `img-src`, reviewing enabled account features and the SDK. Nonces do not authorize outgoing connections. See [TikTok loading and CSP](/docs/tiktok-pixel#loading-csp-and-verification).
+
+Refresh/cache-bust published `consent.js` before enabling either preset. An old runtime rejects their configuration. Inline components use installed sources. The v1.4.0 update leaves the banner view, `banner.js`, and `consent.css` unchanged from v1.3.0; skipping earlier versions still requires their relevant view/asset updates. See [upgrading](/docs/upgrading#matomo-tiktok-and-boost-update).
