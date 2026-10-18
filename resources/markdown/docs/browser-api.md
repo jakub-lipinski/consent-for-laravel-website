@@ -83,6 +83,8 @@ The provider method above is fictional. `reload` defaults to `true`. Opting out 
 | `consent:error` | `{ code, message, block }` diagnostics; block may be absent |
 | `consent:reload-required` | `{ reason }`; may include `automatic: false` when automatic reload would be unsafe |
 | `consent:open-preferences` | Cancelable UI request; no detail payload |
+| `consent:navigating` | `{ id }` when a Livewire page swap starts; the interface closes without saving its draft |
+| `consent:navigated` | `{ id, url, title, previousUrl }` once per completed compatible Livewire page swap; no automatic measurement |
 
 ```js
 document.addEventListener('consent:error', event => {
@@ -91,6 +93,8 @@ document.addEventListener('consent:error', event => {
 ```
 
 Mount listeners before the head component if you need the one-time ready event. Otherwise read `state()` and use subscriptions after initialization. Do not mutate snapshots or replace the global API.
+
+Livewire navigation events exclude initial load, prefetch, canceled visits, component morphs and hash-only changes without a swap. Register a navigation listener once and use guarded helpers for any intended SPA measurement. `whenIdle()` includes already started navigation/cleanup/loader work. Read [Livewire navigation and measurements](/docs/livewire#spa-measurements).
 
 ## Google events
 

@@ -11,7 +11,7 @@ php artisan vendor:publish --tag=consent-config
 
 Run these in your existing Laravel app. Follow [the quick start](/docs/quick-start) to enable a preset or register your own scripts, add the two Blade components, and verify the result. The [package repository](https://github.com/jakub-lipinski/consent-for-laravel) contains the source and release notes.
 
-The current release is **v1.4.1**, with fixes for script-block integrity, dynamic loading order, audited choices across reload, and save-failure messages. Existing APIs and saved decisions remain compatible. See [the upgrade steps](/docs/upgrading#stability-and-bug-fix-update).
+The current release is **v1.5.0**, with optional Livewire 3/4 support and complete Czech and Dutch translations. Existing APIs and saved decisions remain compatible. See [the upgrade steps](/docs/upgrading#livewire-and-language-update).
 
 ## What ships today
 
@@ -20,25 +20,26 @@ The current release is **v1.4.1**, with fixes for script-block integrity, dynami
 - Strict, versioned preference persistence shared by the PHP and browser APIs.
 - Optional database audit history with server timestamps and signed snapshots of the actual banner/dialog, including custom translations and cached notices.
 - Inert `@consent` script blocks with ordering, duplicate prevention, and checks before activation.
+- Livewire components and `wire:navigate`, including interface language changes, paired audit notices and guarded SPA measurements.
 - Safe default reload when consent is withdrawn from running code.
-- Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, safe color-format fallbacks, optional non-blocking contrast diagnostics, and seven bundled languages with custom locale fallback.
+- Matching Standard and Compact banners/preferences dialogs, all three banner positions, a reopening icon, safe color-format fallbacks, optional non-blocking contrast diagnostics, and nine bundled languages with custom locale fallback.
 - Keyboard interaction, native modal semantics, responsive layouts, and protection against covering focused host controls.
 - Google Consent Mode v2 with Basic and explicit Advanced modes.
 - ID-based GA4 and Google Ads presets with permission-checked event routing.
 - Meta Pixel and Microsoft Clarity presets with strict loading gates, guarded events, and opt-in Clarity advertising.
 - Matomo Cloud/self-hosted analytics with automatic page views and links, plus guarded goals, search, SPA views, and e-commerce.
 - TikTok Pixel with marketing gating, automatic page views, guarded standard/custom events, event IDs, and optional hashed matching.
-- Laravel Boost guidelines and one development skill with twelve focused references.
+- Laravel Boost guidelines and one development skill with thirteen focused references.
 
-## New in v1.4.0
+## New in v1.5.0
 
-The new Matomo preset requires analytics consent and the TikTok Pixel preset requires marketing consent. Each provides initial measurements plus APIs for application-owned events. Both start disabled, work with the existing interface and optional audit log, and preserve saved choices when their services remain unchanged.
+The [Livewire integration](/docs/livewire) coordinates component updates, navigation, history, persisted interfaces and language changes through the existing Blade/browser API. Scripts retain their consent gates, order and once-per-document behavior. No Livewire dependency is added to applications that do not use it, and no automatic SPA measurements are sent.
 
-AI assistance stays separate from runtime behavior. [Laravel Boost](/docs/laravel-boost) discovers the package guideline and one skill with references for setup, customization, APIs, auditing, integrations, and verification. Existing applications can follow [the v1.4.0 upgrade steps](/docs/upgrading#matomo-tiktok-and-boost-update).
+Czech and Dutch join the bundled languages, including preset purposes, accessible labels and save-error messages. [Laravel Boost](/docs/laravel-boost) retains one skill with a dedicated Livewire reference. Follow [the upgrade sequence](/docs/upgrading#livewire-and-language-update) when maintaining published views, assets or dictionaries.
 
 ## Languages and themes
 
-English, Polish, German, French, Italian, Spanish, and European Portuguese are included. Custom dictionaries use regional and English fallback. Choose light, dark, or auto in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview lets you try all three theme modes.
+English, Polish, German, French, Italian, Spanish, European Portuguese, Czech, and Dutch are included. Custom dictionaries use regional and English fallback. Choose light, dark, or auto in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview lets you try all three theme modes.
 
 Read [theme modes](/docs/banner-and-theme#light-dark-and-auto), [custom languages](/docs/translations#languages-and-custom-locales), and [the upgrade guidance](/docs/upgrading#language-and-theme-update).
 

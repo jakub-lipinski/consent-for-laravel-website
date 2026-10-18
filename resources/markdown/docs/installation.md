@@ -15,7 +15,7 @@ composer require jakub-lipinski/consent-for-laravel
 php artisan vendor:publish --tag=consent-config
 ```
 
-The current documented release is [v1.4.1](https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.4.1), with script-gating, loading-order, audited-reload, and save-error fixes. Matomo, TikTok Pixel, Laravel Boost resources, optional audit history, seven languages, and light/dark/auto themes remain included. Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
+The current documented release is **v1.5.0**, with optional Livewire 3/4 support and nine bundled languages, including Czech and Dutch. Existing tracker presets, Laravel Boost resources, optional audit history and light/dark/auto themes remain included. Composer resolves a compatible stable release directly from Packagist. No custom repository, Git clone, or minimum-stability change is needed. [GitHub](https://github.com/jakub-lipinski/consent-for-laravel) hosts the source and release notes.
 
 The provider is discovered automatically. If your application disables discovery or installs with `--no-scripts`, see [provider troubleshooting](/docs/troubleshooting#configuration-cannot-be-published).
 
@@ -71,6 +71,8 @@ Restart long-running application workers after deployment. Keep configuration se
 
 ## Compatibility
 
-The [v1.4.1 tag CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/38172381014) passed all eight PHP 8.3/8.4 and Laravel 12/13 lowest/highest dependency combinations. The release's local `composer check` passed on PHP 8.4.25 / Laravel 13.35.0 / Node 22.21.1, including **531 PHP tests / 2680 assertions** and **258 JavaScript tests**. Native Chrome checks covered script mutation, dynamic order, detachment, audited reloads with SQLite, and save-error retries in both variants and all seven languages at 320px and 200% text size. CI coverage and locally executed checks are separate; they do not cover every possible dependency version. See [the v1.4.1 verification](https://github.com/jakub-lipinski/consent-for-laravel/blob/v1.4.1/docs/releases/v1.4.1.md#verification) for scope and limitations.
+The [package CI matrix](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/39154603383) passed PHP 8.3/8.4 with Laravel 12/13 and lowest/highest dependency combinations. The separate [Livewire checks](https://github.com/jakub-lipinski/consent-for-laravel/actions/runs/39154603376) passed sixteen PHP/Laravel/Livewire combinations, including pinned 3.8.10/4.4.7 baselines and compatible updates, plus Chromium, Firefox and WebKit on four Laravel/Livewire hosts.
+
+Local `composer check` passed on PHP 8.4.25 / Node 22.21.1 with **568 PHP tests / 3159 assertions** and **281 JavaScript tests**, with two optional integration-only skips in the package's framework-free baseline. Disposable Laravel 12.70.0 / Livewire 3.8.10 and Laravel 13.37.0 / Livewire 4.4.7 hosts passed 36 focused Chromium/WebKit cases for nine-language navigation, component locale changes, signed notices, audit failures, keyboard/focus and enlarged-text layouts. Earlier full Livewire checks also covered CSP, modules, history, persistence and active withdrawal. The local Firefox binary failed before opening a profile; Firefox passed in Ubuntu CI. These scopes do not establish every dependency combination, custom view, screen reader, live vendor report or complete host-site accessibility.
 
 Continue with [the quick start](/docs/quick-start).

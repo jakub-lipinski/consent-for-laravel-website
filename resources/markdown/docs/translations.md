@@ -14,7 +14,7 @@
 
 ## Publish interface messages
 
-All seven bundled languages work without publishing files. Publish translations only when changing the bundled wording:
+All nine bundled languages work without publishing files. Publish translations only when changing the bundled wording:
 
 ```bash
 php artisan vendor:publish --tag=consent-translations
@@ -49,7 +49,7 @@ If you share-cache HTML in multiple languages, vary the cache by locale. Inert s
 
 ## Google preset wording
 
-Default GA4/Ads, Meta, and Clarity purposes and the Advanced-mode disclosure are available in all seven bundled languages. Canonical preset name/description changes keep their custom wording rather than being replaced by bundled defaults. You can explicitly translate the `google-ga4` / `google-ads` display fields in `consent::services`. Published `messages.php` files should retain `google_advanced` and all used preset purposes under `presets`, including `meta-pixel`, `microsoft-clarity`, and `microsoft-clarity-ads`. The same `consent::services` display overrides work for these IDs. Canonical description changes still affect the fingerprint.
+Default purposes for all bundled presets and the Advanced Google disclosure are available in all nine languages. Canonical preset name/description changes keep their custom wording rather than being replaced by bundled defaults. You can explicitly translate the `google-ga4` / `google-ads` display fields in `consent::services`. Published `messages.php` files should retain `google_advanced` and all used preset purposes under `presets`, including `meta-pixel`, `microsoft-clarity`, `microsoft-clarity-ads`, `matomo`, and `tiktok-pixel`. The same `consent::services` display overrides work for these IDs. Canonical description changes still affect the fingerprint.
 
 Standard and Compact share the same interface dictionaries and service-purpose translations. Both variants' service disclosures use the same `services_label` message.
 
@@ -66,6 +66,8 @@ Standard and Compact share the same dictionaries, including category purposes, p
 | `it` | Italian |
 | `es` | Spanish |
 | `pt` | European Portuguese |
+| `cs` | Czech |
+| `nl` | Dutch |
 
 Publishing is not required to use these defaults. Select a locale through the component, config, or app; precedence is **component > config > application**. The package does not change the application's locale.
 
@@ -81,19 +83,19 @@ Publishing is not required to use these defaults. Select a locale through the co
 
 ### Add your own language
 
-There is no package language allowlist. For example, create `lang/vendor/consent/nl/messages.php` directly in your application:
+There is no package language allowlist. For example, create `lang/vendor/consent/sv/messages.php` directly in your application:
 
 ```php
 <?php
 
 return [
-    'banner_title' => 'Uw privacy telt',
-    'accept_all' => 'Alles accepteren',
-    'reject_optional' => 'Optionele weigeren',
+    'banner_title' => 'Din integritet är viktig',
+    'accept_all' => 'Acceptera alla',
+    'reject_optional' => 'Avvisa valfria',
 ];
 ```
 
-Set the app locale or `ui.locale` to `nl`, or use `<x-consent::banner locale="nl" />`. A partial file overrides these keys and inherits the rest; copy the structure of a bundled dictionary to translate the entire interface. No translation/view publishing step is needed to add this file. Publishing bundled dictionaries is still available for wording overrides.
+Set the app locale or `ui.locale` to `sv`, or use `<x-consent::banner locale="sv" />`. A partial file overrides these keys and inherits the rest; copy the structure of a bundled dictionary to translate the entire interface. No translation/view publishing step is needed to add this file. Publishing bundled dictionaries is still available for wording overrides.
 
 ### Regional and per-key fallback
 
@@ -110,6 +112,12 @@ Create `lang/vendor/consent/{locale}/services.php` using the service structure s
 Display wording and locale changes preserve consent fingerprints and original decision expiry. A real purpose change still needs updated canonical metadata or `policy_version`. Vary shared HTML caches by the locale used to render the UI, including config/component overrides. The built-in layout is left-to-right; custom RTL languages also need a published view/layout adaptation and native browser verification.
 
 See [the upgrade guidance](/docs/upgrading#language-and-theme-update) for application-owned dictionaries.
+
+## Language changes with Livewire
+
+Leave `ui.locale=null` and omit a banner locale override to follow `app()->setLocale($locale)` before page/component rendering. Preserve the selected locale across Livewire update requests. Navigation and component locale changes update the banner, dialog, accessible labels, messages, service descriptions and signed notice together without changing saved choices or expiry. Explicit component/config locales keep their priority.
+
+`cs-CZ` / `cs_CZ` use Czech, while `nl-NL` / `nl_NL` and `nl-BE` use Dutch unless a more specific dictionary exists. Partial published Dutch overrides now inherit remaining Dutch package messages before English. A persisted interface can require a full refresh on a locale change. Read [Livewire](/docs/livewire#language-changes) and [upgrade steps](/docs/upgrading#livewire-and-language-update).
 
 ## Wording in audit snapshots
 

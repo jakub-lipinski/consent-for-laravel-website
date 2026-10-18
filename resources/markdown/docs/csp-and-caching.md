@@ -33,6 +33,12 @@ The head component emits configuration before the runtime. Custom colors still c
 
 Republish package assets after updates, using `--force` only after accounting for any application changes. Use your deployment's cache-busting strategy. Published filenames are not automatically content-hashed. The v1.4.1 fixes require the updated `consent.js` and current `save_failed` translations in rendered HTML; see [the upgrade steps](/docs/upgrading#stability-and-bug-fix-update). For version 1.1, deploy matching views and styles together: customized banner views need the `variant` prop and `data-consent-variant` root attribute for Compact to style both the banner and preferences.
 
+## Livewire navigation
+
+The [Livewire adapter](/docs/livewire) uses the same assets and consent gates. Merge current head/banner views, refresh all three published assets, and preserve the runtime-context marker and complete UI/notice wrapper. Runtime configuration or asset changes require a fresh document before further activation; automatic same-tab recovery is bounded. See [the upgrade sequence](/docs/upgrading#livewire-and-language-update).
+
+Supply matching application nonces to both components and Livewire. The initial document's CSP governs SPA destinations; a new response nonce does not replace it. Livewire 4 needs its CSP-safe build when excluding `unsafe-eval`. With a nonce-bearing runtime, Livewire 3 or an unknown major uses full visits in auto mode. Livewire's DOMParser can report style nonce violations before adoption, requiring exact static-style hashes in addition to nonces. Published CSS avoids the consent inline-style hash, while custom palettes still need their style policy. Test actual response headers, modules and denied requests in the host browser; the package never adds `unsafe-inline` or loosens CSP.
+
 ## Shared HTML
 
 `@consent` templates are inert and independent of visitor preferences, making the same HTML safe to reuse across accepted and undecided visitors. The browser performs the gate. Do not introduce server-side preference conditionals into shared cached HTML.

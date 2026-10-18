@@ -2,25 +2,26 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.4.1',
+    'release' => 'v1.5.0',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.4.1.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.5.0.'],
             ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install from Packagist, publish the configuration, and check Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Install with Composer, enable a preset or your own script, and add the interface.'],
         ],
         'The interface' => [
             ['slug' => 'services-and-categories', 'title' => 'Services and categories', 'description' => 'Describe your processing purposes and expose only used categories.'],
             ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Variants, positions, palettes, and light/dark/auto modes.'],
-            ['slug' => 'translations', 'title' => 'Translations', 'description' => 'Seven bundled languages, custom dictionaries, and regional locale fallback.'],
+            ['slug' => 'translations', 'title' => 'Translations', 'description' => 'Nine bundled languages, custom dictionaries, and regional locale fallback.'],
             ['slug' => 'accessibility', 'title' => 'Accessibility', 'description' => 'Keyboard, focus, contrast, reflow, and integration responsibilities.'],
         ],
         'Developer API' => [
             ['slug' => 'blade-directives', 'title' => 'Blade directives', 'description' => 'Cache-safe script blocks with ordering and duplicate prevention.'],
+            ['slug' => 'livewire', 'title' => 'Livewire', 'description' => 'Components, navigation, language changes, persistence, and SPA measurements.'],
             ['slug' => 'browser-api', 'title' => 'Browser API', 'description' => 'Choose, inspect, refresh, and react to browser preferences.'],
             ['slug' => 'php-api', 'title' => 'PHP API', 'description' => 'Read and persist consent from Laravel controllers and services.'],
             ['slug' => 'configuration', 'title' => 'Configuration reference', 'description' => 'Every configuration option, default, and validation rule.'],

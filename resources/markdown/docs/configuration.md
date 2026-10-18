@@ -93,6 +93,15 @@ New optional grants wait for a committed database receipt; refusals and withdraw
 
 A script timeout fails its block. A cleanup failure or timeout requires safe reload. These limits do not make arbitrary vendor asynchronous tasks part of the package queue.
 
+## Livewire settings
+
+| Key | Default | Accepted values |
+| --- | --- | --- |
+| `livewire.enabled` | `true` | Boolean; enables special navigation/UI coordination |
+| `livewire.navigation` | `'auto'` | `auto` for coordinated SPA visits, or `reload` for full visits |
+
+The optional top-level `livewire` array accepts only these two keys. Unknown keys, malformed arrays and invalid values are rejected. Older published configurations inherit both defaults. Livewire remains an optional application dependency; disabling its adapter retains generic fragment discovery and single-file inert-script protection. See [Livewire](/docs/livewire) for layouts, language changes, scripts, persist and CSP behavior.
+
 ## UI settings
 
 | Key | Default | Accepted values |

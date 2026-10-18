@@ -1,6 +1,6 @@
 ## One guideline and one skill
 
-Consent for Laravel ships a short always-loaded guideline and one task-focused skill with twelve supporting references. Laravel Boost discovers these resources from the installed Composer package; no separate consent command, asset publishing, or runtime dependency on Boost is required.
+Consent for Laravel ships a short always-loaded guideline and one task-focused skill with thirteen supporting references. Laravel Boost discovers these resources from the installed Composer package; no separate consent command, asset publishing, or runtime dependency on Boost is required.
 
 ## Install in Your Application
 
@@ -32,6 +32,7 @@ resources/boost/
             ├── browser-api.md
             ├── php-api.md
             ├── audit.md
+            ├── livewire.md
             ├── verification.md
             └── integrations/
                 ├── google.md
@@ -45,6 +46,8 @@ resources/boost/
 
 References stay inside the skill directory, so they work after Boost copies the skill to an agent. They are Markdown rather than application-dependent Blade templates: the agent reads the application's actual configuration before adapting examples. SDK source, complete translation dictionaries, package test infrastructure, and exhaustive vendor manuals stay outside the skill; its job is to explain the public package API and help the agent find the next relevant detail.
 
+The Livewire reference covers component scripts, `wire:navigate`, locale changes, persisted interfaces, explicit SPA measurements, CSP and upgrades. Language customization remains in the interface reference, including all nine dictionaries and regional fallback. These additions stay within the same skill; no separate skill installation is needed.
+
 ## Files in the Laravel Application
 
 For Codex with Boost's default paths, the relevant application files look like this:
@@ -55,7 +58,7 @@ your-application/
 ├── boost.json
 ├── .agents/skills/consent-for-laravel-development/
 │   ├── SKILL.md
-│   └── references/              # All twelve reference files
+│   └── references/              # All thirteen reference files
 └── vendor/jakub-lipinski/consent-for-laravel/resources/boost/
     ├── guidelines/core.blade.php
     └── skills/consent-for-laravel-development/

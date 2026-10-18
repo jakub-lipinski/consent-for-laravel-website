@@ -19,9 +19,9 @@ Use `php artisan config:clear` while developing after changes to cached configur
 
 ## Current scope
 
-Documentation covers `v1.4.1`, including script-gating, loading-order, audited-reload, and save-error fixes: Matomo and TikTok Pixel presets, guarded measurement APIs, Laravel Boost guidelines and one development skill, optional decision audit history and signed notices, seven languages and custom locale fallback, light/dark/auto themes, 72-hour diagnostic suppression, service categories, versioned preferences, browser script gating, withdrawal, Standard/Compact interfaces, configuration, and all six built-in presets. The upgrade guide covers config, views, assets, and migration requirements for earlier stable releases.
+Documentation covers `v1.5.0`, including Livewire components/navigation and language switching, nine bundled languages with Czech and Dutch, guarded measurement APIs, Laravel Boost guidelines and one development skill, optional decision audit history and signed notices, custom locale fallback, light/dark/auto themes, 72-hour diagnostic suppression, service categories, versioned preferences, browser script gating, withdrawal, Standard/Compact interfaces, configuration, and all six built-in presets. The upgrade guide covers config, views, assets, and migration requirements for earlier stable releases.
 
-The landing page includes an interactive preview of the package interface. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website's own GA4 preset uses the real installed package in Basic mode and loads only after analytics permission. `CONSENT_GA4_ID` overrides the public measurement ID configured for the official site. The website itself is in English; the package interface supports seven bundled languages and custom dictionaries. The website keeps its own audit logging disabled; no audit tables or identity cookie are introduced for visitors.
+The landing page includes an interactive preview of the package interface. It uses in-memory state only, stores no preference cookie, and runs no analytics or advertising tracker. The website's own GA4 preset uses the real installed package in Basic mode and loads only after analytics permission. `CONSENT_GA4_ID` overrides the public measurement ID configured for the official site. The website itself is in English; the package interface supports nine bundled languages and custom dictionaries. The website keeps its own audit logging disabled; no audit tables or identity cookie are introduced for visitors.
 
 ## Local development
 
@@ -44,7 +44,7 @@ Herd serves the application. Run `npm run dev` when actively editing frontend as
 - `resources/markdown/docs`: documentation source files.
 - `resources/views`: landing page, shared shell, documentation layout, and accessibility statement.
 - `resources/css/app.css` and `resources/js/app.js`: responsive visual system and progressive enhancement.
-- `resources/css/consent-preview.css`: unmodified package CSS matching the installed `v1.4.1` release, rendered inside a Shadow DOM so Tailwind and website typography cannot override it.
+- `resources/css/consent-preview.css`: unmodified package CSS for `v1.5.0`, rendered inside a Shadow DOM so Tailwind and website typography cannot override it.
 - `resources/css/preview-frame.css`: isolates inherited website styles and contains banner placement in the illustrated app. The native preferences dialog retains the package geometry, colors, typography, hover, and focus styles.
 - `public/assets`: original line-art brand assets, illustration, favicon, and social image.
 
@@ -72,4 +72,4 @@ Preview controls sit above the illustrated app. Standard/Compact remains availab
 
 When updating the package release, copy `resources/css/consent.css` from that tagged source verbatim into `resources/css/consent-preview.css` and update the release fingerprint test. Keep containment rules in `preview-frame.css`; do not modify the package stylesheet to match the website. Recheck both variants, native preferences, hover/focus, and mobile layouts against a disposable app rendering the released package.
 
-The audit chapter documents optional enablement, all config keys, the two related tables, custom/localized/cached notices, signing-key rotation, receipt-gated grants, immediate refusal, browser identity, pruning, and delivery limitations. Search/sidebar navigation includes this chapter; the landing links to it and to the upgrade sequence. The installed package and lock file match the documented release.
+The audit chapter documents optional enablement, all config keys, the two related tables, custom/localized/cached notices, signing-key rotation, receipt-gated grants, immediate refusal, browser identity, pruning, and delivery limitations. Search/sidebar navigation includes this chapter; the landing links to it and to the upgrade sequence. Update the website's installed package and lock file when publishing the corresponding release.

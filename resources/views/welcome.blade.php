@@ -34,7 +34,7 @@
                 ['layers', 'One cached page', 'Serve the same cached HTML to everyone. Consent is checked in the browser, so you do not need a page variant for each consent choice.'],
                 ['refresh', 'No second settings flow', 'Visitors can reopen preferences and withdraw consent. The package remembers their choices and applies changes, including a reload when active trackers require it.'],
                 ['keyboard', 'Focus handled for you', 'Native controls, keyboard navigation, and focus management are already built. Keep your frontend work focused on the rest of your app.'],
-                ['globe', 'Translations ready', 'Seven languages include interface copy and preset descriptions. Add custom dictionaries with regional and English fallback, or adapt the bundled wording to your site.'],
+                ['globe', 'Translations ready', 'Nine languages include interface copy and preset descriptions. Add custom dictionaries with regional and English fallback, or adapt the bundled wording to your site.'],
             ] as $index => [$icon, $title, $description])
             <div class="principle"><div class="principle-top"><x-icon :name="$icon" /><span>0{{ $index + 1 }}</span></div><h3>{{ $title }}</h3><p>{{ $description }}</p></div>
             @endforeach
@@ -96,11 +96,11 @@ CONSENT_TIKTOK_PIXEL_ID=C1234567890ABCDEFGHI</code></pre>
             <div class="release-current">
                 <span class="eyebrow">Included / Make it yours</span>
                 <h3 id="customization-title">More ways to<br>make it yours.</h3>
-                <p>Choose from seven languages, add your own translations, and match the interface to your app with light, dark, or automatic themes. The preview controls above let you try both variants and all three theme modes.</p>
-                <a href="{{ route('docs.show', 'upgrading') }}#language-and-theme-update">Read the update notes <x-icon name="arrow-up" /></a>
+                <p>Choose from nine languages, add your own translations, and match the interface to your app with light, dark, or automatic themes. The preview controls above let you try both variants and all three theme modes.</p>
+                <a href="{{ route('docs.show', 'translations') }}">Explore the languages <x-icon name="arrow-up" /></a>
             </div>
             <div class="release-planned">
-                <div><strong>Seven languages, plus your own</strong><span>German, French, Italian, Spanish, and Portuguese join English and Polish. Add custom wording with regional and English fallback.</span></div>
+                <div><strong>Nine languages, plus your own</strong><span>English, Polish, German, French, Italian, Spanish, Portuguese, Czech, and Dutch. Add custom wording with regional and English fallback.</span></div>
                 <div><strong>Light, dark, or automatic</strong><span>Choose the mode in config for both variants. Override each palette independently, with no extra theme button.</span></div>
                 <div><strong>Quieter theme diagnostics</strong><span>Identical color and contrast warnings are limited to one logging attempt every 72 hours.</span></div>
                 <a href="{{ route('docs.show', 'banner-and-theme') }}#light-dark-and-auto">Explore the theme options <x-icon name="arrow-up" /></a>
@@ -134,7 +134,7 @@ CONSENT_TIKTOK_PIXEL_ID=C1234567890ABCDEFGHI</code></pre>
         <div><span class="eyebrow">Questions before you install</span><h2 id="faq-title">Before your<br> <span class="text-accent">first install</span></h2></div>
         <div class="faq-list">
             <details><summary>Can I install it from Packagist?<x-icon name="plus" /></summary><p>Yes. The stable package is available on <a href="{{ config('site.packagist') }}" target="_blank" rel="noopener noreferrer">Packagist</a>. Run <code>composer require {{ config('site.package') }}</code> in your Laravel app, then publish <code>consent-config</code>. Laravel discovers the provider automatically. Follow the <a href="{{ route('docs.show', 'quick-start') }}">quick start</a> to enable your integration and add the interface.</p></details>
-            <details><summary>Will it fit my Laravel project?<x-icon name="plus" /></summary><p>Consent supports PHP 8.3+ and Laravel 12-13. It runs without a frontend framework or npm build. The default consent flow needs no database; optional decision logging uses your application database. Start with the <a href="{{ route('docs.show', 'installation') }}">installation guide</a>.</p></details>
+            <details><summary>Will it fit my Laravel project?<x-icon name="plus" /></summary><p>Consent supports PHP 8.3+ and Laravel 12-13. It runs without a frontend framework or npm build. <a href="{{ route('docs.show', 'livewire') }}">Livewire 3 and 4</a> are supported, including navigation and language changes. The default consent flow needs no database; optional decision logging uses your application database. Start with the <a href="{{ route('docs.show', 'installation') }}">installation guide</a>.</p></details>
             <details><summary>Is my GA4 ID all I need?<x-icon name="plus" /></summary><p>Publish the config, set <code>presets.ga4.enabled</code> to <code>true</code>, and set <code>CONSENT_GA4_ID</code>. An ID in <code>.env</code> alone does not enable tracking. With the head and banner components in your layout, the preset registers GA4 and handles its consent checks and tag loading. Remove any old standalone GA4 snippet and refresh cached configuration. See the <a href="{{ route('docs.show', 'google-presets') }}">GA4 setup</a>.</p></details>
             <details><summary>Can I use it with my own scripts?<x-icon name="plus" /></summary><p>Yes. Register a service with its category and purpose, then wrap its script in the <a href="{{ route('docs.show', 'blade-directives') }}">consent Blade directive</a>. The script waits for the matching consent, including on cached pages. Scripts outside this flow remain your responsibility.</p></details>
             <details><summary>What happens when someone changes their mind?<x-icon name="plus" /></summary><p>Visitors can reopen preferences and update or withdraw their choice. The package saves the new state and clears declared first-party cookies. Withdrawing consent from an active built-in tracker reloads the page to stop it. See <a href="{{ route('docs.show', 'withdrawal') }}">withdrawal and cleanup</a> for custom scripts and cookie scopes.</p></details>

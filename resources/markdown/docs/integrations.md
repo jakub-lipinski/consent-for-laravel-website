@@ -9,7 +9,7 @@ Consent for Laravel supplies an in-application consent interface and runtime. Th
 - Matching Standard and Compact banners/preferences dialogs, with bottom-left, bottom-right, and wide bottom-center placement. Category purposes stay visible; both variants use initially collapsed native service-list disclosures with a state-indicating chevron.
 - Safe six-digit hex theme colors with per-color defaults for invalid formats, configurable policy link, and editable copy.
 - A native preferences dialog and a small icon for reopening a saved choice.
-- English, Polish, German, French, Italian, Spanish, and European Portuguese, plus custom locales with regional/English fallback.
+- English, Polish, German, French, Italian, Spanish, European Portuguese, Czech, and Dutch, plus custom locales with regional/English fallback.
 - Native controls, keyboard interaction, managed focus, responsive reflow, and optional contrast diagnostics.
 
 Read [banner and theme](/docs/banner-and-theme), [translations](/docs/translations), and [accessibility](/docs/accessibility).
@@ -21,6 +21,10 @@ Register processing purposes, render the components, and gate custom scripts wit
 Preferences use a versioned browser-readable cookie shared by the stateless PHP and browser APIs. Expired or incompatible decisions become pending. Active withdrawal cleans declared visible first-party cookies and reloads by default to stop running optional code.
 
 Read [Blade directives](/docs/blade-directives), [browser API](/docs/browser-api), [PHP API](/docs/php-api), and [withdrawal](/docs/withdrawal).
+
+## Livewire components and navigation
+
+Optional Livewire 3/4 support coordinates component updates, `wire:navigate`, history, persisted interfaces and language changes. The existing Blade components keep translated UI and signed notices together while preserving saved choices, script ordering and SDK deduplication. The adapter emits a completed-navigation event for application-owned measurements and retains full reloads when active withdrawal or CSP requires them. Read [Livewire](/docs/livewire) for supported versions, stable IDs, locale handling, persist and CSP.
 
 ## Built-in presets
 
@@ -55,4 +59,4 @@ The feature is disabled by default. Publish/run its optional migration before en
 
 ## Laravel Boost assistance
 
-The package ships one development skill, twelve focused references, and a short core guideline. Boost discovers them from the installed Composer package and installs the selected resources for your agents. The skill covers configuration, interface, scripts, APIs, auditing, all six presets, and verification. It does not configure or enable tracking automatically. Read [Laravel Boost](/docs/laravel-boost) for installation, generated files, updates, and custom overrides.
+The package ships one development skill, thirteen focused references, and a short core guideline. Boost discovers them from the installed Composer package and installs the selected resources for your agents. The skill covers configuration, interface, scripts, APIs, auditing, all six presets, and verification. It does not configure or enable tracking automatically. Read [Laravel Boost](/docs/laravel-boost) for installation, generated files, updates, and custom overrides.

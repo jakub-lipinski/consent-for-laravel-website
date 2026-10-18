@@ -3,10 +3,33 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.4.1"
+composer require "jakub-lipinski/consent-for-laravel:^1.5.0"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Livewire and language update
+
+Version **1.5.0** adds optional Livewire 3/4 support and complete Czech (`cs`) and Dutch (`nl`) dictionaries. Existing browser/PHP APIs, cookie schema, service fingerprints and saved-choice lifetimes remain compatible. There is no new migration or automatic consent reset.
+
+1. Update the package with the command above, commit the application's Composer files and preserve application-owned settings. Older published configurations inherit these optional top-level defaults:
+
+```php
+'livewire' => [
+    'enabled' => true,
+    'navigation' => 'auto',
+],
+```
+
+2. Livewire remains optional. For apps using it, use Livewire 3.8.10+ or 4.4.7+. `auto` coordinates SPA visits; choose `reload` for full visits or boolean `enabled=false` to disable special navigation/UI coordination. Keep one head and banner in each participating shared layout. Read [Livewire](/docs/livewire) before adapting custom navigation.
+3. Merge the current head and banner into customized published views. Preserve the head's `consent-runtime-context` marker, external runtime's `data-navigate-track`, and banner bootstrap's `data-navigate-once`. Keep the full UI and signed notice inside `data-consent-container`, with the bundled `wire:ignore`, presentation-dependent `wire:key` and locale/context attributes. Keep the bootstrap outside that protected container. Do not copy only the visible banner text or detach its audit notice.
+4. Refresh/cache-bust published `consent.js`, `banner.js` and `consent.css` together. The CSS includes the wrapper's layout rule. Inline components use installed sources. Clear compiled Blade and Livewire component caches and invalidate old page HTML. Rebuild relevant configuration/route caches and restart persistent workers. A stale/missing runtime marker or changed configuration/assets requires fresh-document recovery.
+5. Use stable explicit `@consent` IDs for dynamic components and shared scripts; keep each ID's category and code unchanged. Do not nest `@script`/`@assets` with `@consent`. Keep ordinary gated tags in single-file/multi-file views. Check [script ownership](/docs/livewire#scripts-in-components) and [CSP](/docs/livewire#csp-and-deployment): nonce-bearing Livewire 3 visits use full reloads in auto mode, while strict Livewire 4 needs its CSP-safe build and a compatible style policy.
+6. To follow site-language changes, leave `ui.locale=null`, omit an explicit banner locale and set/preserve the application locale before page/component rendering. `@persist` must preserve the complete UI/notice wrapper outside components; app/config-locale changes can require a full refresh. Czech and Dutch work without publishing. Merge application-owned dictionaries as needed; partial Dutch overrides now inherit remaining Dutch package messages before English. Existing regional/custom fallback and saved-choice expiry remain unchanged.
+7. Refresh selected Boost resources with `php artisan boost:update`, preserving application overrides. The package still uses one skill, now with thirteen references including Livewire. Do not maintain edits inside generated or vendor files.
+8. Verify pending, refusal, restored consent, ordinary morphs, navigation, Back/Forward, locale changes, persisted UI, delayed/failed audits, CSP/modules and active withdrawal in the actual host browser. Check duplicate SDK requests, keyboard/focus, narrow layouts and enlarged text. The `consent:navigated` event sends no automatic measurement; register any guarded SPA reporting once and review vendor history settings to avoid duplicates.
+
+Apply the relevant earlier steps below if skipping releases. The final views and assets must match the installed package.
 
 ## Stability and bug-fix update
 
@@ -59,7 +82,7 @@ php artisan boost:install
 
 Select AI Guidelines, Agent Skills, this package, and your agents. Existing Boost applications can discover the newly available resources with `php artisan boost:update --discover`; subsequent updates refresh the selected guideline and complete skill. Preserve custom instructions and skill overrides through Boost's application mechanisms. Do not edit generated copies or vendor files. See [Laravel Boost](/docs/laravel-boost) for the package tree, generated files, and updates.
 
-The package uses one development skill with twelve references, including dedicated Matomo and TikTok references. Installing it does not enable a tracker, modify consent configuration, or require runtime Boost. Applications without Boost continue using the same consent functionality.
+Version 1.4.0 introduced one development skill with twelve references, including dedicated Matomo and TikTok references. Installing it does not enable a tracker, modify consent configuration, or require runtime Boost. Applications without Boost continue using the same consent functionality.
 
 ## Decision audit log update
 
@@ -107,10 +130,11 @@ See [the complete audit guide](/docs/audit-log) for tables, identity, signatures
 
 ## Earlier releases at a glance
 
-Apply every relevant row between your installed version and 1.4.1. Preserve application-owned settings rather than force-publishing the whole config.
+Apply every relevant row between your installed version and 1.5.0. Preserve application-owned settings rather than force-publishing the whole config.
 
 | Release | Configuration changes | Published resources / migration |
 | --- | --- | --- |
+| 1.5.0 | Optional `livewire` settings; absent inherits enabled/auto; no new migration | Current head/banner, all JS/CSS assets, Czech/Dutch dictionaries, Livewire Boost reference; preserve UI/notice pairing |
 | 1.4.1 | No new settings or migration | Updated `consent.js`, `save_failed` wording, and selected Boost references; preserve block identity |
 | 1.4.0 | Optional Matomo/TikTok preset entries; absent keeps both off | `consent.js`, new purpose translations, optional Boost refresh; no new migration |
 | 1.3.0 | New optional `audit` section; absent keeps it off | Banner notice capture plus `consent.js`; audit tables only when enabled |

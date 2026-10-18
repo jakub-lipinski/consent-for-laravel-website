@@ -16,7 +16,7 @@ Keep a discovered template's ID, category, and content unchanged; a mutation sto
 
 Mount the head component and banner in the persistent application layout. Blade's once-per-response rendering does not imply deduplication across separate network responses inserted into an SPA. Avoid injecting additional copies of the core runtime or interface on every route transition.
 
-Wait for the original head component before calling `window.Consent`. The package is framework-free; integration with your navigation framework remains application-owned.
+Wait for the original head component before calling `window.Consent`. The package is framework-free and includes a [dedicated Livewire adapter](/docs/livewire) for component updates, `wire:navigate`, language changes, paired notices and history. Other navigation frameworks use the application-owned integration described here.
 
 ## Route-specific providers
 
@@ -52,7 +52,7 @@ Keep one SDK owner per document. Set Meta `send_page_view` to false when the rou
 
 ## Audit notice ownership
 
-With auditing enabled, keep one persistent banner and one signed `data-consent-notice` block for the document. Route fragments must not inject extra notices. The snapshot belongs to the server-prepared banner/dialog; client-side text mutations are not recaptured automatically.
+With auditing enabled, keep one active banner and one matching signed `data-consent-notice` block. Application-owned routers must preserve or replace them together; fragments must not inject extra notices. The Livewire adapter coordinates this pairing during navigation and language changes. The snapshot belongs to the server-prepared banner/dialog; client-side text mutations are not recaptured automatically.
 
 A policy/purpose change requires fresh server-rendered HTML and the correct policy version, not just a router text replacement. Preserve the original notice when submitting decisions on the current page. See [cached notices](/docs/audit-log#cache-and-signatures).
 

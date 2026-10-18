@@ -16,7 +16,7 @@ it('renders every published documentation chapter and its title', function (stri
 })->with([
     'introduction', 'installation', 'quick-start', 'services-and-categories',
     'banner-and-theme', 'translations', 'accessibility', 'blade-directives',
-    'browser-api', 'php-api', 'configuration', 'audit-log', 'persistence', 'withdrawal',
+    'livewire', 'browser-api', 'php-api', 'configuration', 'audit-log', 'persistence', 'withdrawal',
     'google-consent-mode', 'google-presets', 'meta-pixel', 'microsoft-clarity', 'matomo', 'tiktok-pixel', 'laravel-boost', 'csp-and-caching', 'spa-integration', 'troubleshooting', 'upgrading', 'integrations', 'security',
 ]);
 
@@ -25,18 +25,21 @@ it('rejects unknown or path-like chapter names', function (string $path) {
 })->with(['/docs/not-a-chapter', '/docs/README.md', '/docs/%2E%2E%2F.env']);
 
 it('provides searchable text with working named chapter links', function () {
-    $response = $this->getJson(route('docs.search'))->assertOk()->assertJsonCount(27);
+    $response = $this->getJson(route('docs.search'))->assertOk()->assertJsonCount(28);
     $chapters = $response->json();
     foreach ($chapters as $chapter) {
         expect(strtolower($chapter['content']))->not->toContain('beta.', 'gtm', 'tag manager', 'planned milestone');
     }
     $installation = collect($chapters)->firstWhere('slug', 'installation');
     $blade = collect($chapters)->firstWhere('slug', 'blade-directives');
+    $livewire = collect($chapters)->firstWhere('slug', 'livewire');
     expect($installation['content'])
         ->toContain('composer require jakub-lipinski/consent-for-laravel', 'Packagist', 'consent-config')
         ->not->toContain('composer config repositories', 'not currently index', '@dev', '<pre>');
     expect($blade['content'])->toContain('@consent')->toContain('not a PHP condition');
     expect($blade['url'])->toBe(route('docs.show', 'blade-directives'));
+    expect($livewire['content'])->toContain('wire:navigate', 'Language changes', 'Persisted interfaces', 'consent:navigated');
+    expect($livewire['url'])->toBe(route('docs.show', 'livewire'));
 });
 
 it('strips executable HTML and unsafe Markdown links', function () {
@@ -70,7 +73,7 @@ it('keeps documentation links within published chapters or real website routes',
 
 it('presents the stable release honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
-        ->assertSee('v1.4.1')
+        ->assertSee('v1.5.0')
         ->assertSee('data-consent-runtime', false)
         ->assertSee('data-consent-banner', false)
         ->assertSee('composer require jakub-lipinski/consent-for-laravel')
@@ -112,7 +115,7 @@ it('isolates the preview with the unmodified released package stylesheet', funct
         ->assertSee('Google Ads')
         ->assertSee('Meta Pixel');
 
-    expect(hash_file('sha256', resource_path('css/consent-preview.css')))->toBe('bc7bbbf38a974f537ad278c38c5d79543991f9207b31788fed5f8d7fa51b3ebc');
+    expect(hash_file('sha256', resource_path('css/consent-preview.css')))->toBe('b07a358a88378eedd63003ad388ae2d32be2f95451603fd48d775055cd30e4c7');
 });
 
 it('opens GitHub links in a new tab across the website and every documentation chapter', function () {

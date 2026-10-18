@@ -109,6 +109,12 @@ After upgrading to theme support, compare published views/CSS, merge `data-conse
 
 For repeated theme warnings after installing suppression, use a persistent default cache with atomic `add`. `array` only remembers within its lifetime; cleared or evicted markers allow earlier logging. Cache/logger failure never causes a page error. See [warning suppression](/docs/banner-and-theme#warning-suppression).
 
+## Livewire keeps the old language or reloads
+
+Leave `ui.locale=null`, remove any intentional component locale override if the banner should follow the app, and preserve the selected application locale across Livewire update requests before rendering. A persisted app/config-locale interface uses a full refresh when its incoming locale differs. An explicitly pinned locale remains fixed.
+
+Check that current head/banner views and all three assets are deployed together. Preserve the head marker and complete presentation-keyed UI/notice container, clear compiled Blade/Livewire caches and invalidate stale HTML. Configuration/asset mismatches require fresh-document recovery. Nonce-bearing Livewire 3 runtimes also use full visits in auto mode. Do not resolve CSP failures by weakening the policy. See [Livewire](/docs/livewire), [CSP](/docs/csp-and-caching#livewire-navigation) and [upgrading](/docs/upgrading#livewire-and-language-update).
+
 ## Audit prevents a new grant
 
 Confirm the installed package is at least 1.3.0. Select connection/table names, publish `consent-audit-migrations`, run the migration, and only then enable `audit.enabled`. Rebuild config/route caches and restart workers. Inspect the configured POST endpoint in the Network panel and `consent:error` with code `audit`.
@@ -144,4 +150,4 @@ A helper returning `true` confirms local dispatch, not account reporting. Create
 
 Install Boost in the development application and select AI Guidelines, Agent Skills, this package, and your agents. An existing unattended update refreshes the selected resources but does not select a newly discovered package; use `php artisan boost:update --discover` interactively. Check the installed package version and Boost support for third-party package skills.
 
-The original `core.blade.php` remains in `vendor`; its rendered content is merged into the agent guideline file. The skill and all twelve references are copied into the selected agent's skill directory. Preserve application overrides through Boost's custom mechanisms and keep their references alongside the skill. Do not edit generated copies or vendor files. See [Laravel Boost](/docs/laravel-boost).
+The original `core.blade.php` remains in `vendor`; its rendered content is merged into the agent guideline file. The skill and all thirteen references are copied into the selected agent's skill directory. Preserve application overrides through Boost's custom mechanisms and keep their references alongside the skill. Do not edit generated copies or vendor files. See [Laravel Boost](/docs/laravel-boost).
