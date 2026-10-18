@@ -8,7 +8,7 @@
         <div class="hero-copy">
             <div class="release-label"><span class="status-dot" aria-hidden="true"></span><span>Made for Laravel developers</span></div>
             <h1 id="hero-title">Less cookie setup.<br><span class="text-accent">More building.</span></h1>
-            <p class="hero-description">Add two Blade components, enable a tracking preset, and enter your GA4 or Meta Pixel ID. Consent for Laravel handles the banner, preferences, and consent-aware script loading.</p>
+            <p class="hero-description">Add two Blade components and enable built-in integrations for GA4, Meta Pixel, and more. Consent for Laravel handles the banner, preferences, and consent-aware script loading.</p>
             <div class="button-row"><a class="button button-primary" href="{{ route('docs.show', 'installation') }}">Install the package <x-icon name="arrow-right" /></a><a class="button button-outline" href="{{ route('docs.show', 'quick-start') }}">Quick start</a></div>
             <div class="hero-install" data-install-command>
                 <span class="hero-install-label">Install with Composer</span>
