@@ -19,5 +19,10 @@
         <a href="{{ config('site.repository') }}/releases" target="_blank" rel="noopener noreferrer">Releases <x-icon name="arrow-up-right" /></a>
         <a href="{{ route('accessibility') }}">Website accessibility</a>
     </nav>
-    <div class="footer-bottom"><span>© {{ date('Y') }} Consent for Laravel</span><span>Created by <a href="https://lipinskijakub.pl/" target="_blank" rel="noopener noreferrer">Jakub Lipiński</a></span><a href="#top">Back to top <x-icon name="chevron-up" /></a></div>
+    <div class="footer-bottom">
+        <span>© {{ date('Y') }} Consent for Laravel. Created by <a href="https://lipinskijakub.pl/" target="_blank" rel="noopener noreferrer">Jakub Lipiński</a></span>
+        <div class="footer-actions">
+            <button type="button" data-consent-open aria-haspopup="dialog" aria-controls="consent-preferences">Cookie preferences</button>
+        </div>
+    </div>
 </footer>

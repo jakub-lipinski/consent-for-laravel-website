@@ -985,6 +985,7 @@ summary::-webkit-details-marker {
 .footer-bottom {
     grid-column:1/-1;
     display:flex;
+    align-items:center;
     justify-content:space-between;
     flex-wrap:wrap;
     gap:14px;
@@ -993,8 +994,20 @@ summary::-webkit-details-marker {
     font:10px/1.6 var(--font-mono);
     color:var(--muted);
 }
-.footer-bottom a {
-    padding:4px;
+.footer-actions {
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px 24px;
+}
+.footer-bottom a,.footer-actions button {
+    text-decoration:underline;
+    text-underline-offset:3px;
+}
+.footer-actions button {
+    padding:4px 0;
+    border:0;
+    background:none;
 }
 dialog {
     border:1px solid var(--control);
@@ -1632,6 +1645,8 @@ dialog::backdrop {
         padding:32px 24px;
     }
     .footer-bottom {
+        align-items:flex-start;
+        flex-direction:column;
         padding:18px 24px;
     }
     .docs-grid {
