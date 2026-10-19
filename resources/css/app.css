@@ -818,7 +818,6 @@ pre {
     --accent:var(--accent-soft);
     color:var(--paper);
     background:var(--ink);
-    border-top:1px solid var(--line);
 }
 .guide-section :focus-visible {
     outline-color:var(--accent-soft);
@@ -1406,18 +1405,6 @@ dialog::backdrop {
 .statement .docs-prose {
     margin-top:40px;
 }
-@media(min-width:1500px) {
-    .site-frame::before,.site-frame::after {
-        content:'';
-        display:block;
-        position:fixed;
-        top:0;
-        height:100vh;
-        width:1px;
-        background:var(--line);
-        pointer-events:none;
-    }
-}
 @media(max-width:1100px) {
     .site-header {
         padding-inline:24px;
@@ -1471,9 +1458,6 @@ dialog::backdrop {
     }
 }
 @media(max-width:800px) {
-    .site-frame {
-        border:0;
-    }
     .section-rail {
         padding:12px 24px;
         font-size:10px;
