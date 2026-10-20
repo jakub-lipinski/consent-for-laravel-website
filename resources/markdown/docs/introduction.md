@@ -39,7 +39,7 @@ Czech and Dutch join the bundled languages, including preset purposes, accessibl
 
 ## Languages and themes
 
-English, Polish, German, French, Italian, Spanish, European Portuguese, Czech, and Dutch are included. Custom dictionaries use regional and English fallback. Choose light, dark, or auto in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview lets you try all three theme modes.
+English, Polish, German, French, Italian, Spanish, European Portuguese, Czech, and Dutch are included. Custom dictionaries use regional and English fallback. Choose light, dark, auto, or inherit in config, with independent palettes for both variants. Identical theme warnings receive one logging attempt every 72 hours. The published config uses Laravel-style sections and commented examples; the live preview lets you try light, dark, and auto.
 
 Read [theme modes](/docs/banner-and-theme#light-dark-and-auto), [custom languages](/docs/translations#languages-and-custom-locales), and [the upgrade guidance](/docs/upgrading#language-and-theme-update).
 

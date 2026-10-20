@@ -108,11 +108,11 @@ When upgrading published views, merge the `variant` prop and `data-consent-varia
 
 ## Light, dark, and auto
 
-Available since **v1.2.0**. Choose the mode in `config/consent.php`; no visitor-facing theme button or new Blade theme prop is added.
+Light, dark, and auto are available since **v1.2.0**. Choose the mode in `config/consent.php`; no visitor-facing theme button or new Blade theme prop is added.
 
 ```php
 'ui' => [
-    'theme' => 'auto', // light, dark, or auto
+    'theme' => 'auto', // light, dark, auto, or inherit
     'colors' => [],
     'dark_colors' => [],
 ],
@@ -123,8 +123,22 @@ This is an excerpt; keep your other UI settings.
 - `light` always uses the light palette and remains the default, including in old configs without the key.
 - `dark` always uses the dark palette.
 - `auto` follows the browser/system preference through CSS `prefers-color-scheme`, including live changes. Browsers without this media feature stay light.
+- `inherit` follows the nearest ancestor's CSS `color-scheme`, using the configured light/dark palettes. It follows the website's theme switch rather than independently selecting the system preference.
 
 Standard and Compact share the selected palette across the banner, preferences dialog, fallback, and launcher. Scoped `color-scheme` matches native controls and scrollbars without changing the host page. No theme JavaScript, preference cookie, or decision update is needed. A live auto change keeps an open draft intact and does not activate scripts.
+
+### Follow the website theme
+
+Set `ui.theme` to `inherit` when the website has its own theme switch. Declare `color-scheme` in the same host CSS rules that select the website's theme. For example, for a `.dark` class on `<html>`:
+
+```css
+:root { color-scheme: light; }
+:root.dark { color-scheme: dark; }
+```
+
+Other selectors, such as `html[data-theme="dark"]`, work the same way. Class names and attributes alone do not declare a color scheme. Inherit selects between `colors` and `dark_colors`; it does not copy the website's colors. `color-scheme: light dark` delegates the selection to the browser. An unspecified scheme stays light.
+
+Selection uses CSS `light-dark()`, including live changes with an open dialog. Browsers without that function keep a readable light palette. There is no theme observer or additional preference storage, and changing the host theme preserves consent and unsaved choices. To enable this after updating the package, set `ui.theme` to `inherit` and refresh/cache-bust published `consent.css`. Inline components use the installed styles. The existing Blade attributes, browser API, saved decisions, and palette keys remain compatible.
 
 ### Independent palette overrides
 

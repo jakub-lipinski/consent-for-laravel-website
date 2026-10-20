@@ -47,7 +47,7 @@ Use actual provider IDs, remove duplicate snippets, describe your processing acc
 
 ## Theme modes and diagnostics
 
-Both variants support configuration-only light/dark/auto modes, independent light and dark palettes, and 72-hour diagnostic suppression. Theme and language choices preserve saved decisions and the existing tracker lifecycle.
+Both variants support configuration-only light/dark/auto/inherit modes, independent light and dark palettes, and 72-hour diagnostic suppression. Theme and language choices preserve saved decisions and the existing tracker lifecycle.
 
 See [the upgrade guidance](/docs/upgrading#language-and-theme-update), [theme modes](/docs/banner-and-theme#light-dark-and-auto), and [custom locales](/docs/translations#languages-and-custom-locales). The existing presets and browser consent lifecycle keep their behavior.
 
