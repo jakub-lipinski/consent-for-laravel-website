@@ -1266,6 +1266,9 @@ dialog::backdrop {
     align-items:center;
     font:10px/1.6 var(--font-mono);
 }
+:where(.code-toolbar) :focus-visible {
+    outline-color:var(--accent-soft);
+}
 .copy-button {
     background:none;
     border:1px solid #627691;

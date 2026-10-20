@@ -37,8 +37,9 @@ document.querySelectorAll('[data-install-command]').forEach(container => {
         try {
             await navigator.clipboard.writeText(code.textContent.trim());
             label.textContent = 'Copied';
+            button.setAttribute('aria-label', 'Copied installation command');
             announce('Installation command copied to clipboard.');
-            setTimeout(() => { label.textContent = 'Copy'; }, 2000);
+            setTimeout(() => { label.textContent = 'Copy'; button.setAttribute('aria-label', 'Copy installation command'); }, 2000);
         } catch {
             announce('Copy is unavailable. Select the installation command and copy it manually.');
         }
@@ -53,8 +54,9 @@ document.querySelectorAll('[data-tracking-ids]').forEach(container => {
         try {
             await navigator.clipboard.writeText(code.textContent.trim());
             label.textContent = 'Copied';
+            button.setAttribute('aria-label', 'Copied tracking IDs');
             announce('Tracking IDs copied to clipboard.');
-            setTimeout(() => { label.textContent = 'Copy'; }, 2000);
+            setTimeout(() => { label.textContent = 'Copy'; button.setAttribute('aria-label', 'Copy tracking IDs'); }, 2000);
         } catch {
             announce('Copy is unavailable. Select the tracking IDs and copy them manually.');
         }
@@ -177,8 +179,8 @@ document.querySelectorAll('.docs-prose pre').forEach(pre => {
     toolbar.append(label,button); pre.before(wrapper); wrapper.append(toolbar,pre);
     button.addEventListener('click', async () => {
         try {
-            await navigator.clipboard.writeText(code.textContent); button.textContent = 'Copied'; announce('Code copied to clipboard.');
-            setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+            await navigator.clipboard.writeText(code.textContent); button.textContent = 'Copied'; button.setAttribute('aria-label', `Copied ${language} code`); announce('Code copied to clipboard.');
+            setTimeout(() => { button.textContent = 'Copy'; button.setAttribute('aria-label', `Copy ${language} code`); }, 2000);
         } catch { announce('Copy is unavailable. Select the code and copy it manually.'); }
     });
     pre.tabIndex = 0; pre.setAttribute('aria-label', `${language} code example`);
