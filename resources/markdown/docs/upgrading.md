@@ -3,10 +3,19 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.5.0"
+composer require "jakub-lipinski/consent-for-laravel:^1.5.1"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Cross-tab audit fix
+
+Version **1.5.1** fixes an older acceptance receipt overwriting a newer saved decision from another tab when optional auditing is enabled. The runtime reconciles shared preferences before applying the receipt and discards pending choices superseded by an external change. A newer refusal, partial selection, or removal of the preference cookie stays effective, including when the original tab already refreshed its state. See [audit failures and withdrawal](/docs/audit-log#failures-and-withdrawal).
+
+1. Update the package with the command above and commit the application's Composer files. Existing APIs, configuration, cookie schema, service fingerprints and preference lifetimes remain compatible. No migration, policy-version change or consent reset is required for this fix.
+2. Refresh/cache-bust published `consent.js`, preserving application-owned changes. Inline components use the installed source. Clear compiled views and invalidate cached HTML containing the old inline runtime, refresh relevant asset/CDN caches, and restart persistent workers. From 1.5.0, no banner markup, `banner.js`, CSS or translation update is required. Apply the relevant earlier steps below when skipping releases.
+3. If using Boost, refresh selected resources with `php artisan boost:update`, preserving application overrides. The existing skill and audit/verification references cover the fix; no additional skill or reference is needed.
+4. In two tabs sharing cookies, delay a successful acceptance receipt in the first tab, then refuse, save a partial selection, or forget the decision in the second. For the forget scenario, begin with a saved decision so there is a preference cookie to remove. Release the held receipt both before polling and after explicitly refreshing the first tab. The newer saved state must remain effective, and scripts for denied categories must make no requests. Also verify ordinary acceptance and mixed changes with active withdrawal/reload in the host application.
 
 ## Livewire and language update
 
@@ -130,7 +139,7 @@ See [the complete audit guide](/docs/audit-log) for tables, identity, signatures
 
 ## Earlier releases at a glance
 
-Apply every relevant row between your installed version and 1.5.0. Preserve application-owned settings rather than force-publishing the whole config.
+Apply every relevant row between your installed version and 1.5.1. Preserve application-owned settings rather than force-publishing the whole config.
 
 | Release | Configuration changes | Published resources / migration |
 | --- | --- | --- |

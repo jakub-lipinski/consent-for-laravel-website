@@ -11,7 +11,7 @@ php artisan vendor:publish --tag=consent-config
 
 Run these in your existing Laravel app. Follow [the quick start](/docs/quick-start) to enable a preset or register your own scripts, add the two Blade components, and verify the result. The [package repository](https://github.com/jakub-lipinski/consent-for-laravel) contains the source and release notes.
 
-The current release is **v1.5.0**, with optional Livewire 3/4 support and complete Czech and Dutch translations. Existing APIs and saved decisions remain compatible. See [the upgrade steps](/docs/upgrading#livewire-and-language-update).
+The current release is **v1.5.1**. It fixes delayed audit receipts overwriting a newer saved decision from another tab. Existing APIs and saved decisions remain compatible. See [the upgrade steps](/docs/upgrading#cross-tab-audit-fix).
 
 ## What ships today
 
