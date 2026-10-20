@@ -2,20 +2,20 @@
 
 return [
     'name' => 'Consent for Laravel',
-    'release' => 'v1.5.1',
+    'release' => 'v1.5.2',
     'package' => 'jakub-lipinski/consent-for-laravel',
     'packagist' => 'https://packagist.org/packages/jakub-lipinski/consent-for-laravel',
     'repository' => 'https://github.com/jakub-lipinski/consent-for-laravel',
     'website_repository' => 'https://github.com/jakub-lipinski/consent-for-laravel-website',
     'documentation' => [
         'Start here' => [
-            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.5.1.'],
+            ['slug' => 'introduction', 'title' => 'Introduction', 'description' => 'The essentials of Consent for Laravel and version 1.5.2.'],
             ['slug' => 'installation', 'title' => 'Installation', 'description' => 'Install from Packagist, publish the configuration, and check Laravel auto-discovery.'],
             ['slug' => 'quick-start', 'title' => 'Quick start', 'description' => 'Install with Composer, enable a preset or your own script, and add the interface.'],
         ],
         'The interface' => [
             ['slug' => 'services-and-categories', 'title' => 'Services and categories', 'description' => 'Describe your processing purposes and expose only used categories.'],
-            ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Variants, positions, palettes, and light/dark/auto modes.'],
+            ['slug' => 'banner-and-theme', 'title' => 'Banner and theme', 'description' => 'Variants, positions, palettes, and light/dark/auto/inherit modes.'],
             ['slug' => 'translations', 'title' => 'Translations', 'description' => 'Nine bundled languages, custom dictionaries, and regional locale fallback.'],
             ['slug' => 'accessibility', 'title' => 'Accessibility', 'description' => 'Keyboard, focus, contrast, reflow, and integration responsibilities.'],
         ],

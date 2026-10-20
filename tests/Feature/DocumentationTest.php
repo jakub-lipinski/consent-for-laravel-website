@@ -73,8 +73,8 @@ it('keeps documentation links within published chapters or real website routes',
 
 it('presents the stable release honestly and exposes a cookie-free interface preview', function () {
     $this->get(route('home'))->assertOk()
-        ->assertSee('v1.5.1')
-        ->assertSee('https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.5.1')
+        ->assertSee('v1.5.2')
+        ->assertSee('https://github.com/jakub-lipinski/consent-for-laravel/releases/tag/v1.5.2')
         ->assertSee('data-consent-runtime', false)
         ->assertSee('data-consent-banner', false)
         ->assertSee('composer require jakub-lipinski/consent-for-laravel')

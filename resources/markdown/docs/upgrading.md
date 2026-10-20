@@ -3,10 +3,21 @@
 Review [package releases](https://github.com/jakub-lipinski/consent-for-laravel/releases) and the stable versions on [Packagist](https://packagist.org/packages/jakub-lipinski/consent-for-laravel). To use the documented release and allow compatible updates within version 1:
 
 ```bash
-composer require "jakub-lipinski/consent-for-laravel:^1.5.1"
+composer require "jakub-lipinski/consent-for-laravel:^1.5.2"
 ```
 
 If your application already allows the desired version, use `composer update jakub-lipinski/consent-for-laravel`. Commit the resulting `composer.json` and `composer.lock` changes; deploy with `composer install` to reproduce that version. The APIs documented here belong to the version 1 series. The library itself does not commit a dependency lock file; your application normally should.
+
+## Navigation fixes and inherited themes
+
+Version **1.5.2** fixes TikTok SDK readiness across Livewire visits, preserves Blade/PHP expressions containing script-like values in gated Livewire 4 component scripts, and releases detached page DOM while preserving script identities and revocation history. It also adds the optional `ui.theme=inherit` mode. Existing APIs, configuration defaults, cookie schema, service fingerprints, and saved-choice lifetimes remain compatible. No migration, policy-version change, or consent reset is required.
+
+1. Update the package with the command above, commit the application's Composer files, and preserve its existing services, presets, cookie scopes, audit settings, colors, and wording. Production deployments use `composer install`.
+2. Refresh/cache-bust published **`consent.js` and `consent.css`**, preserving application changes. Inline components use the installed sources. From 1.5.1, head/banner markup, `banner.js`, and translations do not need an update. Apply the relevant earlier steps below when skipping releases.
+3. Run `php artisan view:clear` after installing the PHP changes. Livewire 4 also clears its compiled component files through this command. Invalidate stale cached HTML, rebuild relevant deployment caches, and restart persistent workers so old script preparation and inline assets are not reused.
+4. To follow the website's theme switch, set `theme` to `inherit` inside the existing `ui` section. Set the host's CSS `color-scheme` to `light` or `dark` in the corresponding theme rules. Class names and data attributes alone do not define a scheme. The package selects its configured `colors` and `dark_colors`; it adds no theme observer or preference storage. Existing configs keep the light default, and browsers without `light-dark()` keep a light fallback. See [the host CSS example](/docs/banner-and-theme#follow-the-website-theme).
+5. Refresh selected Boost resources with `php artisan boost:update`, preserving application overrides. The existing interface, Livewire, TikTok, and verification references cover the changes; no new skill or reference is needed.
+6. Verify pending/refused/granted navigation, TikTok readiness before/during/after a swap, script-like values serialized with `@json`/`@js` in component scripts, stable-ID remounting, and active withdrawal after a template disappears. Test host theme changes against the system preference with an open draft. Memory checks need actual garbage collection or heap-retainer inspection; a remount count alone does not prove that old DOM is collectible.
 
 ## Cross-tab audit fix
 
@@ -139,10 +150,12 @@ See [the complete audit guide](/docs/audit-log) for tables, identity, signatures
 
 ## Earlier releases at a glance
 
-Apply every relevant row between your installed version and 1.5.1. Preserve application-owned settings rather than force-publishing the whole config.
+Apply every relevant row between your installed version and 1.5.2. Preserve application-owned settings rather than force-publishing the whole config.
 
 | Release | Configuration changes | Published resources / migration |
 | --- | --- | --- |
+| 1.5.2 | Optional `ui.theme=inherit`; older configs keep light; no migration or reset | Updated `consent.js` and `consent.css`; clear compiled Blade/Livewire views; refresh selected Boost references |
+| 1.5.1 | No new settings or migration | Updated `consent.js` for delayed cross-tab audit receipts; invalidate old inline HTML |
 | 1.5.0 | Optional `livewire` settings; absent inherits enabled/auto; no new migration | Current head/banner, all JS/CSS assets, Czech/Dutch dictionaries, Livewire Boost reference; preserve UI/notice pairing |
 | 1.4.1 | No new settings or migration | Updated `consent.js`, `save_failed` wording, and selected Boost references; preserve block identity |
 | 1.4.0 | Optional Matomo/TikTok preset entries; absent keeps both off | `consent.js`, new purpose translations, optional Boost refresh; no new migration |

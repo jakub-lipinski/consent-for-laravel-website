@@ -96,12 +96,12 @@ CONSENT_TIKTOK_PIXEL_ID=C1234567890ABCDEFGHI</code></pre>
             <div class="release-current">
                 <span class="eyebrow">Included / Make it yours</span>
                 <h3 id="customization-title">More ways to<br>make it yours.</h3>
-                <p>Choose from nine languages, add your own translations, and match the interface to your app with light, dark, or automatic themes. The preview controls above let you try both variants and all three theme modes.</p>
+                <p>Choose from nine languages, add your own translations, and match the interface to your app with light, dark, automatic, or inherited themes. The preview controls above let you try both variants with light, dark, and auto.</p>
                 <a href="{{ route('docs.show', 'translations') }}">Explore the languages <x-icon name="arrow-up" /></a>
             </div>
             <div class="release-planned">
                 <div><strong>Nine languages, plus your own</strong><span>English, Polish, German, French, Italian, Spanish, Portuguese, Czech, and Dutch. Add custom wording with regional and English fallback.</span></div>
-                <div><strong>Light, dark, or automatic</strong><span>Choose the mode in config for both variants. Override each palette independently, with no extra theme button.</span></div>
+                <div><strong>Light, dark, auto, or inherit</strong><span>Choose the mode in config. Inherit follows your site's CSS color scheme. Override each palette independently, with no extra theme button.</span></div>
                 <div><strong>Quieter theme diagnostics</strong><span>Identical color and contrast warnings are limited to one logging attempt every 72 hours.</span></div>
                 <a href="{{ route('docs.show', 'banner-and-theme') }}#light-dark-and-auto">Explore the theme options <x-icon name="arrow-up" /></a>
             </div>

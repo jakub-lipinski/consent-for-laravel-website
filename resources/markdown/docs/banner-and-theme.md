@@ -129,7 +129,7 @@ Standard and Compact share the selected palette across the banner, preferences d
 
 ### Follow the website theme
 
-Set `ui.theme` to `inherit` when the website has its own theme switch. Declare `color-scheme` in the same host CSS rules that select the website's theme. For example, for a `.dark` class on `<html>`:
+Available since **v1.5.2**. Set `ui.theme` to `inherit` when the website has its own theme switch. Declare `color-scheme` in the same host CSS rules that select the website's theme. For example, for a `.dark` class on `<html>`:
 
 ```css
 :root { color-scheme: light; }
